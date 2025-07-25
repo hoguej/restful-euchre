@@ -1,0 +1,160 @@
+{
+  "rails": {
+    "code_style": {
+      "conventions": [
+        "Write concise, idiomatic Ruby code",
+        "Follow Rails conventions and best practices",
+        "Use object-oriented and functional programming patterns",
+        "Prefer iteration and modularization over duplication",
+        "Use descriptive variable and method names (e.g., user_signed_in?, calculate_total)",
+        "Structure files according to Rails MVC conventions"
+      ]
+    },
+    "naming": {
+      "conventions": [
+        "Use snake_case for file names, method names, and variables",
+        "Use CamelCase for class and module names",
+        "Follow Rails naming conventions for models, controllers, and views"
+      ],
+      "migrations": {
+        "format": "YYYYMMDDHHMMSS_descriptive_name.rb",
+        "rules": [
+          "Always use `rails generate migration` to create new migrations",
+          "Never manually set timestamps in migration filenames",
+          "Use current UTC timestamp for all new migrations",
+          "Keep descriptive names in snake_case"
+        ],
+        "examples": [
+          "20240315123456_add_status_to_users.rb",
+          "20240315123457_create_orders.rb"
+        ]
+      }
+    },
+    "ruby_features": {
+      "recommended": [
+        "Use Ruby 3.x features when appropriate (pattern matching, endless methods)",
+        "Leverage Rails' built-in helpers and methods",
+        "Use ActiveRecord effectively for database operations"
+      ]
+    },
+    "syntax": {
+      "style_guide": "https://rubystyle.guide/",
+      "preferences": [
+        "Use Ruby's expressive syntax (unless, ||=, &.)",
+        "Prefer double quotes"
+      ]
+    },
+    "error_handling": {
+      "best_practices": [
+        "Use exceptions for exceptional cases, not control flow",
+        "Implement proper error logging",
+        "Use ActiveModel validations in models",
+        "Handle errors gracefully with flash messages"
+      ]
+    },
+    "ui": {
+      "technologies": [
+        "Hotwire (Turbo and Stimulus) for dynamic interactions",
+        "Rails view helpers and partials"
+      ],
+      "consistency": {
+        "layout": [
+          "Use consistent page structure across all views",
+          "Maintain same header/footer/navigation placement",
+          "Keep consistent spacing and padding between sections",
+          "Use shared layout components for common UI elements"
+        ],
+        "components": [
+          "Create reusable partials for repeated UI patterns",
+          "Use consistent naming for shared components",
+          "Maintain same button/form styles across pages",
+          "Keep consistent card/list/table layouts"
+        ],
+        "css": [
+          "Define and reuse CSS custom properties for colors/spacing",
+          "Create shared CSS classes for common patterns",
+          "Use consistent class naming conventions",
+          "Maintain same breakpoints for responsive design"
+        ],
+        "interactions": [
+          "Use consistent loading states and animations",
+          "Maintain same form validation patterns",
+          "Keep consistent error/success message styling",
+          "Use same hover/focus states for interactive elements"
+        ],
+        "best_practices": [
+          "Create a style guide for UI components",
+          "Document common UI patterns in shared partials",
+          "Use view helpers to enforce consistency",
+          "Review UI changes across multiple pages before deployment"
+        ]
+      }
+    },
+    "performance": {
+      "optimizations": [
+        "Use database indexing effectively",
+        "Implement caching strategies",
+        "Use eager loading to avoid N+1 queries",
+        "Optimize database queries"
+      ]
+    },
+    "testing": {
+      "practices": [
+        "Write comprehensive tests using RSpec or Minitest",
+        "Follow TDD/BDD practices",
+        "Never modify existing tests unless explicitly instructed to do so - failing tests may indicate legitimate issues"
+      ],
+      "test_driven_development": {
+        "mandatory_workflow": [
+          "ALWAYS write tests for any new code before considering the task complete",
+          "After writing new code, immediately run the relevant tests",
+          "If tests fail, iterate on the code until all tests pass",
+          "Do not consider any code change complete until it has passing tests",
+          "For bug fixes, write a test that reproduces the bug first, then fix the code"
+        ],
+        "test_coverage_requirements": [
+          "New models must have unit tests covering validations, associations, and methods",
+          "New controllers must have integration tests covering all actions and edge cases",
+          "New view components must have view tests verifying correct rendering",
+          "New jobs must have tests covering execution and error handling",
+          "New helpers must have unit tests covering all public methods"
+        ],
+        "test_execution_workflow": [
+          "Run `rails test <specific_test_file>` for targeted testing",
+          "Run `rails test` for full test suite if changes are widespread",
+          "Always check that new tests actually fail before implementing the code (red-green-refactor)",
+          "Verify test output and fix any errors or warnings",
+          "Re-run tests after each code change until all pass"
+        ],
+        "test_quality_standards": [
+          "Write clear, descriptive test names that explain what is being tested",
+          "Use setup/teardown properly to avoid test pollution",
+          "Test both happy path and edge cases",
+          "Use appropriate assertions (assert_equal, assert_not_nil, etc.)",
+          "Mock external dependencies appropriately",
+          "Keep tests simple and focused on one behavior per test"
+        ],
+        "integration_requirements": [
+          "For any UI changes, create integration tests that verify user workflows",
+          "For API changes, test all endpoints and response formats",
+          "For database changes, test migrations both up and down",
+          "For notification/email features, test delivery and content"
+        ],
+        "failure_handling": [
+          "If tests fail, analyze the failure message carefully",
+          "Fix the code, not the test (unless test is clearly wrong)",
+          "If unsure about test failure, ask for clarification before proceeding",
+          "Never commit code with failing tests",
+          "Document any intentionally skipped tests with clear reasons"
+        ]
+      }
+    },
+    "security": {
+      "requirements": [
+        "Implement proper authentication and authorization",
+        "Use strong parameters in controllers",
+        "Protect against XSS, CSRF, SQL injection"
+      ]
+    }
+  }
+} 

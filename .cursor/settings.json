@@ -1,0 +1,13 @@
+{
+  "postPromptCommands": [
+    {
+      "command": "run_all_checks",
+      "autoFix": true,
+      "onError": "notify"
+    }
+  ],
+  "linting": {
+    "enable": true,
+    "autoFix": true
+  }
+} 
