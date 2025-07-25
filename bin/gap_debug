@@ -1,0 +1,184 @@
+#!/bin/bash
+
+# Gap Debug - Comprehensive debugging for gap workflow issues
+
+echo "🐛 GAP COMPREHENSIVE DEBUG MODE"
+echo "==============================="
+echo
+
+# Test 1: Environment and Path
+echo "🌍 ENVIRONMENT CHECKS"
+echo "-------------------"
+echo "Current directory: $(pwd)"
+echo "Shell: $SHELL"
+echo "User: $USER"
+echo "PATH includes bin/: $(echo $PATH | grep -q "$(pwd)/bin" && echo "✅ YES" || echo "❌ NO")"
+echo
+
+# Test 2: Git Repository Status
+echo "📁 GIT REPOSITORY CHECKS"
+echo "----------------------"
+if git rev-parse --git-dir > /dev/null 2>&1; then
+  echo "✅ In a git repository"
+  echo "Branch: $(git branch --show-current)"
+  echo "Remote: $(git remote -v | head -1 | awk '{print $2}' || echo 'None')"
+  echo "Uncommitted changes: $(git status --porcelain | wc -l | tr -d ' ') files"
+else
+  echo "❌ Not in a git repository"
+fi
+echo
+
+# Test 3: Required Executables
+echo "🔧 EXECUTABLE CHECKS"
+echo "------------------"
+for cmd in git ruby rails bundle brakeman rubocop; do
+  if command -v "$cmd" &> /dev/null; then
+    echo "✅ $cmd: $(which $cmd)"
+  else
+    echo "❌ $cmd: not found"
+  fi
+done
+echo
+
+# Test 4: Gap Script Files
+echo "📜 GAP SCRIPT CHECKS"
+echo "------------------"
+for script in gap gap_dry_run gap_preview gap_debug set_commit_message update_commit_message cursor_checks rubocop_check; do
+  if [ -f "bin/$script" ]; then
+    if [ -x "bin/$script" ]; then
+      echo "✅ bin/$script: exists and executable"
+    else
+      echo "⚠️  bin/$script: exists but not executable"
+    fi
+  else
+    echo "❌ bin/$script: missing"
+  fi
+done
+echo
+
+# Test 5: Commit Message System
+echo "💬 COMMIT MESSAGE SYSTEM"
+echo "----------------------"
+if [ -f ".commit_message" ]; then
+  echo "✅ .commit_message file exists"
+  echo "Content: '$(cat .commit_message)'"
+  echo "Size: $(wc -c < .commit_message) bytes"
+else
+  echo "❌ .commit_message file does not exist"
+fi
+
+# Test writing and reading commit message
+echo "Testing commit message operations..."
+test_msg="Test message $(date +%s)"
+echo "$test_msg" > .commit_message.test
+if [ -f ".commit_message.test" ] && [ "$(cat .commit_message.test)" = "$test_msg" ]; then
+  echo "✅ Can write and read commit message files"
+  rm .commit_message.test
+else
+  echo "❌ Cannot write/read commit message files"
+fi
+echo
+
+# Test 6: Terminal Detection
+echo "🖥️  TERMINAL DETECTION"
+echo "-------------------"
+echo "stdin is terminal: $([ -t 0 ] && echo "✅ YES" || echo "❌ NO")"
+echo "stdout is terminal: $([ -t 1 ] && echo "✅ YES" || echo "❌ NO")"
+echo "stderr is terminal: $([ -t 2 ] && echo "✅ YES" || echo "❌ NO")"
+echo "TTY: $(tty 2>/dev/null || echo 'none')"
+echo
+
+# Test 7: Individual Check Commands
+echo "🔍 INDIVIDUAL CHECK TESTS"
+echo "-----------------------"
+
+# Brakeman
+echo -n "Brakeman: "
+if bin/brakeman --version > /dev/null 2>&1; then
+  echo "✅ Available and working"
+else
+  echo "❌ Not working"
+fi
+
+# Rubocop
+echo -n "Rubocop: "
+if bin/rubocop --version > /dev/null 2>&1; then
+  echo "✅ Available and working"
+else
+  echo "❌ Not working"
+fi
+
+# Rails
+echo -n "Rails: "
+if bin/rails --version > /dev/null 2>&1; then
+  echo "✅ Available and working"
+else
+  echo "❌ Not working"
+fi
+
+# Importmap
+echo -n "Importmap: "
+if bin/importmap --help > /dev/null 2>&1; then
+  echo "✅ Available and working"
+else
+  echo "❌ Not working"
+fi
+echo
+
+# Test 8: File Permissions
+echo "🔒 FILE PERMISSIONS"
+echo "----------------"
+echo "bin/ directory permissions: $(ls -ld bin | awk '{print $1}')"
+echo "Current directory writable: $([ -w . ] && echo "✅ YES" || echo "❌ NO")"
+echo "Can create files: $(touch .debug_test 2>/dev/null && rm .debug_test && echo "✅ YES" || echo "❌ NO")"
+echo
+
+# Test 9: Gap Function Test
+echo "⚙️  GAP FUNCTION TESTS"
+echo "-------------------"
+
+# Test get_commit_message function
+if [ -f ".commit_message" ]; then
+  echo "✅ Stored commit message would be used"
+else
+  echo "⚠️  No stored commit message (would need to provide one)"
+fi
+echo
+
+echo "🎯 SUMMARY & RECOMMENDATIONS"
+echo "============================="
+
+# Check critical issues
+issues=0
+
+# Git repo check
+if ! git rev-parse --git-dir > /dev/null 2>&1; then
+  echo "❌ CRITICAL: Not in a git repository"
+  ((issues++))
+fi
+
+# Executable check
+for cmd in git ruby rails; do
+  if ! command -v "$cmd" &> /dev/null; then
+    echo "❌ CRITICAL: $cmd not found"
+    ((issues++))
+  fi
+done
+
+# Script permissions
+for script in gap gap_dry_run; do
+  if [ ! -x "bin/$script" ]; then
+    echo "⚠️  WARNING: bin/$script not executable"
+  fi
+done
+
+if [ $issues -eq 0 ]; then
+  echo "✅ All critical components working!"
+  echo "🚀 Gap should work properly"
+else
+  echo "❌ Found $issues critical issues"
+  echo "🔧 Fix these issues before using gap"
+fi
+
+echo
+echo "💡 Run 'gap_dry_run \"test message\"' to test the full workflow" 

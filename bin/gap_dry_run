@@ -1,0 +1,112 @@
+#!/bin/bash
+
+# Gap Dry Run - Test what would happen without making changes
+# Usage: bin/gap_dry_run [optional commit message]
+
+COMMIT_MESSAGE_FILE=".commit_message"
+
+# Function to get commit message
+get_commit_message() {
+  if [ $# -gt 0 ]; then
+    # Use provided message
+    echo "$*"
+  elif [ -f "$COMMIT_MESSAGE_FILE" ]; then
+    # Use stored message
+    cat "$COMMIT_MESSAGE_FILE"
+  else
+    # No message available
+    echo ""
+  fi
+}
+
+# Get the commit message
+commit_message=$(get_commit_message "$@")
+
+echo "🧪 GAP DRY RUN MODE"
+echo "=================="
+echo
+
+if [ -z "$commit_message" ]; then
+  echo "❌ Error: No commit message provided or stored"
+  echo "Usage: bin/gap_dry_run [\"commit message\"]"
+  echo "Or have your AI assistant set a commit message first with bin/set_commit_message"
+  exit 1
+fi
+
+echo "📝 Commit message that would be used:"
+echo "   '$commit_message'"
+echo
+
+echo "📊 Current git status:"
+git status --short
+echo
+
+echo "🚀 Running dry-run checks..."
+echo
+
+# Security check
+echo "🔒 Security check (Brakeman)..."
+if bin/brakeman --no-pager > /dev/null 2>&1; then
+  echo "   ✅ Security scan would pass"
+else
+  echo "   ❌ Security scan would fail"
+fi
+
+# Importmap check
+echo "📦 Importmap check..."
+if bin/importmap audit > /dev/null 2>&1; then
+  echo "   ✅ Importmap audit would pass"
+else
+  echo "   ❌ Importmap audit would fail"
+fi
+
+# Rubocop check (without auto-fix)
+echo "🔍 Rubocop check (no auto-fix)..."
+if bin/rubocop -f github > /dev/null 2>&1; then
+  echo "   ✅ Rubocop would pass (no style issues)"
+else
+  echo "   ⚠️  Rubocop would auto-fix style issues and include them in commit"
+  echo "   📝 Running rubocop to see what would be fixed..."
+  bin/rubocop -f github | head -20
+  if [ $(bin/rubocop -f github 2>&1 | wc -l) -gt 20 ]; then
+    echo "   ... (showing first 20 lines, more issues exist)"
+  fi
+fi
+
+# Rails tests
+echo "🧪 Rails tests..."
+if bin/rails db:test:prepare db:migrate test test:system RAILS_ENV=test > /dev/null 2>&1; then
+  echo "   ✅ Rails tests would pass"
+else
+  echo "   ❌ Rails tests would fail"
+fi
+
+echo
+echo "📋 DRY RUN SUMMARY"
+echo "=================="
+
+# Check overall status
+security_ok=$(bin/brakeman --no-pager > /dev/null 2>&1 && echo "true" || echo "false")
+importmap_ok=$(bin/importmap audit > /dev/null 2>&1 && echo "true" || echo "false")
+rubocop_ok=$(bin/rubocop -f github > /dev/null 2>&1 && echo "true" || echo "false")
+tests_ok=$(bin/rails db:test:prepare db:migrate test test:system RAILS_ENV=test > /dev/null 2>&1 && echo "true" || echo "false")
+
+if [ "$security_ok" = "true" ] && [ "$importmap_ok" = "true" ] && [ "$tests_ok" = "true" ]; then
+  if [ "$rubocop_ok" = "true" ]; then
+    echo "✅ All checks would PASS - ready to commit!"
+    echo "🚀 Run 'gap' to commit with message: '$commit_message'"
+  else
+    echo "⚠️  All checks would PASS after rubocop auto-fixes"
+    echo "🚀 Run 'gap' to auto-fix style issues and commit with message: '$commit_message'"
+  fi
+else
+  echo "❌ Some checks would FAIL - fix issues before committing"
+  echo
+  echo "Failed checks:"
+  [ "$security_ok" = "false" ] && echo "   - Security (Brakeman)"
+  [ "$importmap_ok" = "false" ] && echo "   - Importmap audit"  
+  [ "$tests_ok" = "false" ] && echo "   - Rails tests"
+fi
+
+echo
+echo "💡 This was a dry run - no changes were made to your code or git history" 

@@ -10,7 +10,7 @@ class Game < ApplicationRecord
   validates :state, inclusion: { in: STATES }
   validates :winning_team, inclusion: { in: TEAMS }, allow_nil: true
 
-  enum state: { waiting: 'waiting', active: 'active', finished: 'finished' }
+  enum :state, { waiting: 'waiting', active: 'active', finished: 'finished' }
 
   before_validation :generate_code, on: :create
   after_create :set_initial_state

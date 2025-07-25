@@ -1,0 +1,906 @@
+#!/usr/bin/env ruby
+
+require 'net/http'
+require 'json'
+require 'uri'
+require 'optparse'
+require 'fileutils'
+
+COMMIT_MESSAGE_FILE = '.commit_message'
+CHANGE_INTENT_FILE = '.change_intent'
+
+# Parse command line options
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: bin/gap [commit message]"
+  
+  opts.on("-c", "--clear", "Revert the .change_intent file to last committed state") do
+    if File.exist?(CHANGE_INTENT_FILE)
+      # Try to restore from git
+      system("git checkout HEAD -- #{CHANGE_INTENT_FILE}")
+      if $?.success?
+        puts "✅ Reverted #{CHANGE_INTENT_FILE} to last committed state"
+      else
+        puts "⚠️  Could not revert #{CHANGE_INTENT_FILE} - no committed version found"
+      end
+    else
+      puts "ℹ️  #{CHANGE_INTENT_FILE} does not exist"
+    end
+    exit
+  end
+  
+  opts.on("-h", "--help", "Show this help message") do
+    puts opts
+    puts ""
+    puts "GAP - Git Auto Prepare and commit"
+    puts ""
+    puts "This command will:"
+    puts "1. Prune old intent entries" 
+    puts "2. Generate commit message from intent log"
+    puts "3. Show summary and run full test suite"
+    puts "4. If tests pass, prompt to commit"
+    puts "5. Commit and push changes"
+    puts ""
+    puts "Examples:"
+    puts "  bin/gap                    # Use intent log to generate commit message"
+    puts "  bin/gap \"Custom message\"   # Use custom commit message"
+    puts "  bin/gap -c                 # Revert the .change_intent file"
+    exit
+  end
+end.parse!
+
+# Helper functions
+def read_change_intent
+  return nil unless File.exist?(CHANGE_INTENT_FILE)
+  content = File.read(CHANGE_INTENT_FILE).strip
+  return nil if content.empty?
+  
+  # Parse the log entries and return the most recent intent
+  lines = content.split("\n").reject(&:empty?)
+  return nil if lines.empty?
+  
+  # Get the last entry (most recent)
+  last_line = lines.last
+  parts = last_line.split(',', 3)
+  return nil if parts.size != 3
+  
+  timestamp, commit_hash, intent = parts
+  intent
+end
+
+def read_intent_log_for_ai
+  return nil unless File.exist?(CHANGE_INTENT_FILE)
+  content = File.read(CHANGE_INTENT_FILE).strip
+  return nil if content.empty?
+  
+  current_commit = `git rev-parse --short HEAD`.strip
+  
+  # Parse entries and only include recent ones from current commit
+  lines = content.split("\n").reject(&:empty?)
+  return nil if lines.empty?
+  
+  # Get entries from current commit only for AI context
+  current_commit_entries = lines.select do |line|
+    parts = line.split(',', 3)
+    next false if parts.size != 3
+    
+    timestamp, commit_hash, intent = parts
+    commit_hash == current_commit
+  end
+  
+  # If no current commit entries, take the last 3 entries max
+  if current_commit_entries.empty?
+    entries_to_use = lines.last(3)
+  else
+    entries_to_use = current_commit_entries
+  end
+  
+  formatted_entries = entries_to_use.map do |line|
+    parts = line.split(',', 3)
+    next nil if parts.size != 3
+    
+    timestamp, commit_hash, intent = parts
+    intent  # Just return the intent, not timestamp
+  end.compact
+  
+  formatted_entries.join(". ")
+end
+
+def prune_old_intent_entries
+  return unless File.exist?(CHANGE_INTENT_FILE)
+  
+  current_commit = `git rev-parse --short HEAD`.strip
+  content = File.read(CHANGE_INTENT_FILE).strip
+  return if content.empty?
+  
+  lines = content.split("\n").select { |line| line.match?(/^\[.*\],.*,.*/) }
+  return if lines.size <= 1  # Don't prune if only one entry
+  
+  # Get all unique commit hashes from the entries
+  commit_hashes = lines.map do |line|
+    parts = line.split(',', 3)
+    next nil if parts.size != 3
+    parts[1] # commit_hash
+  end.compact.uniq
+  
+  # Only prune if we have entries from 3+ different commits (current + previous + older)
+  return false if commit_hashes.size < 3
+  
+  # Keep only entries from the current commit (prune everything else)
+  kept_entries = lines.select do |line|
+    parts = line.split(',', 3)
+    next false if parts.size != 3
+    
+    timestamp, commit_hash, intent = parts
+    commit_hash == current_commit
+  end
+  
+  if kept_entries.size != lines.size
+    File.write(CHANGE_INTENT_FILE, kept_entries.join("\n") + "\n")
+    puts "🧹 Pruned #{lines.size - kept_entries.size} old intent entries (keeping only current commit)"
+    return true
+  end
+  
+  false
+end
+
+def get_git_diff
+  `git diff --cached --stat`.strip
+end
+
+def get_git_status
+  `git status --porcelain`.strip
+end
+
+def show_file_changes
+  puts "📁 Changed files:"
+  puts ""
+  
+  status_output = get_git_status
+  if status_output.empty?
+    puts "   ✅ No changes to commit - working directory clean"
+    return
+  end
+  
+  status_output.split("\n").each do |line|
+    status = line[0..1]
+    file = line[2..-1].strip
+    
+    case status
+    when "M ", "MM"
+      puts "   📝 Modified:   #{file}"
+    when "A ", "AM"
+      puts "   ➕ Added:      #{file}"
+    when "D ", " D"
+      puts "   ❌ Deleted:    #{file}"
+    when "R "
+      puts "   📛 Renamed:    #{file}"
+    when "C "
+      puts "   📋 Copied:     #{file}"
+    when "??"
+      puts "   ❓ Untracked:  #{file}"
+    else
+      puts "   📄 Changed:    #{file}"
+    end
+  end
+end
+
+def generate_commit_message_with_ai(intent_content, git_diff)
+  # Try to use OpenAI API if available
+  api_key = ENV['OPENAI_API_KEY']
+  
+  if api_key && !api_key.empty?
+    begin
+      return generate_with_openai(intent_content, git_diff, api_key)
+    rescue => e
+      puts "⚠️  AI generation failed (#{e.message}), falling back to simple extraction"
+    end
+  else
+    puts "⚠️  No OPENAI_API_KEY found, using simple extraction"
+  end
+  
+  # Fallback to simple extraction
+  generate_simple_message(intent_content)
+end
+
+def generate_with_openai(intent_content, git_diff, api_key)
+  uri = URI('https://api.openai.com/v1/chat/completions')
+  
+  # Create the prompt
+  prompt = <<~PROMPT
+    Generate a concise git commit message for the following changes:
+
+    What was accomplished: #{intent_content}
+
+    Files changed: #{git_diff}
+
+    Requirements:
+    - Maximum 72 characters
+    - Present tense (Add/Fix/Update, not Added/Fixed/Updated)  
+    - Focus on the main accomplishment, not individual steps
+    - Be specific about what feature/functionality was added
+
+    Return only the commit message:
+  PROMPT
+
+  # Make the API request
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = true
+  
+  request = Net::HTTP::Post.new(uri)
+  request['Authorization'] = "Bearer #{api_key}"
+  request['Content-Type'] = 'application/json'
+  
+  request.body = {
+    model: "gpt-4o-mini",
+    messages: [
+      {
+        role: "user",
+        content: prompt
+      }
+    ],
+    max_tokens: 100,
+    temperature: 0.3
+  }.to_json
+  
+  response = http.request(request)
+  
+  if response.code == '200'
+    result = JSON.parse(response.body)
+    message = result.dig('choices', 0, 'message', 'content')&.strip
+    
+    if message && !message.empty?
+      return message
+    else
+      raise "Empty response from OpenAI"
+    end
+  else
+    raise "API request failed: #{response.code} #{response.body}"
+  end
+end
+
+def generate_simple_message(intent_content)
+  # For the new log format, intent_content is already the intent text
+  if intent_content && !intent_content.empty?
+    # Simple heuristic: if it's a sentence, use it; otherwise make it one
+    if intent_content.end_with?('.', '!', '?')
+      intent_content
+    else
+      "#{intent_content}"
+    end
+  else
+    "Update project based on recent changes"
+  end
+end
+
+def run_full_test_suite_with_coverage
+  puts "🧪 Running full test suite with coverage analysis..."
+  
+  # Clean up any existing coverage data
+  coverage_dir = File.join(Dir.pwd, 'coverage')
+  FileUtils.rm_rf(coverage_dir) if Dir.exist?(coverage_dir)
+  
+  # Set environment variables for consistent test runs with coverage
+  ENV['RAILS_ENV'] = 'test'
+  ENV['COVERAGE'] = 'true'
+  
+  # Create temporary file to capture output while showing it live
+  temp_output_file = '/tmp/gap_test_output.log'
+  File.delete(temp_output_file) if File.exist?(temp_output_file)
+  
+  # Measure test execution time
+  start_time = Time.now
+  
+  # Run unit tests and system tests separately, then combine results
+  # This will show live test progress (even without colors) and capture coverage
+  
+  # Run all tests (unit + system) in one command for proper metric combination
+  test_command = "PARALLEL_WORKERS=1 COVERAGE=true bin/rails db:test:prepare db:migrate test:all RAILS_ENV=test 2>&1 | tee #{temp_output_file}"
+  test_result = system(test_command)
+  
+  # Calculate test execution time
+  end_time = Time.now
+  test_time = (end_time - start_time).round(2)
+  
+  # Read captured output for coverage extraction
+  test_output = File.exist?(temp_output_file) ? File.read(temp_output_file) : ""
+  
+  # Extract coverage percentage from test output
+  coverage_match = test_output.match(/Line Coverage: ([\d.]+)%/)
+  current_coverage = coverage_match ? coverage_match[1].to_f : nil
+  
+  # Extract test run summary from test output
+  # Format: "1632 runs, 5052 assertions, 0 failures, 0 errors, 15 skips"
+  test_summary_match = test_output.match(/(\d+) runs, (\d+) assertions, (\d+) failures, (\d+) errors, (\d+) skips/)
+  if test_summary_match
+    test_runs = test_summary_match[1].to_i
+    test_assertions = test_summary_match[2].to_i
+    test_failures = test_summary_match[3].to_i
+    test_errors = test_summary_match[4].to_i
+    current_skipped = test_summary_match[5].to_i
+    
+    # CRITICAL FIX: Determine if tests actually passed based on failures/errors, not just exit code
+    test_result = (test_failures == 0 && test_errors == 0)
+  else
+    # Fallback to just skipped count extraction
+    skipped_match = test_output.match(/(\d+) skips/)
+    current_skipped = skipped_match ? skipped_match[1].to_i : 0
+    test_runs = nil
+    test_assertions = nil
+    test_failures = nil
+    test_errors = nil
+    
+    # If we can't parse test results, assume failure for safety
+    test_result = false
+  end
+  
+  puts test_result ? "✅ All tests passed!" : "❌ Tests failed!"
+  
+  # Count tests behind SLOW_TESTS flag by searching test files
+  slow_tests_count = count_slow_tests
+  
+  if current_coverage
+    # Read previous coverage if exists
+    previous_coverage = nil
+    if File.exist?('.code_coverage')
+      previous_content = File.read('.code_coverage').strip
+      if previous_content.match?(/^\d+(\.\d+)?$/)
+        previous_coverage = previous_content.to_f
+      end
+    end
+    
+    # Show coverage comparison
+    if previous_coverage
+      diff = current_coverage - previous_coverage
+      if diff > 0
+        puts "📊 Coverage: #{current_coverage}% (↑ +#{diff.round(2)}%)"
+      elsif diff < 0
+        puts "📊 Coverage: #{current_coverage}% (↓ #{diff.round(2)}%)"
+      else
+        puts "📊 Coverage: #{current_coverage}% (no change)"
+      end
+    else
+      puts "📊 Coverage: #{current_coverage}% (baseline)"
+    end
+  else
+    puts "⚠️  Could not extract coverage data from test output"
+  end
+  
+  # Show test time comparison
+  previous_test_time = nil
+  if File.exist?('.test_time')
+    previous_content = File.read('.test_time').strip
+    if previous_content.match?(/^\d+(\.\d+)?$/)
+      previous_test_time = previous_content.to_f
+    end
+  end
+  
+  if previous_test_time
+    time_diff = test_time - previous_test_time
+    if time_diff > 0
+      puts "⏱️  Test time: #{test_time}s (↑ +#{time_diff.round(2)}s)"
+    elsif time_diff < 0
+      puts "⏱️  Test time: #{test_time}s (↓ #{time_diff.abs.round(2)}s)"
+    else
+      puts "⏱️  Test time: #{test_time}s (no change)"
+    end
+  else
+    puts "⏱️  Test time: #{test_time}s (baseline)"
+  end
+  
+  # Calculate split between slow tests and other skipped tests
+  skipped_slow_tests = [current_skipped, slow_tests_count].min
+  other_skipped_tests = current_skipped - skipped_slow_tests
+  
+  # Show skipped slow tests comparison
+  previous_skipped = nil
+  previous_slow_tests = nil
+  if File.exist?('.skipped_tests_count')
+    previous_content = File.read('.skipped_tests_count').strip
+    if previous_content.match?(/^\d+$/)
+      previous_skipped = previous_content.to_i
+    end
+  end
+  if File.exist?('.slow_tests_count')
+    previous_content = File.read('.slow_tests_count').strip
+    if previous_content.match?(/^\d+$/)
+      previous_slow_tests = previous_content.to_i
+    end
+  end
+  
+  # Calculate previous split
+  if previous_skipped && previous_slow_tests
+    previous_skipped_slow = [previous_skipped, previous_slow_tests].min
+    previous_other_skipped = previous_skipped - previous_skipped_slow
+    
+    slow_skip_diff = skipped_slow_tests - previous_skipped_slow
+    other_skip_diff = other_skipped_tests - previous_other_skipped
+    
+    # Show skipped slow tests
+    if slow_skip_diff > 0
+      puts "🐌 Skipped Slow tests: #{skipped_slow_tests} (↑ +#{slow_skip_diff})"
+    elsif slow_skip_diff < 0
+      puts "🐌 Skipped Slow tests: #{skipped_slow_tests} (↓ #{slow_skip_diff.abs})"
+    else
+      puts "🐌 Skipped Slow tests: #{skipped_slow_tests} (no change)"
+    end
+    
+    # Show other skipped tests
+    if other_skip_diff > 0
+      puts "⏭️  Other Skipped tests: #{other_skipped_tests} (↑ +#{other_skip_diff})"
+    elsif other_skip_diff < 0
+      puts "⏭️  Other Skipped tests: #{other_skipped_tests} (↓ #{other_skip_diff.abs})"
+    else
+      puts "⏭️  Other Skipped tests: #{other_skipped_tests} (no change)"
+    end
+  else
+    puts "🐌 Skipped Slow tests: #{skipped_slow_tests} (baseline)"
+    puts "⏭️  Other Skipped tests: #{other_skipped_tests} (baseline)"
+  end
+  
+
+  
+  # Clean up temporary file
+  File.delete(temp_output_file) if File.exist?(temp_output_file)
+  
+  # Create test summary hash for easier passing
+  test_summary = {
+    runs: test_runs,
+    assertions: test_assertions,
+    failures: test_failures,
+    errors: test_errors,
+    skips: current_skipped
+  }
+  
+  return test_result, current_coverage, test_time, current_skipped, slow_tests_count, test_summary
+end
+
+def count_slow_tests
+  slow_test_count = 0
+  
+  # Search all test files for SLOW_TESTS flag patterns
+  test_files = Dir.glob("test/**/*.rb")
+  
+  test_files.each do |file|
+    content = File.read(file)
+    # Count tests with the slow test skip pattern
+    slow_test_count += content.scan(/skip.*unless ENV\["SLOW_TESTS"\]/).length
+  end
+  
+  slow_test_count
+end
+
+def run_security_check
+  puts "🔒 Running Brakeman security scan..."
+  
+  # Create temporary file to capture output
+  temp_brakeman_file = '/tmp/gap_brakeman_output.log'
+  File.delete(temp_brakeman_file) if File.exist?(temp_brakeman_file)
+  
+  # Run Brakeman and capture output while still showing it live
+  brakeman_command = "bin/brakeman --no-pager --color"
+  brakeman_result = system("#{brakeman_command} 2>&1 | tee #{temp_brakeman_file}")
+  
+  if brakeman_result
+    puts "✅ Security scan passed!"
+    # Clean up temporary file on success
+    File.delete(temp_brakeman_file) if File.exist?(temp_brakeman_file)
+    return true
+  else
+    puts "❌ Security issues found!"
+    puts ""
+    
+    # Try to extract summary information from Brakeman output
+    if File.exist?(temp_brakeman_file)
+      brakeman_output = File.read(temp_brakeman_file)
+      
+      # Look for summary information in Brakeman output
+      summary_match = brakeman_output.match(/== Summary ==(.*?)^$/m)
+      if summary_match
+        summary_text = summary_match[1].strip
+        puts "📊 Brakeman Summary:"
+        puts summary_text.lines.map { |line| "   #{line}" }.join
+        puts ""
+      end
+      
+      # Look for specific vulnerability counts
+      security_warnings = brakeman_output.scan(/Security Warnings: (\d+)/).first
+      if security_warnings
+        puts "⚠️  Security Warnings Found: #{security_warnings[0]}"
+      end
+      
+      # Look for confidence levels
+      high_confidence = brakeman_output.scan(/High Confidence: (\d+)/).first
+      medium_confidence = brakeman_output.scan(/Medium Confidence: (\d+)/).first
+      weak_confidence = brakeman_output.scan(/Weak Confidence: (\d+)/).first
+      
+      if high_confidence || medium_confidence || weak_confidence
+        puts "🎯 Confidence Levels:"
+        puts "   High: #{high_confidence ? high_confidence[0] : '0'}"
+        puts "   Medium: #{medium_confidence ? medium_confidence[0] : '0'}"
+        puts "   Weak: #{weak_confidence ? weak_confidence[0] : '0'}"
+      end
+      
+      puts ""
+    end
+    
+    puts "🔧 Manual Commands:"
+    puts "   Full report:     bin/brakeman"
+    puts "   Verbose:         bin/brakeman -v"
+    puts "   HTML report:     bin/brakeman -o brakeman_report.html"
+    puts "   JSON format:     bin/brakeman -f json"
+    puts "   Ignore file:     bin/brakeman -I"
+    puts ""
+    puts "💡 To fix specific issues, run:"
+    puts "   bin/brakeman -A  # Review and ignore false positives"
+    puts ""
+    
+    # Keep the temp file for manual inspection
+    puts "📄 Full Brakeman output saved to: #{temp_brakeman_file}"
+    puts "   View with: cat #{temp_brakeman_file}"
+    
+    return false
+  end
+end
+
+def run_importmap_check
+  puts "📦 Running importmap audit..."
+  result = system("bin/importmap audit")
+  puts result ? "✅ Importmap audit passed!" : "❌ Importmap audit failed!"
+  result
+end
+
+def run_rubocop_fix
+  puts "🔍 Running Rubocop with auto-fix..."
+  result = system("bin/rubocop -a")
+  if result
+    # Check if there are any changes to stage
+    if !system("git diff --quiet")
+      puts "📝 Staging rubocop fixes..."
+      system("git add .")
+      puts "✅ Rubocop fixes staged!"
+    end
+    puts "✅ Rubocop passed!"
+  else
+    puts "❌ Rubocop failed!"
+  end
+  result
+end
+
+def prompt_user_to_continue(commit_message, current_coverage, test_time, current_skipped, slow_tests_count, test_summary = nil)
+  puts ""
+  puts "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  puts "📋 FINAL SUMMARY"
+  puts "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  puts ""
+  puts "📝 Commit message: '#{commit_message}'"
+  puts ""
+  
+  # Show test run summary
+  if test_summary && test_summary[:runs]
+    puts "🧪 Test Results: #{test_summary[:runs]} runs, #{test_summary[:assertions]} assertions, #{test_summary[:failures]} failures, #{test_summary[:errors]} errors, #{test_summary[:skips]} skips"
+  elsif current_skipped != nil
+    puts "🧪 Test Results: #{current_skipped} skips (full summary not available)"
+  else
+    puts "🧪 Test Results: Unable to determine"
+  end
+  puts ""
+  
+  # Show coverage info again
+  if current_coverage
+    previous_coverage = nil
+    if File.exist?('.code_coverage')
+      previous_content = File.read('.code_coverage').strip
+      if previous_content.match?(/^\d+(\.\d+)?$/)
+        previous_coverage = previous_content.to_f
+      end
+    end
+    
+    if previous_coverage
+      diff = current_coverage - previous_coverage
+      if diff > 0
+        puts "📊 Coverage: #{current_coverage}% (↑ +#{diff.round(2)}%)"
+      elsif diff < 0
+        puts "📊 Coverage: #{current_coverage}% (↓ #{diff.round(2)}%)"
+      else
+        puts "📊 Coverage: #{current_coverage}% (no change)"
+      end
+    else
+      puts "📊 Coverage: #{current_coverage}% (baseline)"
+    end
+  else
+    puts "📊 Coverage: Unable to determine"
+  end
+  
+  # Show test time info
+  if test_time
+    previous_test_time = nil
+    if File.exist?('.test_time')
+      previous_content = File.read('.test_time').strip
+      if previous_content.match?(/^\d+(\.\d+)?$/)
+        previous_test_time = previous_content.to_f
+      end
+    end
+    
+    if previous_test_time
+      time_diff = test_time - previous_test_time
+      if time_diff > 0
+        puts "⏱️  Test time: #{test_time}s (↑ +#{time_diff.round(2)}s)"
+      elsif time_diff < 0
+        puts "⏱️  Test time: #{test_time}s (↓ #{time_diff.abs.round(2)}s)"
+      else
+        puts "⏱️  Test time: #{test_time}s (no change)"
+      end
+    else
+      puts "⏱️  Test time: #{test_time}s (baseline)"
+    end
+  else
+    puts "⏱️  Test time: Unable to determine"
+  end
+  
+  # Show split skipped test info
+  if current_skipped != nil && slow_tests_count != nil
+    # Calculate split between slow tests and other skipped tests
+    skipped_slow_tests = [current_skipped, slow_tests_count].min
+    other_skipped_tests = current_skipped - skipped_slow_tests
+    
+    previous_skipped = nil
+    previous_slow_tests = nil
+    if File.exist?('.skipped_tests_count')
+      previous_content = File.read('.skipped_tests_count').strip
+      if previous_content.match?(/^\d+$/)
+        previous_skipped = previous_content.to_i
+      end
+    end
+    if File.exist?('.slow_tests_count')
+      previous_content = File.read('.slow_tests_count').strip
+      if previous_content.match?(/^\d+$/)
+        previous_slow_tests = previous_content.to_i
+      end
+    end
+    
+    # Calculate previous split
+    if previous_skipped && previous_slow_tests
+      previous_skipped_slow = [previous_skipped, previous_slow_tests].min
+      previous_other_skipped = previous_skipped - previous_skipped_slow
+      
+      slow_skip_diff = skipped_slow_tests - previous_skipped_slow
+      other_skip_diff = other_skipped_tests - previous_other_skipped
+      
+      # Show skipped slow tests
+      if slow_skip_diff > 0
+        puts "🐌 Skipped Slow tests: #{skipped_slow_tests} (↑ +#{slow_skip_diff})"
+      elsif slow_skip_diff < 0
+        puts "🐌 Skipped Slow tests: #{skipped_slow_tests} (↓ #{slow_skip_diff.abs})"
+      else
+        puts "🐌 Skipped Slow tests: #{skipped_slow_tests} (no change)"
+      end
+      
+      # Show other skipped tests
+      if other_skip_diff > 0
+        puts "⏭️  Other Skipped tests: #{other_skipped_tests} (↑ +#{other_skip_diff})"
+      elsif other_skip_diff < 0
+        puts "⏭️  Other Skipped tests: #{other_skipped_tests} (↓ #{other_skip_diff.abs})"
+      else
+        puts "⏭️  Other Skipped tests: #{other_skipped_tests} (no change)"
+      end
+    else
+      puts "🐌 Skipped Slow tests: #{skipped_slow_tests} (baseline)"
+      puts "⏭️  Other Skipped tests: #{other_skipped_tests} (baseline)"
+    end
+  else
+    puts "🐌 Skipped Slow tests: Unable to determine"
+    puts "⏭️  Other Skipped tests: Unable to determine"
+  end
+  
+  puts ""
+  puts "🤔 Ready to commit and push changes."
+  puts "   Press [ENTER] to continue or [Ctrl+C] to abort..."
+  STDIN.gets
+end
+
+
+
+def update_code_coverage_file(coverage)
+  return unless coverage
+  
+  puts "📊 Updating code coverage baseline..."
+  File.write('.code_coverage', "#{coverage}\n")
+  puts "✅ Coverage baseline updated to #{coverage}%"
+end
+
+def update_test_time_file(test_time)
+  return unless test_time
+  
+  puts "⏱️  Updating test time baseline..."
+  File.write('.test_time', "#{test_time}\n")
+  puts "✅ Test time baseline updated to #{test_time}s"
+end
+
+def update_skipped_tests_file(skipped_count)
+  return unless skipped_count != nil
+  
+  puts "⏭️  Updating skipped tests baseline..."
+  File.write('.skipped_tests_count', "#{skipped_count}\n")
+  puts "✅ Skipped tests baseline updated to #{skipped_count}"
+end
+
+def update_slow_tests_file(slow_tests_count)
+  return unless slow_tests_count != nil
+  
+  puts "🐌 Updating slow tests baseline..."
+  File.write('.slow_tests_count', "#{slow_tests_count}\n")
+  puts "✅ Slow tests baseline updated to #{slow_tests_count}"
+end
+
+def clear_commit_files
+  File.delete(COMMIT_MESSAGE_FILE) if File.exist?(COMMIT_MESSAGE_FILE)
+end
+
+# Main execution
+puts "🚀 GAP: Git Auto Prepare and Commit"
+puts ""
+
+# Check if we have any changes
+git_status = get_git_status
+if git_status.empty?
+  puts "✅ No changes to commit - working directory clean"
+  exit 0
+end
+
+# Step 1: Prune old intent entries
+puts "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+puts "🧹 STEP 1: Pruning old intent entries..."
+puts "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+pruned = prune_old_intent_entries
+puts "✅ Intent log cleaned" if pruned
+puts "ℹ️  No old entries to prune" unless pruned
+puts ""
+
+# Step 2: Generate commit message
+puts "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+puts "📝 STEP 2: Generating commit message..."
+puts "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+# Get commit message - use argument if provided, otherwise generate from intent
+commit_message = if !ARGV.empty?
+  ARGV.join(" ")
+else
+  intent_content = read_intent_log_for_ai
+  if intent_content
+    git_diff = get_git_diff
+    generate_commit_message_with_ai(intent_content, git_diff)
+  else
+    puts "⚠️  No change intent found and no commit message provided."
+    puts "   Run 'bin/update_change_intent' first or provide a message."
+    exit 1
+  end
+end
+
+File.write(COMMIT_MESSAGE_FILE, commit_message)
+puts "✅ Generated commit message: '#{commit_message}'"
+puts ""
+
+# Step 3: Show summary
+puts "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+puts "📋 STEP 3: Summary before running tests..."
+puts "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+puts ""
+puts "📝 Commit message: '#{commit_message}'"
+puts ""
+show_file_changes
+puts ""
+
+# Step 4: Run full test suite with coverage and other checks
+puts "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+puts "🧪 STEP 4: Running comprehensive test suite with coverage..."
+puts "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+puts ""
+
+# Run tests with coverage analysis (combines both steps)
+tests_passed, current_coverage, test_time, current_skipped, slow_tests_count, test_summary = run_full_test_suite_with_coverage
+puts ""
+
+security_passed = run_security_check
+puts ""
+
+importmap_passed = run_importmap_check
+puts ""
+
+rubocop_passed = run_rubocop_fix
+puts ""
+
+# Check if everything passed
+if !tests_passed || !security_passed || !importmap_passed || !rubocop_passed
+  puts "❌ Some checks failed. Cannot continue with commit."
+  puts ""
+  puts "Failed checks:"
+  puts "   Tests: #{tests_passed ? '✅' : '❌'}"
+  puts "   Security: #{security_passed ? '✅' : '❌'}"
+  puts "   Importmap: #{importmap_passed ? '✅' : '❌'}"
+  puts "   Rubocop: #{rubocop_passed ? '✅' : '❌'}"
+  puts ""
+  
+  unless security_passed
+    puts "🔒 For security issues:"
+    puts "   • Review the Brakeman output above for specific vulnerabilities"
+    puts "   • Run: bin/brakeman -A  (to review and potentially ignore false positives)"
+    puts "   • Check: /tmp/gap_brakeman_output.log for full details"
+    puts ""
+  end
+  
+  unless tests_passed
+    puts "🧪 For test failures:"
+    puts "   • Run: bin/rails test  (to see detailed test output)"
+    puts "   • Check individual test files for specific failures"
+    puts ""
+  end
+  
+  unless importmap_passed
+    puts "📦 For importmap issues:"
+    puts "   • Run: bin/importmap audit  (for detailed audit results)"
+    puts "   • Update vulnerable packages with: bin/importmap update"
+    puts ""
+  end
+  
+  unless rubocop_passed
+    puts "🔍 For style issues:"
+    puts "   • Run: bin/rubocop  (to see detailed style violations)"
+    puts "   • Auto-fix with: bin/rubocop -a"
+    puts ""
+  end
+  
+  exit 1
+end
+
+puts "🎉 All checks passed!"
+
+# Step 5: Prompt user to continue
+prompt_user_to_continue(commit_message, current_coverage, test_time, current_skipped, slow_tests_count, test_summary)
+
+# Update baselines before committing
+if current_coverage
+  update_code_coverage_file(current_coverage)
+  # Stage the updated .code_coverage file
+  system("git add .code_coverage")
+end
+
+if test_time
+  update_test_time_file(test_time)
+  # Stage the updated .test_time file
+  system("git add .test_time")
+end
+
+if current_skipped != nil
+  update_skipped_tests_file(current_skipped)
+  # Stage the updated .skipped_tests_count file
+  system("git add .skipped_tests_count")
+end
+
+if slow_tests_count != nil
+  update_slow_tests_file(slow_tests_count)
+  # Stage the updated .slow_tests_count file
+  system("git add .slow_tests_count")
+end
+
+if current_coverage || test_time || current_skipped != nil || slow_tests_count != nil
+  puts ""
+end
+
+# Step 6: Commit and push
+puts "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+puts "🚀 STEP 5: Committing and pushing changes..."
+puts "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+puts ""
+
+# Commit and push
+if system("git add . && git commit -m \"#{commit_message}\" && git push")
+  puts "✅ Successfully committed and pushed: '#{commit_message}'"
+  clear_commit_files
+  puts "🧹 Commit files cleared for next changes"
+  puts ""
+  puts "🎉 GAP completed successfully!"
+else
+  puts "❌ Failed to commit or push changes"
+  exit 1
+end 

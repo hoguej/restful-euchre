@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Rubocop Check with Auto-fix
+# Automatically fixes style issues but leaves them staged for manual commit
+
+echo "🔍 Running Rubocop..."
+if ! bin/rubocop -f github; then
+  echo "❌ Rubocop found issues. Running auto-fix..."
+  if bin/rubocop -a; then
+    echo "✅ Rubocop auto-fixed issues successfully."
+    
+    # Check if there are any changes to stage
+    if ! git diff --quiet; then
+      echo "📝 Staging rubocop fixes for your commit..."
+      git add .
+      echo "✅ Rubocop fixes staged and ready to be included in your commit!"
+    else
+      echo "ℹ️ No changes to stage after rubocop auto-fix."
+    fi
+  else
+    echo "❌ Rubocop auto-fix failed. Manual intervention required."
+    exit 1
+  fi
+fi
+echo "✅ Rubocop passed!" 

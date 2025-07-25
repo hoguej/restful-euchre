@@ -1,0 +1,91 @@
+#!/usr/bin/env ruby
+
+require 'net/http'
+require 'json'
+require 'uri'
+
+def test_openai_api
+  api_key = ENV['OPENAI_API_KEY']
+  
+  if !api_key || api_key.empty?
+    puts "❌ No OPENAI_API_KEY environment variable found"
+    puts "   Set it with: export OPENAI_API_KEY=\"your-key-here\""
+    exit 1
+  end
+  
+  puts "🔑 Testing OpenAI API key..."
+  puts "   Key: #{api_key[0..7]}...#{api_key[-4..-1]} (#{api_key.length} chars)"
+  puts ""
+  
+  begin
+    # Simple test request
+    uri = URI('https://api.openai.com/v1/chat/completions')
+    
+    request_body = {
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "user",
+          content: "Say 'Hello from OpenAI!' if you can read this."
+        }
+      ],
+      max_tokens: 20,
+      temperature: 0.1
+    }
+    
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.read_timeout = 30
+    
+    request = Net::HTTP::Post.new(uri)
+    request['Authorization'] = "Bearer #{api_key}"
+    request['Content-Type'] = 'application/json'
+    request.body = request_body.to_json
+    
+    puts "🌐 Making test request to OpenAI..."
+    response = http.request(request)
+    
+    puts "📡 Response code: #{response.code}"
+    
+    if response.code == '200'
+      result = JSON.parse(response.body)
+      message = result.dig('choices', 0, 'message', 'content')&.strip
+      
+      puts "✅ SUCCESS! OpenAI API is working"
+      puts "🤖 AI Response: #{message}"
+      puts ""
+      puts "🎯 Your API key is valid and ready to use with gap_preview!"
+      
+    elsif response.code == '401'
+      puts "❌ AUTHENTICATION FAILED"
+      puts "   Your API key appears to be invalid or expired"
+      puts "   Response: #{response.body}"
+      
+    elsif response.code == '429'
+      puts "⚠️  RATE LIMITED"
+      puts "   You've hit the rate limit. Try again in a moment."
+      puts "   Response: #{response.body}"
+      
+    elsif response.code == '402'
+      puts "💳 BILLING ISSUE"
+      puts "   Check your OpenAI billing/credits"
+      puts "   Response: #{response.body}"
+      
+    else
+      puts "❌ API ERROR (#{response.code})"
+      puts "   Response: #{response.body}"
+    end
+    
+  rescue Net::ReadTimeout
+    puts "⏱️  REQUEST TIMEOUT"
+    puts "   The API request timed out. Check your internet connection."
+    
+  rescue => e
+    puts "❌ UNEXPECTED ERROR"
+    puts "   #{e.class}: #{e.message}"
+    puts "   This might be a network issue or API problem."
+  end
+end
+
+# Run the test
+test_openai_api 

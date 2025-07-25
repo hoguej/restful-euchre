@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Check if a migration name was provided
+if [ -z "$1" ]; then
+  echo "Usage: bin/generate_migration migration_name"
+  echo "Example: bin/generate_migration add_status_to_users"
+  exit 1
+fi
+
+# Generate the migration using Rails with current timestamp
+bin/rails generate migration "$1"
+
+# The above command will automatically use the current timestamp
+# Rails handles the timestamp generation internally in UTC 
