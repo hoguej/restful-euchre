@@ -7,9 +7,9 @@ class ApplicationController < ActionController::API
   protected
 
   def ensure_session
-    if cookies[:session_id].blank?
-      cookies.permanent[:session_id] = SecureRandom.uuid
-    end
+    return unless cookies[:session_id].blank?
+
+    cookies.permanent[:session_id] = SecureRandom.uuid
   end
 
   def set_current_session
@@ -18,15 +18,13 @@ class ApplicationController < ActionController::API
     end
   end
 
-  def current_session
-    @current_session
-  end
+  attr_reader :current_session
 
   def require_session_name
-    if current_session.name.blank? || current_session.name.start_with?("Player")
-      render json: { error: "Display name is required" }, status: :bad_request
+    if current_session.name.blank? || current_session.name.start_with?('Player')
+      render json: { error: 'Display name is required' }, status: :bad_request
       return false
     end
     true
   end
-end 
+end

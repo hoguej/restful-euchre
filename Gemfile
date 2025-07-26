@@ -3,17 +3,19 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.4.3'
 
+gem 'bootsnap', '>= 1.4.4', require: false
+gem 'puma', '~> 6.0'
 gem 'rails', '~> 8.0.2'
 gem 'sqlite3', '~> 2.2'
-gem 'puma', '~> 6.0'
-gem 'bootsnap', '>= 1.4.4', require: false
 
 # CORS removed - not needed for API-only mode in development
 
 group :development, :test do
-  gem 'debug', platforms: %i[ mri mingw x64_mingw ]
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
-  # Development gems
-end 
+  gem 'brakeman', require: false       # Security scanner
+  gem 'importmap-rails'                # Asset pipeline management
+  gem 'rubocop', require: false        # Code style checker
+end

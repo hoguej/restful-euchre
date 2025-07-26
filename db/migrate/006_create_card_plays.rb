@@ -9,6 +9,6 @@ class CreateCardPlays < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
-    add_index :card_plays, [:trick_id, :play_order], unique: true
+    add_index :card_plays, %i[trick_id play_order], unique: true
   end
-end 
+end

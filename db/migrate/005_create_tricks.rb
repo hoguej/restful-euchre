@@ -9,6 +9,6 @@ class CreateTricks < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
-    add_index :tricks, [:round_id, :number], unique: true
+    add_index :tricks, %i[round_id number], unique: true
   end
-end 
+end

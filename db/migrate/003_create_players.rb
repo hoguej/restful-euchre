@@ -9,7 +9,7 @@ class CreatePlayers < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
-    add_index :players, [:game_id, :session_id], unique: true
-    add_index :players, [:game_id, :seat], unique: true, where: "seat IS NOT NULL"
+    add_index :players, %i[game_id session_id], unique: true
+    add_index :players, %i[game_id seat], unique: true, where: 'seat IS NOT NULL'
   end
-end 
+end

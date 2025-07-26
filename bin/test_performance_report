@@ -1,22 +1,22 @@
 #!/usr/bin/env ruby
 
-puts "🚀 September Sheds - Test Performance Report"
-puts "=" * 50
+puts '🚀 September Sheds - Test Performance Report'
+puts '=' * 50
 
 # Default to top 10, but allow override
 count = ARGV[0]&.to_i || 10
 
 puts "\n📊 UNIT TESTS - Top #{count} Slowest Tests:"
-puts "-" * 40
+puts '-' * 40
 system("bin/rails test --profile=#{count} --verbose 2>/dev/null | grep -A #{count + 5} 'Top .* slowest tests' | tail -n +2")
 
 puts "\n🌐 SYSTEM TESTS - Top #{count} Slowest Tests:"
-puts "-" * 40  
+puts '-' * 40
 system("bin/rails test:system --profile=#{count} --verbose 2>/dev/null | grep -A #{count + 5} 'Top .* slowest tests' | tail -n +2")
 
 puts "\n⚡ SLOW TEST ANALYSIS (when SLOW_TESTS=1):"
-puts "-" * 40
-puts "To see PNG download test performance:"
+puts '-' * 40
+puts 'To see PNG download test performance:'
 puts "  SLOW_TESTS=1 bin/rails test:system --profile=#{count}"
 
 puts "\n🔧 USAGE:"
@@ -25,7 +25,7 @@ puts "  #{File.basename(__FILE__)} 20        # Top 20"
 puts "  #{File.basename(__FILE__)} 5         # Top 5"
 
 puts "\n📈 PERFORMANCE TIPS:"
-puts "- Tests > 0.5s should be investigated"
-puts "- System tests > 2s may need optimization" 
-puts "- Consider mocking external services in slow tests"
-puts "- Use SLOW_TESTS=1 for comprehensive timing data" 
+puts '- Tests > 0.5s should be investigated'
+puts '- System tests > 2s may need optimization'
+puts '- Consider mocking external services in slow tests'
+puts '- Use SLOW_TESTS=1 for comprehensive timing data'

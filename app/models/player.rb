@@ -16,17 +16,19 @@ class Player < ApplicationRecord
 
   def teammate
     return nil unless team.present? && seat.present?
+
     game.players.find_by(team: team, seat: (seat + 2) % 4)
   end
 
   def opponents
     return Player.none unless team.present?
+
     game.players.where.not(team: team)
   end
 
-  def hand_for_round(round)
+  def hand_for_round(_round)
     # This would contain the logic for dealing cards
     # For now, return empty array - will implement card dealing logic later
     []
   end
-end 
+end

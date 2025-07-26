@@ -10,6 +10,8 @@ class Session < ApplicationRecord
   private
 
   def generate_session_id
+    return if Rails.env.test? && session_id.present? # Don't override in tests if already set
+
     self.session_id ||= SecureRandom.uuid
   end
-end 
+end

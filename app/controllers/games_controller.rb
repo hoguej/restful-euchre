@@ -1,10 +1,10 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :join, :action, :players]
+  before_action :set_game, only: %i[show join action players]
 
   # POST /games
   def create
     @game = Game.new
-    
+
     if @game.save
       render json: {
         game: game_json(@game),
@@ -31,39 +31,31 @@ class GamesController < ApplicationController
 
   # POST /games/:code/join
   def join
-    if @game.finished?
-      return render json: { error: "Game has finished" }, status: :forbidden
-    end
+    return render json: { error: 'Game has finished' }, status: :forbidden if @game.finished?
 
-    if @game.full?
-      return render json: { error: "Game is full" }, status: :forbidden
-    end
+    return render json: { error: 'Game is full' }, status: :forbidden if @game.full?
 
     # Check if player already in game
     existing_player = @game.players.find_by(session: current_session)
     if existing_player
-      return render json: { 
-        message: "Already in game",
+      return render json: {
+        message: 'Already in game',
         player: player_json(existing_player)
       }
     end
 
     # Update session name if provided
-    if params[:name].present?
-      current_session.update!(name: params[:name])
-    end
+    current_session.update!(name: params[:name]) if params[:name].present?
 
     # Create player
     player = @game.players.build(session: current_session)
-    
+
     if player.save
       # Start game if we now have 4 players
-      if @game.can_start?
-        @game.start_game!
-      end
+      @game.start_game! if @game.can_start?
 
       render json: {
-        message: "Joined game successfully",
+        message: 'Joined game successfully',
         player: player_json(player),
         game: game_json(@game)
       }, status: :created
@@ -75,24 +67,24 @@ class GamesController < ApplicationController
   # POST /games/:code/action
   def action
     player = @game.players.find_by(session: current_session)
-    
-    unless player
-      return render json: { error: "Not in this game" }, status: :forbidden
-    end
 
-    unless @game.active?
-      return render json: { error: "Game is not active" }, status: :forbidden
-    end
+    return render json: { error: 'Not in this game' }, status: :forbidden unless player
+
+    return render json: { error: 'Game is not active' }, status: :forbidden unless @game.active?
 
     case params[:action_type]
     when 'play_card'
       handle_play_card(player)
+    when 'order_up'
+      handle_order_up(player)
     when 'call_trump'
       handle_call_trump(player)
     when 'pass'
       handle_pass(player)
+    when 'discard_card'
+      handle_discard_card(player)
     else
-      render json: { error: "Invalid action type" }, status: :bad_request
+      render json: { error: 'Invalid action type' }, status: :bad_request
     end
   end
 
@@ -108,7 +100,7 @@ class GamesController < ApplicationController
   def set_game
     @game = Game.find_by!(code: params[:code])
   rescue ActiveRecord::RecordNotFound
-    render json: { error: "Game not found" }, status: :not_found
+    render json: { error: 'Game not found' }, status: :not_found
   end
 
   def handle_play_card(player)
@@ -116,20 +108,16 @@ class GamesController < ApplicationController
     trick = round&.current_trick
     card = params[:card]
 
-    unless trick
-      return render json: { error: "No active trick" }, status: :bad_request
-    end
+    return render json: { error: 'No active trick' }, status: :bad_request unless trick
 
-    unless card.present?
-      return render json: { error: "Card is required" }, status: :bad_request
-    end
+    return render json: { error: 'Card is required' }, status: :bad_request unless card.present?
 
     if trick.play_card!(player, card)
       # Check if trick is complete
       if trick.completed?
         # Create next trick or complete round
         if trick.number < 4
-          next_trick = round.tricks.create!(
+          round.tricks.create!(
             number: trick.number + 1,
             lead_seat: trick.winning_seat
           )
@@ -139,12 +127,39 @@ class GamesController < ApplicationController
       end
 
       render json: {
-        message: "Card played successfully",
+        message: 'Card played successfully',
         trick: trick_json(trick),
         game: game_json(@game)
       }
     else
-      render json: { error: "Invalid card play" }, status: :bad_request
+      render json: { error: 'Invalid card play' }, status: :bad_request
+    end
+  end
+
+  def handle_order_up(player)
+    round = @game.current_round
+
+    unless round&.can_order_up?(player.seat)
+      return render json: { error: 'Cannot order up at this time' }, status: :bad_request
+    end
+
+    if round.order_up!(player.seat)
+      # If trump is selected, dealer needs to discard (if ordered up)
+      if round.dealer_needs_to_discard?
+        render json: {
+          message: 'Trump ordered up successfully - dealer must discard',
+          round: round_json(round),
+          game: game_json(@game)
+        }
+      else
+        render json: {
+          message: 'Trump ordered up successfully',
+          round: round_json(round),
+          game: game_json(@game)
+        }
+      end
+    else
+      render json: { error: 'Failed to order up' }, status: :bad_request
     end
   end
 
@@ -152,27 +167,72 @@ class GamesController < ApplicationController
     round = @game.current_round
     trump_suit = params[:trump_suit]
 
-    unless Round::SUITS.include?(trump_suit)
-      return render json: { error: "Invalid trump suit" }, status: :bad_request
+    unless round&.can_call_trump?(player.seat)
+      return render json: { error: 'Cannot call trump at this time' }, status: :bad_request
     end
 
-    if round.update(trump_suit: trump_suit, maker_team: player.team, loner: params[:loner] || false)
-      # Create first trick
-      round.tricks.create!(number: 0, lead_seat: (round.dealer_seat + 1) % 4)
-      
+    return render json: { error: 'Invalid trump suit' }, status: :bad_request unless Round::SUITS.include?(trump_suit)
+
+    if round.call_trump!(player.seat, trump_suit)
       render json: {
-        message: "Trump called successfully",
-        round: round_json(round)
+        message: 'Trump called successfully',
+        round: round_json(round),
+        game: game_json(@game)
       }
     else
-      render json: { errors: round.errors }, status: :unprocessable_entity
+      render json: { error: 'Failed to call trump' }, status: :bad_request
     end
   end
 
   def handle_pass(player)
-    # Implementation for passing would go here
-    # This would involve tracking who has passed and moving to next player
-    render json: { message: "Passed" }
+    round = @game.current_round
+
+    unless round&.current_bidder_seat == player.seat
+      return render json: { error: 'Not your turn to bid' }, status: :bad_request
+    end
+
+    if round.pass_bidding!(player.seat)
+      message = if round.trump_selected?
+                  'Passed - trump selected'
+                elsif round.calling_trump?
+                  'Passed - moved to calling trump phase'
+                else
+                  'Passed'
+                end
+
+      render json: {
+        message: message,
+        round: round_json(round),
+        game: game_json(@game)
+      }
+    else
+      render json: { error: 'Failed to pass' }, status: :bad_request
+    end
+  end
+
+  def handle_discard_card(player)
+    round = @game.current_round
+    card = params[:card]
+
+    return render json: { error: 'No discard needed' }, status: :bad_request unless round&.dealer_needs_to_discard?
+
+    unless player.seat == round.dealer_seat
+      return render json: { error: 'Only dealer can discard' }, status: :bad_request
+    end
+
+    return render json: { error: 'Card is required' }, status: :bad_request unless card.present?
+
+    # For now, just start the tricks after discard
+    # In a full implementation, we'd track the dealer's hand
+    if round.start_tricks!
+      render json: {
+        message: 'Card discarded - tricks starting',
+        round: round_json(round),
+        game: game_json(@game)
+      }
+    else
+      render json: { error: 'Failed to start tricks' }, status: :bad_request
+    end
   end
 
   def current_player_json
@@ -205,6 +265,7 @@ class GamesController < ApplicationController
   def current_round_json
     round = @game.current_round
     return nil unless round
+
     round_json(round)
   end
 
@@ -215,6 +276,10 @@ class GamesController < ApplicationController
       trump_suit: round.trump_suit,
       maker_team: round.maker_team,
       loner: round.loner,
+      turned_up_card: round.turned_up_card,
+      trump_selection_phase: round.trump_selection_phase,
+      current_bidder_seat: round.current_bidder_seat,
+      ordered_up: round.ordered_up,
       current_trick: round.current_trick ? trick_json(round.current_trick) : nil,
       completed: round.completed?
     }
@@ -236,4 +301,4 @@ class GamesController < ApplicationController
       completed: trick.completed?
     }
   end
-end 
+end

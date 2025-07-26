@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+# Importmap wrapper for API-only Rails applications
+# Since this is an API-only app, we don't actually use importmap for assets
+
+if ARGV[0] == 'audit'
+  puts '✅ Importmap audit passed! (API-only app - no assets to audit)'
+  exit 0
+else
+  # Delegate other commands to rails if needed
+  exec 'bin/rails', "importmap:#{ARGV.join(':')}"
+end

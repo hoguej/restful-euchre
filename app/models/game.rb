@@ -27,7 +27,7 @@ class Game < ApplicationRecord
 
   def start_game!
     return false unless can_start?
-    
+
     assign_seats_and_teams!
     update!(state: 'active')
     create_first_round!
@@ -77,6 +77,14 @@ class Game < ApplicationRecord
 
   def create_first_round!
     dealer_seat = rand(4)
-    rounds.create!(number: 1, dealer_seat: dealer_seat)
+    turned_up_card = generate_turned_up_card
+    rounds.create!(number: 1, dealer_seat: dealer_seat, turned_up_card: turned_up_card)
   end
-end 
+
+  def generate_turned_up_card
+    # Generate a random card for the turned up card
+    ranks = %w[9 T J Q K A]
+    suits = %w[H D C S]
+    "#{ranks.sample}#{suits.sample}"
+  end
+end

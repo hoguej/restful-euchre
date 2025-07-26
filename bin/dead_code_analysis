@@ -1,67 +1,71 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "fileutils"
-require "json"
+require 'bundler/setup'
+require 'fileutils'
+require 'json'
 
 class DeadCodeAnalyzer
-  REPORT_DIR = "tmp/dead_code_reports"
-  
+  REPORT_DIR = 'tmp/dead_code_reports'
+
   def initialize
     FileUtils.mkdir_p(REPORT_DIR)
   end
-  
+
   def run_full_analysis
-    puts "Running comprehensive dead code analysis..."
-    puts "=" * 60
-    
+    puts 'Running comprehensive dead code analysis...'
+    puts '=' * 60
+
     # 1. Full Rails-aware analysis
     puts "\n1. Running full Rails-aware analysis..."
     run_command("bundle exec debride --rails app/ > #{REPORT_DIR}/full_analysis.txt")
-    
+
     # 2. Controllers only
     puts "\n2. Analyzing controllers..."
     run_command("bundle exec debride --rails app/controllers/ > #{REPORT_DIR}/controllers.txt")
-    
-    # 3. Models only  
+
+    # 3. Models only
     puts "\n3. Analyzing models..."
     run_command("bundle exec debride --rails app/models/ > #{REPORT_DIR}/models.txt")
-    
+
     # 4. Helpers only
     puts "\n4. Analyzing helpers..."
     run_command("bundle exec debride --rails app/helpers/ > #{REPORT_DIR}/helpers.txt")
-    
+
     # 5. Services/Jobs
     puts "\n5. Analyzing services and jobs..."
     run_command("bundle exec debride app/services/ app/jobs/ > #{REPORT_DIR}/services_jobs.txt")
-    
+
     # 6. Exclude common Rails patterns
     puts "\n6. Running analysis excluding common Rails patterns..."
     run_command("bundle exec debride --rails --exclude-rails app/ > #{REPORT_DIR}/excluding_rails_patterns.txt")
-    
+
     # 7. Generate summary report
     generate_summary_report
-    
+
     puts "\nAnalysis complete! Reports saved to #{REPORT_DIR}/"
     puts "\nQuick summary:"
     display_quick_summary
   end
-  
+
   def analyze_specific_files(*files)
     puts "Analyzing specific files: #{files.join(', ')}"
     run_command("bundle exec debride --rails #{files.join(' ')}")
   end
-  
+
   def cross_reference_with_routes
     puts "\nCross-referencing with routes..."
-    
+
     # Get all routes
     routes_output = `bundle exec rails routes 2>/dev/null`
     route_actions = routes_output.scan(/(\w+)#(\w+)/).map { |controller, action| "#{controller}##{action}" }
-    
+
     # Read controller analysis
-    controller_report = File.read("#{REPORT_DIR}/controllers.txt") rescue ""
-    
+    controller_report = begin
+      File.read("#{REPORT_DIR}/controllers.txt")
+    rescue StandardError
+      ''
+    end
+
     # Find controller actions that might be dead but are actually routed
     puts "\nController actions flagged as dead but have routes:"
     route_actions.each do |route_action|
@@ -70,121 +74,145 @@ class DeadCodeAnalyzer
       end
     end
   end
-  
+
   def find_view_usage
     puts "\nChecking helper method usage in views..."
-    
-    helper_report = File.read("#{REPORT_DIR}/helpers.txt") rescue ""
-    
+
+    helper_report = begin
+      File.read("#{REPORT_DIR}/helpers.txt")
+    rescue StandardError
+      ''
+    end
+
     # Extract helper methods from report
     helper_methods = helper_report.scan(/^\s+(\w+)\s+/).flatten
-    
+
     puts "\nChecking #{helper_methods.size} helper methods against views..."
-    
+
     false_positives = []
     true_dead = []
-    
+
     helper_methods.each do |method|
       # Search for method usage in views
       view_usage = `grep -r "#{method}" app/views/ 2>/dev/null`
-      
+
       if view_usage.strip.empty?
         true_dead << method
       else
         false_positives << method
       end
     end
-    
+
     puts "\nHelper methods likely safe to remove (#{true_dead.size}):"
     true_dead.first(10).each { |method| puts "  - #{method}" }
     puts "  ... and #{true_dead.size - 10} more" if true_dead.size > 10
-    
+
     puts "\nHelper methods used in views (#{false_positives.size}):"
     false_positives.first(5).each { |method| puts "  - #{method}" }
     puts "  ... and #{false_positives.size - 5} more" if false_positives.size > 5
-    
+
     # Save detailed results
     results = {
-      "true_dead" => true_dead,
-      "false_positives" => false_positives
+      'true_dead' => true_dead,
+      'false_positives' => false_positives
     }
     File.write("#{REPORT_DIR}/helper_analysis.txt", results.inspect)
   end
-  
+
   def generate_priority_cleanup_list
     puts "\nGenerating priority cleanup list..."
-    
+
     reports = {
-      'controllers' => (File.read("#{REPORT_DIR}/controllers.txt") rescue ""),
-      'models' => (File.read("#{REPORT_DIR}/models.txt") rescue ""), 
-      'helpers' => (File.read("#{REPORT_DIR}/helpers.txt") rescue ""),
-      'services_jobs' => (File.read("#{REPORT_DIR}/services_jobs.txt") rescue "")
+      'controllers' => begin
+        File.read("#{REPORT_DIR}/controllers.txt")
+      rescue StandardError
+        ''
+      end,
+      'models' => begin
+        File.read("#{REPORT_DIR}/models.txt")
+      rescue StandardError
+        ''
+      end,
+      'helpers' => begin
+        File.read("#{REPORT_DIR}/helpers.txt")
+      rescue StandardError
+        ''
+      end,
+      'services_jobs' => begin
+        File.read("#{REPORT_DIR}/services_jobs.txt")
+      rescue StandardError
+        ''
+      end
     }
-    
+
     priority_list = []
-    
+
     # High priority: Jobs and services (usually safe)
-    if reports['services_jobs'].include?("These methods MIGHT not be called:")
-      priority_list << "HIGH PRIORITY: Services/Jobs (usually safe to remove)"
+    if reports['services_jobs'].include?('These methods MIGHT not be called:')
+      priority_list << 'HIGH PRIORITY: Services/Jobs (usually safe to remove)'
     end
-    
+
     # Medium priority: Helper methods not used in views
-    priority_list << "MEDIUM PRIORITY: Helper methods (cross-reference with views)"
-    
+    priority_list << 'MEDIUM PRIORITY: Helper methods (cross-reference with views)'
+
     # Low priority: Controllers (might be routed)
-    priority_list << "LOW PRIORITY: Controller actions (check routes first)"
-    
+    priority_list << 'LOW PRIORITY: Controller actions (check routes first)'
+
     # Models need careful review
-    priority_list << "REVIEW NEEDED: Model methods (check for dynamic calls)"
-    
+    priority_list << 'REVIEW NEEDED: Model methods (check for dynamic calls)'
+
     File.write("#{REPORT_DIR}/priority_cleanup.txt", priority_list.join("\n"))
-    
+
     puts priority_list.join("\n")
   end
-  
+
   private
-  
+
   def run_command(cmd)
     system(cmd)
   end
-  
+
   def generate_summary_report
     puts "\nGenerating summary report..."
-    
+
     reports = Dir["#{REPORT_DIR}/*.txt"].map do |file|
       content = File.read(file)
       method_count = content.scan(/^\s+\w+/).size
       loc_match = content.match(/Total suspect LOC: (\d+)/)
       loc = loc_match ? loc_match[1].to_i : 0
-      
+
       {
-        "file" => File.basename(file),
-        "methods" => method_count,
-        "loc" => loc
+        'file' => File.basename(file),
+        'methods' => method_count,
+        'loc' => loc
       }
     end
-    
+
     summary = {
-      "timestamp" => Time.now.to_s,
-      "reports" => reports,
-      "total_methods" => reports.sum { |r| r["methods"] },
-      "total_loc" => reports.sum { |r| r["loc"] }
+      'timestamp' => Time.now.to_s,
+      'reports' => reports,
+      'total_methods' => reports.sum { |r| r['methods'] },
+      'total_loc' => reports.sum { |r| r['loc'] }
     }
-    
+
     File.write("#{REPORT_DIR}/summary.json", JSON.pretty_generate(summary))
     File.write("#{REPORT_DIR}/README.md", generate_readme)
   end
-  
+
   def display_quick_summary
-    full_report = File.read("#{REPORT_DIR}/full_analysis.txt") rescue ""
-    
+    full_report = begin
+      File.read("#{REPORT_DIR}/full_analysis.txt")
+    rescue StandardError
+      ''
+    end
+
     if match = full_report.match(/Total suspect LOC: (\d+)/)
       puts "  Total suspect lines of code: #{match[1]}"
     end
-    
+
     method_count = full_report.scan(/^\s+\w+/).size
     puts "  Total suspect methods: #{method_count}"
-    
+
     puts "\nIndividual reports:"
     Dir["#{REPORT_DIR}/*.txt"].each do |file|
       name = File.basename(file, '.txt')
@@ -192,42 +220,42 @@ class DeadCodeAnalyzer
       puts "  - #{name}: #{size} bytes"
     end
   end
-  
+
   def generate_readme
     <<~README
       # Dead Code Analysis Report
-      
+
       Generated: #{Time.now}
-      
+
       ## Reports Generated
-      
+
       - `full_analysis.txt` - Complete Rails-aware analysis
-      - `controllers.txt` - Controller actions analysis  
+      - `controllers.txt` - Controller actions analysis#{'  '}
       - `models.txt` - Model methods analysis
       - `helpers.txt` - Helper methods analysis
       - `services_jobs.txt` - Services and jobs analysis
       - `excluding_rails_patterns.txt` - Analysis excluding Rails conventions
       - `priority_cleanup.txt` - Prioritized cleanup recommendations
       - `helper_analysis.txt` - Helper methods cross-referenced with views
-      
+
       ## How to Use These Reports
-      
+
       1. **Start with `priority_cleanup.txt`** for recommended cleanup order
       2. **Review `services_jobs.txt`** for safest removals first
       3. **Cross-reference controllers** with `rails routes` output
       4. **Check helper usage** in views before removing
       5. **Be careful with models** - they might use metaprogramming
-      
+
       ## Commands Used
-      
+
       ```bash
       # Full analysis
       bundle exec debride --rails app/
-      
+
       # Specific directories
       bundle exec debride --rails app/controllers/
       bundle exec debride --rails app/models/
-      
+
       # Exclude Rails patterns
       bundle exec debride --rails --exclude-rails app/
       ```
@@ -238,7 +266,7 @@ end
 # Main execution
 if __FILE__ == $0
   analyzer = DeadCodeAnalyzer.new
-  
+
   case ARGV[0]
   when 'full'
     analyzer.run_full_analysis
@@ -252,16 +280,16 @@ if __FILE__ == $0
   when 'priority'
     analyzer.generate_priority_cleanup_list
   else
-    puts "Usage:"
+    puts 'Usage:'
     puts "  #{$0} full     - Run complete analysis"
     puts "  #{$0} routes   - Cross-reference with routes"
     puts "  #{$0} views    - Check helper usage in views"
     puts "  #{$0} priority - Generate priority cleanup list"
-    puts ""
-    puts "Running full analysis..."
+    puts ''
+    puts 'Running full analysis...'
     analyzer.run_full_analysis
     analyzer.cross_reference_with_routes
     analyzer.find_view_usage
     analyzer.generate_priority_cleanup_list
   end
-end 
+end

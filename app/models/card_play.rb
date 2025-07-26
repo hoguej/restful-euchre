@@ -1,6 +1,6 @@
 class CardPlay < ApplicationRecord
   PLAY_ORDERS = [0, 1, 2, 3].freeze
-  
+
   # Card format: "9H", "TC", "JD", "QS", "KH", "AS" etc.
   RANKS = %w[9 T J Q K A].freeze
   SUITS = %w[H D C S].freeze # Hearts, Diamonds, Clubs, Spades
@@ -24,18 +24,18 @@ class CardPlay < ApplicationRecord
 
   def trump?(trump_suit)
     return false unless trump_suit
-    
+
     # Regular trump suit card
     return true if suit == trump_suit_letter(trump_suit)
-    
+
     # Left bower (jack of same color as trump)
-    if rank == 'J'
-      case trump_suit
-      when 'hearts' then suit == 'D'
-      when 'diamonds' then suit == 'H'
-      when 'clubs' then suit == 'S'
-      when 'spades' then suit == 'C'
-      end
+    return unless rank == 'J'
+
+    case trump_suit
+    when 'hearts' then suit == 'D'
+    when 'diamonds' then suit == 'H'
+    when 'clubs' then suit == 'S'
+    when 'spades' then suit == 'C'
     end
   end
 
@@ -57,4 +57,4 @@ class CardPlay < ApplicationRecord
     when 'spades' then 'S'
     end
   end
-end 
+end

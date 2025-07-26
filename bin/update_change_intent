@@ -16,9 +16,9 @@ end
 def add_intent_entry(intent)
   timestamp = format_timestamp
   commit_hash = get_current_commit_hash
-  
+
   entry = "#{timestamp},#{commit_hash},#{intent}"
-  
+
   # Read existing entries if file exists
   existing_entries = []
   if File.exist?(CHANGE_INTENT_FILE)
@@ -28,13 +28,13 @@ def add_intent_entry(intent)
       line.strip.match?(/^\[.*\],.*,.*/)
     end
   end
-  
+
   # Add new entry
   existing_entries << entry
-  
+
   # Write back to file
   File.write(CHANGE_INTENT_FILE, existing_entries.join("\n") + "\n")
-  
+
   puts "✅ Intent entry added: #{entry}"
 end
 
@@ -43,64 +43,67 @@ def show_current_intent
     puts "\n📋 Current intent log:"
     content = File.read(CHANGE_INTENT_FILE).strip
     if content.empty?
-      puts "   (empty)"
+      puts '   (empty)'
     else
       content.split("\n").each do |line|
         next if line.strip.empty?
+
         # Only show lines that match the new format
-        if line.match?(/^\[.*\],.*,.*/)
-          parts = line.split(',', 3)
-          if parts.size == 3
-            timestamp, commit_hash, intent = parts
-            puts "   #{timestamp} #{commit_hash} #{intent}"
-          else
-            puts "   #{line}"
-          end
+        next unless line.match?(/^\[.*\],.*,.*/)
+
+        parts = line.split(',', 3)
+        if parts.size == 3
+          timestamp, commit_hash, intent = parts
+          puts "   #{timestamp} #{commit_hash} #{intent}"
+        else
+          puts "   #{line}"
         end
       end
     end
-    puts "\n" + "="*50
+    puts "\n" + '=' * 50
   else
     puts "\n📝 No intent log exists yet"
-    puts "\n" + "="*50
+    puts "\n" + '=' * 50
   end
 end
 
 def clean_old_entries
   return unless File.exist?(CHANGE_INTENT_FILE)
-  
+
   current_commit = get_current_commit_hash
   content = File.read(CHANGE_INTENT_FILE).strip
   return if content.empty?
-  
+
   lines = content.split("\n").reject(&:empty?)
-  
+
   # Get all unique commit hashes from the entries
   commit_hashes = lines.map do |line|
     next nil unless line.match?(/^\[.*\],.*,.*/)
+
     parts = line.split(',', 3)
     next nil if parts.size != 3
+
     parts[1] # commit_hash
   end.compact.uniq
-  
+
   # Only clean if we have entries from 3+ different commits
   return if commit_hashes.size < 3
-  
+
   # Keep only entries from current commit that match the new format
   kept_entries = lines.select do |line|
     next false unless line.match?(/^\[.*\],.*,.*/)
-    
+
     parts = line.split(',', 3)
     next false if parts.size != 3
-    
-    timestamp, commit_hash, intent = parts
+
+    _, commit_hash, = parts
     commit_hash == current_commit
   end
-  
-  if kept_entries.size != lines.size
-    File.write(CHANGE_INTENT_FILE, kept_entries.join("\n") + "\n")
-    puts "🧹 Cleaned #{lines.size - kept_entries.size} old intent entries (keeping only current commit)"
-  end
+
+  return unless kept_entries.size != lines.size
+
+  File.write(CHANGE_INTENT_FILE, kept_entries.join("\n") + "\n")
+  puts "🧹 Cleaned #{lines.size - kept_entries.size} old intent entries (keeping only current commit)"
 end
 
 # Main execution
@@ -116,33 +119,31 @@ if ARGV.include?('--clean')
 end
 
 # Get intent from STDIN or command line argument
-intent = ""
+intent = ''
 
 # Check if there's input from STDIN (pipe or redirect)
-if !$stdin.tty?
+unless $stdin.tty?
   stdin_content = $stdin.read.strip
-  if !stdin_content.empty?
-    intent = stdin_content
-  end
+  intent = stdin_content unless stdin_content.empty?
 end
 
 # Fall back to command line arguments if no STDIN input
 if intent.empty?
   if ARGV.empty?
-    puts "Usage: bin/update_change_intent \"Your intent description here\""
-    puts "       echo \"intent\" | bin/update_change_intent (via pipe)"
-    puts "       bin/update_change_intent --show  (to show current log)"
-    puts "       bin/update_change_intent --clean (to clean old entries)"
+    puts 'Usage: bin/update_change_intent "Your intent description here"'
+    puts '       echo "intent" | bin/update_change_intent (via pipe)'
+    puts '       bin/update_change_intent --show  (to show current log)'
+    puts '       bin/update_change_intent --clean (to clean old entries)'
     exit 1
   end
-  
+
   intent = ARGV.join(' ')
 end
 
 if intent.strip.empty?
-  puts "❌ Error: Intent cannot be empty"
+  puts '❌ Error: Intent cannot be empty'
   exit 1
 end
 
 add_intent_entry(intent)
-show_current_intent 
+show_current_intent
