@@ -199,10 +199,21 @@ class Round < ApplicationRecord
     ordered_up? && trump_selected?
   end
 
-  def dealer_discard!(card)
+  def dealer_discard!(player_or_card, card = nil)
+    # Handle both old signature dealer_discard!(card) and new signature dealer_discard!(player, card)
+    if card.nil?
+      # Old signature: dealer_discard!(card)
+      card = player_or_card
+      player = nil
+    else
+      # New signature: dealer_discard!(player, card)
+      player = player_or_card
+    end
+
     return false unless dealer_needs_to_discard?
 
-    dealer_player = game.players.find_by(seat: dealer_seat)
+    # Use provided player or find dealer player
+    dealer_player = player || game.players.find_by(seat: dealer_seat)
     return false unless dealer_player
 
     dealer_hand = dealer_player.hand_for_round(self)

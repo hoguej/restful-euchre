@@ -17,6 +17,7 @@ end
 
 group :development do
   gem 'brakeman', require: false       # Security scanner
+  gem 'foreman', require: false        # Process manager for Procfile
   gem 'importmap-rails'                # Asset pipeline management
   gem 'rubocop', require: false        # Code style checker
 end

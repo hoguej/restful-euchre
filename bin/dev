@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+# Check if foreman is available
+if ! command -v foreman >/dev/null 2>&1; then
+  echo "Installing foreman..."
+  bundle install
+fi
+
+# Start the development server using foreman
+exec bundle exec foreman start -f Procfile "$@" 
