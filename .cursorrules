@@ -56,23 +56,6 @@
   2. `gap --prepare` or `gap --commit` reads .change_intent and generates .commit_message using AI
   3. `gap --commit` commits and clears both .change_intent and .commit_message
 
-## Test Management for Deprecated Models
-- **QuoteRequest, Quote, and Order models are being refactored out of the system**
-- **It is acceptable to disable/skip tests related to these deprecated models rather than fix them**
-- **When encountering failing tests for QuoteRequest, Quote, or Order models/controllers/views:**
-  - Use `skip "Test disabled - [Model] is being refactored out"` for individual tests
-  - Delete entire test files if the whole model/controller is being removed
-  - Focus effort on fixing tests for the new unified Project model instead
-- **This applies to:**
-  - `test/models/quote_request_test.rb`
-  - `test/models/quote_test.rb` 
-  - `test/models/order_test.rb`
-  - `test/controllers/admin/quotes_controller_test.rb`
-  - `test/controllers/admin/orders_controller_test.rb`
-  - Any view tests for quotes/orders/quote_requests
-  - Any integration tests specifically testing quote/order workflows
-- **The goal is 100% passing tests for the new Project-based architecture**
-
 ## Development Workflow
 - Run checks and tests, but present results for user review
 - Suggest improvements and fixes, but don't implement them automatically
@@ -80,6 +63,12 @@
 - Respect the user's preference for manual code review and approval
 - User-initiated commands (like `bin/gap`) handle their own workflows
 - **ALWAYS update .change_intent** to reflect what we're working on and why
+
+## Terminal & Command Line Safety
+- **NEVER use exclamation marks (!) in terminal commands or command strings**
+- **Exclamation marks cause shell history expansion and command parsing issues**
+- **Use single quotes instead of double quotes for literal strings to avoid shell interpretation**
+- **Always test commands in a safe context before suggesting them**
 
 ## Tooling Guidelines
 - Development scripts should check and report issues
