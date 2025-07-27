@@ -1,10 +1,13 @@
+# Load coverage tracking before everything else
+require_relative 'coverage_helper'
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
-  # Run tests in parallel with specified workers
-  parallelize(workers: :number_of_processors)
+  # Run tests in parallel with specified workers (disable for coverage)
+  parallelize(workers: :number_of_processors) unless ENV['COVERAGE'] == 'true'
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
