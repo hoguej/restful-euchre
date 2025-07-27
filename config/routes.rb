@@ -12,5 +12,9 @@ Rails.application.routes.draw do
       post :action
       get :players
     end
+
+    collection do
+      get :simulate
+    end
   end
 end

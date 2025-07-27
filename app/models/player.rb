@@ -5,6 +5,7 @@ class Player < ApplicationRecord
   belongs_to :game
   belongs_to :session
   has_many :card_plays, dependent: :destroy
+  has_many :player_hands, dependent: :destroy
 
   validates :seat, inclusion: { in: SEATS }, allow_nil: true
   validates :team, inclusion: { in: TEAMS }, allow_nil: true
@@ -26,9 +27,13 @@ class Player < ApplicationRecord
     game.players.where.not(team: team)
   end
 
-  def hand_for_round(_round)
-    # This would contain the logic for dealing cards
-    # For now, return empty array - will implement card dealing logic later
-    []
+  def hand_for_round(round)
+    player_hands.find_by(round: round)
+  end
+
+  def current_hand
+    return nil unless game.current_round
+
+    hand_for_round(game.current_round)
   end
 end

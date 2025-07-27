@@ -1,0 +1,1052 @@
+Running 1 tests in a single process (parallelization threshold is 50)
+Run options: --seed 42999
+
+# Running:
+
+
+🎮 Starting Full Euchre Game Simulation
+==================================================
+✅ Game created with code: 0QNGD5JE
+✅ 4 players joined: Player1, Player2, Player3, Player4
+✅ Game is now ACTIVE!
+📊 Initial Scores - Team 0: 0, Team 1: 0
+👤 Player4 - Seat 0, Team 0
+👤 Player3 - Seat 1, Team 1
+👤 Player1 - Seat 2, Team 0
+👤 Player2 - Seat 3, Team 1
+📋 Teams: Team 0 (Seats 0,2) vs Team 1 (Seats 1,3)
+
+==============================
+🎯 ROUND 1
+==============================
+🃏 Dealer: Player3 (Seat 1)
+
+🎴 Player Hands:
+  Player4 (Seat 0): 9D AS KC KD KH (5 cards)
+  Player3 (Seat 1): 9H AC QD TH TS (5 cards)
+  Player1 (Seat 2): 9C JD JH JS KS (5 cards)
+  Player2 (Seat 3): 9S AH JC QH TC (5 cards)
+
+🎺 Trump Selection Phase
+🃏 Turned up card: TD
+
+📋 Ordering Up Phase
+👋 Player1 passes
+🎺 Player2 orders up!
+🃏 Player3 (dealer) discards: 9H
+✅ Trump suit selected: DIAMONDS
+👥 Making team: Team 1
+👥 Making team: Team 1
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player4: 9D AS KC KD KH
+      Player3: AC QD TD TH TS
+      Player1: 9C JD JH JS KS
+      Player2: 9S AH JC QH TC
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: JS
+    🎴 Player2: 9S
+    🎴 Player4: AS
+    🎴 Player3: TS
+    🏆 Winner: Player4 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 0
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player4: 9D KC KD KH
+      Player3: AC QD TD TH
+      Player1: 9C JD JH KS
+      Player2: AH JC QH TC
+    👤 Lead: Player4 (Seat 0)
+    🎴 Player4: 9D
+    🎴 Player3: QD
+    🎴 Player1: JD
+    🎴 Player2: QH
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 0
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player4: KC KD KH
+      Player3: AC TD TH
+      Player1: 9C JH KS
+      Player2: AH JC TC
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: JH
+    🎴 Player2: AH
+    🎴 Player4: KH
+    🎴 Player3: TH
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 3, Team 1: 0
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player4: KC KD
+      Player3: AC TD
+      Player1: 9C KS
+      Player2: JC TC
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: KS
+    🎴 Player2: JC
+    🎴 Player4: KD
+    🎴 Player3: AC
+    🏆 Winner: Player4 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 4, Team 1: 0
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player4: KC
+      Player3: TD
+      Player1: 9C
+      Player2: TC
+    👤 Lead: Player4 (Seat 0)
+    🎴 Player4: KC
+    🎴 Player3: TD
+    🎴 Player1: 9C
+    🎴 Player2: TC
+  🔧 Calculating missing 5th trick winner...
+  🏆 Trick 5: Calculated winner - Team 1 (tie-breaker logic)
+  📊 Corrected Tricks: Team 0: 4, Team 1: 1
+
+🎯 Round 1 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 4, Team 1 (Seats 1,3): 1
+🎺 Player2 (Team 1) called trump
+❌ Team 1 was euchred (only 1 tricks) - Team 0 scores 2 points!
+
+📊 Round 1 Results
+📊 Scores - Team 0 (Seats 0,2): 2, Team 1 (Seats 1,3): 0
+
+==============================
+🎯 ROUND 2
+==============================
+🃏 Dealer: Player1 (Seat 2)
+
+🎴 Player Hands:
+  Player4 (Seat 0): 9D 9H AC JH KS (5 cards)
+  Player3 (Seat 1): AH JC JS KD TH (5 cards)
+  Player1 (Seat 2): AD QC QD TC TS (5 cards)
+  Player2 (Seat 3): JD KC QH QS TD (5 cards)
+
+🎺 Trump Selection Phase
+🃏 Turned up card: 9S
+
+📋 Ordering Up Phase
+🎺 Player2 orders up!
+🃏 Player1 (dealer) discards: 9S
+✅ Trump suit selected: SPADES
+👥 Making team: Team 1
+👥 Making team: Team 1
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player4: 9D 9H AC JH KS
+      Player3: AH JC JS KD TH
+      Player1: AD QC QD TC TS
+      Player2: JD KC QH QS TD
+    👤 Lead: Player2 (Seat 3)
+    🎴 Player2: QS
+    🎴 Player4: KS
+    🎴 Player3: JS
+    🎴 Player1: TS
+    🏆 Winner: Player3 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 1
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player4: 9D 9H AC JH
+      Player3: AH JC KD TH
+      Player1: AD QC QD TC
+      Player2: JD KC QH TD
+    👤 Lead: Player3 (Seat 1)
+    🎴 Player3: TH
+    🎴 Player1: TC
+    🎴 Player2: QH
+    🎴 Player4: 9H
+    🏆 Winner: Player2 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 2
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player4: 9D AC JH
+      Player3: AH JC KD
+      Player1: AD QC QD
+      Player2: JD KC TD
+    👤 Lead: Player2 (Seat 3)
+    🎴 Player2: JD
+    🎴 Player4: 9D
+    🎴 Player3: KD
+    🎴 Player1: QD
+    🏆 Winner: Player3 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 3
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player4: AC JH
+      Player3: AH JC
+      Player1: AD QC
+      Player2: KC TD
+    👤 Lead: Player3 (Seat 1)
+    🎴 Player3: JC
+    🎴 Player1: QC
+    🎴 Player2: KC
+    🎴 Player4: AC
+    🏆 Winner: Player3 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 4
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player4: JH
+      Player3: AH
+      Player1: AD
+      Player2: TD
+    👤 Lead: Player3 (Seat 1)
+    🎴 Player3: AH
+    🎴 Player1: AD
+    🎴 Player2: TD
+    🎴 Player4: JH
+  🔧 Calculating missing 5th trick winner...
+  🏆 Trick 5: Calculated winner - Team 0 (tie-breaker logic)
+  📊 Corrected Tricks: Team 0: 1, Team 1: 4
+
+🎯 Round 2 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 1, Team 1 (Seats 1,3): 4
+🎺 Player2 (Team 1) called trump
+✅ Team 1 got 4 tricks - scores 1 point!
+
+📊 Round 2 Results
+📊 Scores - Team 0 (Seats 0,2): 2, Team 1 (Seats 1,3): 2
+
+==============================
+🎯 ROUND 3
+==============================
+🃏 Dealer: Player2 (Seat 3)
+
+🎴 Player Hands:
+  Player4 (Seat 0): 9D JH KS TC TH (5 cards)
+  Player3 (Seat 1): 9C AS KD QD TS (5 cards)
+  Player1 (Seat 2): 9H 9S JS QH QS (5 cards)
+  Player2 (Seat 3): AD JC JD QC TD (5 cards)
+
+🎺 Trump Selection Phase
+🃏 Turned up card: KC
+
+📋 Ordering Up Phase
+🎺 Player4 orders up!
+🃏 Player2 (dealer) discards: TD
+✅ Trump suit selected: CLUBS
+👥 Making team: Team 0
+👥 Making team: Team 0
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player4: 9D JH KS TC TH
+      Player3: 9C AS KD QD TS
+      Player1: 9H 9S JS QH QS
+      Player2: AD JC JD KC QC
+    👤 Lead: Player4 (Seat 0)
+    🎴 Player4: KS
+    🎴 Player3: AS
+    🎴 Player1: JS
+    🎴 Player2: QC
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 0
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player4: 9D JH TC TH
+      Player3: 9C KD QD TS
+      Player1: 9H 9S QH QS
+      Player2: AD JC JD KC
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: QH
+    🎴 Player2: JD
+    🎴 Player4: JH
+    🎴 Player3: QD
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 0
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player4: 9D TC TH
+      Player3: 9C KD TS
+      Player1: 9H 9S QS
+      Player2: AD JC KC
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: 9S
+    🎴 Player2: JC
+    🎴 Player4: TH
+    🎴 Player3: TS
+    🏆 Winner: Player2 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 2, Team 1: 1
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player4: 9D TC
+      Player3: 9C KD
+      Player1: 9H QS
+      Player2: AD KC
+    👤 Lead: Player2 (Seat 3)
+    🎴 Player2: AD
+    🎴 Player4: 9D
+    🎴 Player3: KD
+    🎴 Player1: QS
+    🏆 Winner: Player2 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 2, Team 1: 2
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player4: TC
+      Player3: 9C
+      Player1: 9H
+      Player2: KC
+    👤 Lead: Player2 (Seat 3)
+    🎴 Player2: KC
+    🎴 Player4: TC
+    🎴 Player3: 9C
+    🎴 Player1: 9H
+  🔧 Calculating missing 5th trick winner...
+  🏆 Trick 5: Calculated winner - Team 0 (tie-breaker logic)
+  📊 Corrected Tricks: Team 0: 3, Team 1: 2
+
+🎯 Round 3 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 3, Team 1 (Seats 1,3): 2
+🎺 Player4 (Team 0) called trump
+✅ Team 0 got 3 tricks - scores 1 point!
+
+📊 Round 3 Results
+📊 Scores - Team 0 (Seats 0,2): 2, Team 1 (Seats 1,3): 4
+
+==============================
+🎯 ROUND 4
+==============================
+🃏 Dealer: Player4 (Seat 0)
+
+🎴 Player Hands:
+  Player4 (Seat 0): JS KC QH QS TD (5 cards)
+  Player3 (Seat 1): 9C AS JC KD TH (5 cards)
+  Player1 (Seat 2): 9D 9S AC QD TS (5 cards)
+  Player2 (Seat 3): 9H JD KH KS TC (5 cards)
+
+🎺 Trump Selection Phase
+🃏 Turned up card: JH
+
+📋 Ordering Up Phase
+👋 Player3 passes
+🎺 Player1 orders up!
+🃏 Player4 (dealer) discards: TD
+✅ Trump suit selected: HEARTS
+👥 Making team: Team 0
+👥 Making team: Team 0
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player4: JH JS KC QH QS
+      Player3: 9C AS JC KD TH
+      Player1: 9D 9S AC QD TS
+      Player2: 9H JD KH KS TC
+    👤 Lead: Player3 (Seat 1)
+    🎴 Player3: KD
+    🎴 Player1: QD
+    🎴 Player2: JD
+    🎴 Player4: JH
+    🏆 Winner: Player4 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 0
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player4: JS KC QH QS
+      Player3: 9C AS JC TH
+      Player1: 9D 9S AC TS
+      Player2: 9H KH KS TC
+    👤 Lead: Player4 (Seat 0)
+    🎴 Player4: JS
+    🎴 Player3: AS
+    🎴 Player1: 9S
+    🎴 Player2: KS
+    🏆 Winner: Player3 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 1, Team 1: 1
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player4: KC QH QS
+      Player3: 9C JC TH
+      Player1: 9D AC TS
+      Player2: 9H KH TC
+    👤 Lead: Player3 (Seat 1)
+    🎴 Player3: 9C
+    🎴 Player1: AC
+    🎴 Player2: TC
+    🎴 Player4: KC
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 1
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player4: QH QS
+      Player3: JC TH
+      Player1: 9D TS
+      Player2: 9H KH
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: 9D
+    🎴 Player2: KH
+    🎴 Player4: QS
+    🎴 Player3: JC
+    🏆 Winner: Player2 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 2, Team 1: 2
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player4: QH
+      Player3: TH
+      Player1: TS
+      Player2: 9H
+    👤 Lead: Player2 (Seat 3)
+    🎴 Player2: 9H
+    🎴 Player4: QH
+    🎴 Player3: TH
+    🎴 Player1: TS
+  🔧 Calculating missing 5th trick winner...
+  🏆 Trick 5: Calculated winner - Team 0 (tie-breaker logic)
+  📊 Corrected Tricks: Team 0: 3, Team 1: 2
+
+🎯 Round 4 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 3, Team 1 (Seats 1,3): 2
+🎺 Player1 (Team 0) called trump
+✅ Team 0 got 3 tricks - scores 1 point!
+
+📊 Round 4 Results
+📊 Scores - Team 0 (Seats 0,2): 3, Team 1 (Seats 1,3): 4
+
+==============================
+🎯 ROUND 5
+==============================
+🃏 Dealer: Player3 (Seat 1)
+
+🎴 Player Hands:
+  Player4 (Seat 0): 9D 9S AC AS QS (5 cards)
+  Player3 (Seat 1): 9H AD KD KH QC (5 cards)
+  Player1 (Seat 2): 9C AH JD JH KS (5 cards)
+  Player2 (Seat 3): KC QD TC TH TS (5 cards)
+
+🎺 Trump Selection Phase
+🃏 Turned up card: TD
+
+📋 Ordering Up Phase
+🎺 Player1 orders up!
+🃏 Player3 (dealer) discards: 9H
+✅ Trump suit selected: DIAMONDS
+👥 Making team: Team 0
+👥 Making team: Team 0
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player4: 9D 9S AC AS QS
+      Player3: AD KD KH QC TD
+      Player1: 9C AH JD JH KS
+      Player2: KC QD TC TH TS
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: AH
+    🎴 Player2: TH
+    🎴 Player4: AS
+    🎴 Player3: KH
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 0
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player4: 9D 9S AC QS
+      Player3: AD KD QC TD
+      Player1: 9C JD JH KS
+      Player2: KC QD TC TS
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: JD
+    🎴 Player2: QD
+    🎴 Player4: 9D
+    🎴 Player3: TD
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 0
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player4: 9S AC QS
+      Player3: AD KD QC
+      Player1: 9C JH KS
+      Player2: KC TC TS
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: KS
+    🎴 Player2: TS
+    🎴 Player4: 9S
+    🎴 Player3: AD
+    🏆 Winner: Player3 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 2, Team 1: 1
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player4: AC QS
+      Player3: KD QC
+      Player1: 9C JH
+      Player2: KC TC
+    👤 Lead: Player3 (Seat 1)
+    🎴 Player3: KD
+    🎴 Player1: JH
+    🎴 Player2: TC
+    🎴 Player4: QS
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 3, Team 1: 1
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player4: AC
+      Player3: QC
+      Player1: 9C
+      Player2: KC
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: 9C
+    🎴 Player2: KC
+    🎴 Player4: AC
+    🎴 Player3: QC
+  🔧 Calculating missing 5th trick winner...
+  🏆 Trick 5: Calculated winner - Team 1 (tie-breaker logic)
+  📊 Corrected Tricks: Team 0: 3, Team 1: 2
+
+🎯 Round 5 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 3, Team 1 (Seats 1,3): 2
+🎺 Player1 (Team 0) called trump
+✅ Team 0 got 3 tricks - scores 1 point!
+
+📊 Round 5 Results
+📊 Scores - Team 0 (Seats 0,2): 4, Team 1 (Seats 1,3): 4
+
+==============================
+🎯 ROUND 6
+==============================
+🃏 Dealer: Player1 (Seat 2)
+
+🎴 Player Hands:
+  Player4 (Seat 0): 9C AC JH KC KD (5 cards)
+  Player3 (Seat 1): 9D 9H AS QS TH (5 cards)
+  Player1 (Seat 2): AD AH JD KS TD (5 cards)
+  Player2 (Seat 3): JC JS QC QH TC (5 cards)
+
+🎺 Trump Selection Phase
+🃏 Turned up card: TS
+
+📋 Ordering Up Phase
+🎺 Player2 orders up!
+🃏 Player1 (dealer) discards: TD
+✅ Trump suit selected: SPADES
+👥 Making team: Team 1
+👥 Making team: Team 1
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player4: 9C AC JH KC KD
+      Player3: 9D 9H AS QS TH
+      Player1: AD AH JD KS TS
+      Player2: JC JS QC QH TC
+    👤 Lead: Player2 (Seat 3)
+    🎴 Player2: QC
+    🎴 Player4: 9C
+    🎴 Player3: QS
+    🎴 Player1: KS
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 0
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player4: AC JH KC KD
+      Player3: 9D 9H AS TH
+      Player1: AD AH JD TS
+      Player2: JC JS QH TC
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: TS
+    🎴 Player2: JS
+    🎴 Player4: KC
+    🎴 Player3: AS
+    🏆 Winner: Player2 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 1, Team 1: 1
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player4: AC JH KD
+      Player3: 9D 9H TH
+      Player1: AD AH JD
+      Player2: JC QH TC
+    👤 Lead: Player2 (Seat 3)
+    🎴 Player2: QH
+    🎴 Player4: JH
+    🎴 Player3: 9H
+    🎴 Player1: AH
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 1
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player4: AC KD
+      Player3: 9D TH
+      Player1: AD JD
+      Player2: JC TC
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: AD
+    🎴 Player2: TC
+    🎴 Player4: KD
+    🎴 Player3: 9D
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 3, Team 1: 1
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player4: AC
+      Player3: TH
+      Player1: JD
+      Player2: JC
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: JD
+    🎴 Player2: JC
+    🎴 Player4: AC
+    🎴 Player3: TH
+  🔧 Calculating missing 5th trick winner...
+  🏆 Trick 5: Calculated winner - Team 1 (tie-breaker logic)
+  📊 Corrected Tricks: Team 0: 3, Team 1: 2
+
+🎯 Round 6 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 3, Team 1 (Seats 1,3): 2
+🎺 Player2 (Team 1) called trump
+❌ Team 1 was euchred (only 2 tricks) - Team 0 scores 2 points!
+
+📊 Round 6 Results
+📊 Scores - Team 0 (Seats 0,2): 6, Team 1 (Seats 1,3): 4
+
+==============================
+🎯 ROUND 7
+==============================
+🃏 Dealer: Player2 (Seat 3)
+
+🎴 Player Hands:
+  Player4 (Seat 0): KH KS QC QS TC (5 cards)
+  Player3 (Seat 1): 9D 9S JC JD TH (5 cards)
+  Player1 (Seat 2): 9C KC KD QD TD (5 cards)
+  Player2 (Seat 3): AD AH AS JH TS (5 cards)
+
+🎺 Trump Selection Phase
+🃏 Turned up card: JS
+
+📋 Ordering Up Phase
+🎺 Player4 orders up!
+🃏 Player2 (dealer) discards: TS
+✅ Trump suit selected: SPADES
+👥 Making team: Team 0
+👥 Making team: Team 0
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player4: KH KS QC QS TC
+      Player3: 9D 9S JC JD TH
+      Player1: 9C KC KD QD TD
+      Player2: AD AH AS JH JS
+    👤 Lead: Player4 (Seat 0)
+    🎴 Player4: QC
+    🎴 Player3: JC
+    🎴 Player1: KC
+    🎴 Player2: JH
+    🏆 Winner: Player3 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 1
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player4: KH KS QS TC
+      Player3: 9D 9S JD TH
+      Player1: 9C KD QD TD
+      Player2: AD AH AS JS
+    👤 Lead: Player3 (Seat 1)
+    🎴 Player3: 9D
+    🎴 Player1: KD
+    🎴 Player2: AD
+    🎴 Player4: QS
+    🏆 Winner: Player4 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 1
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player4: KH KS TC
+      Player3: 9S JD TH
+      Player1: 9C QD TD
+      Player2: AH AS JS
+    👤 Lead: Player4 (Seat 0)
+    🎴 Player4: KH
+    🎴 Player3: TH
+    🎴 Player1: QD
+    🎴 Player2: AH
+    🏆 Winner: Player2 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 1, Team 1: 2
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player4: KS TC
+      Player3: 9S JD
+      Player1: 9C TD
+      Player2: AS JS
+    👤 Lead: Player2 (Seat 3)
+    🎴 Player2: AS
+    🎴 Player4: KS
+    🎴 Player3: 9S
+    🎴 Player1: TD
+    🏆 Winner: Player2 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 1, Team 1: 3
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player4: TC
+      Player3: JD
+      Player1: 9C
+      Player2: JS
+    👤 Lead: Player2 (Seat 3)
+    🎴 Player2: JS
+    🎴 Player4: TC
+    🎴 Player3: JD
+    🎴 Player1: 9C
+  🔧 Calculating missing 5th trick winner...
+  🏆 Trick 5: Calculated winner - Team 0 (tie-breaker logic)
+  📊 Corrected Tricks: Team 0: 2, Team 1: 3
+
+🎯 Round 7 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 2, Team 1 (Seats 1,3): 3
+🎺 Player4 (Team 0) called trump
+❌ Team 0 was euchred (only 2 tricks) - Team 1 scores 2 points!
+
+📊 Round 7 Results
+📊 Scores - Team 0 (Seats 0,2): 6, Team 1 (Seats 1,3): 6
+
+==============================
+🎯 ROUND 8
+==============================
+🃏 Dealer: Player4 (Seat 0)
+
+🎴 Player Hands:
+  Player4 (Seat 0): 9H 9S AH KC TC (5 cards)
+  Player3 (Seat 1): 9C JH KS QS TS (5 cards)
+  Player1 (Seat 2): AC AD AS JD QC (5 cards)
+  Player2 (Seat 3): JC JS KH QD TD (5 cards)
+
+🎺 Trump Selection Phase
+🃏 Turned up card: 9D
+
+📋 Ordering Up Phase
+🎺 Player3 orders up!
+🃏 Player4 (dealer) discards: 9S
+✅ Trump suit selected: DIAMONDS
+👥 Making team: Team 1
+👥 Making team: Team 1
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player4: 9D 9H AH KC TC
+      Player3: 9C JH KS QS TS
+      Player1: AC AD AS JD QC
+      Player2: JC JS KH QD TD
+    👤 Lead: Player3 (Seat 1)
+    🎴 Player3: KS
+    🎴 Player1: AS
+    🎴 Player2: JS
+    🎴 Player4: TC
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 0
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player4: 9D 9H AH KC
+      Player3: 9C JH QS TS
+      Player1: AC AD JD QC
+      Player2: JC KH QD TD
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: JD
+    🎴 Player2: TD
+    🎴 Player4: 9D
+    🎴 Player3: TS
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 0
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player4: 9H AH KC
+      Player3: 9C JH QS
+      Player1: AC AD QC
+      Player2: JC KH QD
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: AD
+    🎴 Player2: QD
+    🎴 Player4: AH
+    🎴 Player3: QS
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 3, Team 1: 0
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player4: 9H KC
+      Player3: 9C JH
+      Player1: AC QC
+      Player2: JC KH
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: QC
+    🎴 Player2: JC
+    🎴 Player4: KC
+    🎴 Player3: 9C
+    🏆 Winner: Player4 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 4, Team 1: 0
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player4: 9H
+      Player3: JH
+      Player1: AC
+      Player2: KH
+    👤 Lead: Player4 (Seat 0)
+    🎴 Player4: 9H
+    🎴 Player3: JH
+    🎴 Player1: AC
+    🎴 Player2: KH
+  🔧 Calculating missing 5th trick winner...
+  🏆 Trick 5: Calculated winner - Team 1 (tie-breaker logic)
+  📊 Corrected Tricks: Team 0: 4, Team 1: 1
+
+🎯 Round 8 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 4, Team 1 (Seats 1,3): 1
+🎺 Player3 (Team 1) called trump
+❌ Team 1 was euchred (only 1 tricks) - Team 0 scores 2 points!
+
+📊 Round 8 Results
+📊 Scores - Team 0 (Seats 0,2): 8, Team 1 (Seats 1,3): 6
+
+==============================
+🎯 ROUND 9
+==============================
+🃏 Dealer: Player3 (Seat 1)
+
+🎴 Player Hands:
+  Player4 (Seat 0): 9D 9S AH JS TD (5 cards)
+  Player3 (Seat 1): 9H AS QD QS TC (5 cards)
+  Player1 (Seat 2): 9C JD KC KH QH (5 cards)
+  Player2 (Seat 3): AD JC JH QC TH (5 cards)
+
+🎺 Trump Selection Phase
+🃏 Turned up card: KS
+
+📋 Ordering Up Phase
+🎺 Player1 orders up!
+🃏 Player3 (dealer) discards: 9H
+✅ Trump suit selected: SPADES
+👥 Making team: Team 0
+👥 Making team: Team 0
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player4: 9D 9S AH JS TD
+      Player3: AS KS QD QS TC
+      Player1: 9C JD KC KH QH
+      Player2: AD JC JH QC TH
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: QH
+    🎴 Player2: TH
+    🎴 Player4: AH
+    🎴 Player3: TC
+    🏆 Winner: Player4 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 0
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player4: 9D 9S JS TD
+      Player3: AS KS QD QS
+      Player1: 9C JD KC KH
+      Player2: AD JC JH QC
+    👤 Lead: Player4 (Seat 0)
+    🎴 Player4: JS
+    🎴 Player3: QS
+    🎴 Player1: 9C
+    🎴 Player2: JH
+    🏆 Winner: Player4 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 0
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player4: 9D 9S TD
+      Player3: AS KS QD
+      Player1: JD KC KH
+      Player2: AD JC QC
+    👤 Lead: Player4 (Seat 0)
+    🎴 Player4: 9S
+    🎴 Player3: KS
+    🎴 Player1: JD
+    🎴 Player2: JC
+    🏆 Winner: Player2 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 2, Team 1: 1
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player4: 9D TD
+      Player3: AS QD
+      Player1: KC KH
+      Player2: AD QC
+    👤 Lead: Player2 (Seat 3)
+    🎴 Player2: AD
+    🎴 Player4: 9D
+    🎴 Player3: QD
+    🎴 Player1: KH
+    🏆 Winner: Player2 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 2, Team 1: 2
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player4: TD
+      Player3: AS
+      Player1: KC
+      Player2: QC
+    👤 Lead: Player2 (Seat 3)
+    🎴 Player2: QC
+    🎴 Player4: TD
+    🎴 Player3: AS
+    🎴 Player1: KC
+  🔧 Calculating missing 5th trick winner...
+  🏆 Trick 5: Calculated winner - Team 0 (tie-breaker logic)
+  📊 Corrected Tricks: Team 0: 3, Team 1: 2
+
+🎯 Round 9 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 3, Team 1 (Seats 1,3): 2
+🎺 Player1 (Team 0) called trump
+✅ Team 0 got 3 tricks - scores 1 point!
+
+📊 Round 9 Results
+📊 Scores - Team 0 (Seats 0,2): 8, Team 1 (Seats 1,3): 8
+
+==============================
+🎯 ROUND 10
+==============================
+🃏 Dealer: Player1 (Seat 2)
+
+🎴 Player Hands:
+  Player4 (Seat 0): AC AH JS KS QH (5 cards)
+  Player3 (Seat 1): 9D AD QD TH TS (5 cards)
+  Player1 (Seat 2): JC JD KD KH TC (5 cards)
+  Player2 (Seat 3): 9S JH QC QS TD (5 cards)
+
+🎺 Trump Selection Phase
+🃏 Turned up card: AS
+
+📋 Ordering Up Phase
+🎺 Player2 orders up!
+🃏 Player1 (dealer) discards: TC
+✅ Trump suit selected: SPADES
+👥 Making team: Team 1
+👥 Making team: Team 1
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player4: AC AH JS KS QH
+      Player3: 9D AD QD TH TS
+      Player1: AS JC JD KD KH
+      Player2: 9S JH QC QS TD
+    👤 Lead: Player2 (Seat 3)
+    🎴 Player2: QC
+    🎴 Player4: AC
+    🎴 Player3: AD
+    🎴 Player1: JC
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 0
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player4: AH JS KS QH
+      Player3: 9D QD TH TS
+      Player1: AS JD KD KH
+      Player2: 9S JH QS TD
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: JD
+    🎴 Player2: TD
+    🎴 Player4: JS
+    🎴 Player3: 9D
+    🏆 Winner: Player4 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 0
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player4: AH KS QH
+      Player3: QD TH TS
+      Player1: AS KD KH
+      Player2: 9S JH QS
+    👤 Lead: Player4 (Seat 0)
+    🎴 Player4: KS
+    🎴 Player3: TS
+    🎴 Player1: AS
+    🎴 Player2: QS
+    🏆 Winner: Player1 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 3, Team 1: 0
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player4: AH QH
+      Player3: QD TH
+      Player1: KD KH
+      Player2: 9S JH
+    👤 Lead: Player1 (Seat 2)
+    🎴 Player1: KH
+    🎴 Player2: JH
+    🎴 Player4: AH
+    🎴 Player3: TH
+    🏆 Winner: Player4 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 4, Team 1: 0
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player4: QH
+      Player3: QD
+      Player1: KD
+      Player2: 9S
+    👤 Lead: Player4 (Seat 0)
+    🎴 Player4: QH
+    🎴 Player3: QD
+    🎴 Player1: KD
+    🎴 Player2: 9S
+    🏆 Winner: Player2 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 4, Team 1: 1
+
+🎯 Round 10 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 4, Team 1 (Seats 1,3): 1
+🎺 Player2 (Team 1) called trump
+❌ Team 1 was euchred (only 1 tricks) - Team 0 scores 2 points!
+
+📊 Round 10 Results
+📊 Scores - Team 0 (Seats 0,2): 10, Team 1 (Seats 1,3): 8
+
+🎉 GAME OVER!
+🏆 WINNER: Team 0 (Seats 0,2)!
+📊 Final Scores - Team 0 (Seats 0,2): 10, Team 1 (Seats 1,3): 8
+✅ Game completed successfully with valid winner!
+🎯 Total rounds played: 10
+
+==================================================
+🎮 Full Game Simulation Complete!
+==================================================
+.
+
+Finished in 13.289495s, 0.0752 runs/s, 62.7563 assertions/s.
+1 runs, 834 assertions, 0 failures, 0 errors, 0 skips

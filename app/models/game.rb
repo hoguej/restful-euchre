@@ -38,13 +38,24 @@ class Game < ApplicationRecord
   end
 
   def team_score(team)
-    rounds.where(winning_team: team).sum do |round|
-      if round.loner && round.tricks.all? { |trick| trick.winning_seat % 2 == team }
-        4 # Loner made all tricks
-      elsif round.maker_team == team
-        round.tricks_won_by_team(team) == 5 ? 2 : 1 # Made all or majority
+    rounds.completed.sum do |round|
+      # Determine who gets the points based on euchre rules
+      if round.maker_team == team
+        # This team made trump
+        if round.winning_team == team
+          # Made trump and won - get 1 or 2 points
+          round.tricks_won_by_team(team) == 5 ? 2 : 1
+        else
+          # Made trump but lost - euchred, get 0 points
+          0
+        end
+      elsif round.winning_team == team
+        # Other team made trump
+        # Other team made trump but this team won - euchre, get 2 points
+        2
       else
-        2 # Euchred the makers
+        # Other team made trump and won - this team gets 0 points
+        0
       end
     end
   end
@@ -77,14 +88,7 @@ class Game < ApplicationRecord
 
   def create_first_round!
     dealer_seat = rand(4)
-    turned_up_card = generate_turned_up_card
-    rounds.create!(number: 1, dealer_seat: dealer_seat, turned_up_card: turned_up_card)
-  end
-
-  def generate_turned_up_card
-    # Generate a random card for the turned up card
-    ranks = %w[9 T J Q K A]
-    suits = %w[H D C S]
-    "#{ranks.sample}#{suits.sample}"
+    # turned_up_card will be set during card dealing
+    rounds.create!(number: 1, dealer_seat: dealer_seat)
   end
 end

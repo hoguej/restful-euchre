@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 20_241_225_000_007) do
+ActiveRecord::Schema[8.0].define(version: 20_250_726_121_517) do
   create_table 'card_plays', force: :cascade do |t|
     t.integer 'trick_id', null: false
     t.integer 'player_id', null: false
@@ -30,6 +30,17 @@ ActiveRecord::Schema[8.0].define(version: 20_241_225_000_007) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.index ['code'], name: 'index_games_on_code', unique: true
+  end
+
+  create_table 'player_hands', force: :cascade do |t|
+    t.integer 'player_id', null: false
+    t.integer 'round_id', null: false
+    t.text 'cards'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index %w[player_id round_id], name: 'index_player_hands_on_player_id_and_round_id', unique: true
+    t.index ['player_id'], name: 'index_player_hands_on_player_id'
+    t.index ['round_id'], name: 'index_player_hands_on_round_id'
   end
 
   create_table 'players', force: :cascade do |t|
@@ -85,6 +96,8 @@ ActiveRecord::Schema[8.0].define(version: 20_241_225_000_007) do
 
   add_foreign_key 'card_plays', 'players'
   add_foreign_key 'card_plays', 'tricks'
+  add_foreign_key 'player_hands', 'players'
+  add_foreign_key 'player_hands', 'rounds'
   add_foreign_key 'players', 'games'
   add_foreign_key 'players', 'sessions'
   add_foreign_key 'rounds', 'games'

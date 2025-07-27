@@ -37,6 +37,10 @@ class Trick < ApplicationRecord
     return false unless can_play_card?(player.seat)
     return false unless valid_play?(player, card)
 
+    # Remove card from player's hand
+    hand = player.hand_for_round(round)
+    return false unless hand&.remove_card!(card)
+
     play_order = card_plays.count
     card_plays.create!(
       player: player,
@@ -64,10 +68,14 @@ class Trick < ApplicationRecord
 
   private
 
-  def valid_play?(_player, _card)
-    # Basic validation - player has the card and follows suit if possible
-    # This would be expanded with proper hand tracking
-    true
+  def valid_play?(player, card)
+    # Check if player has the card in their hand
+    hand = player.hand_for_round(round)
+    return false unless hand&.has_card?(card)
+
+    # Check suit-following rules
+    lead_suit_letter = lead_card_suit
+    hand.valid_play?(card, lead_suit_letter)
   end
 
   def lead_card_suit
