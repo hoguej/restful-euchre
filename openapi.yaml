@@ -1,0 +1,545 @@
+openapi: 3.0.3
+info:
+  title: Restful Euchre API
+  description: A RESTful API for a multiplayer Euchre card game with real-time gameplay, trump selection, and score tracking
+  version: 1.0.0
+  contact:
+    name: Euchre Game API
+servers:
+  - url: https://api.example.com
+    description: Production server
+  - url: http://localhost:3000
+    description: Development server
+
+paths:
+  /up:
+    get:
+      summary: Health Check
+      description: Returns the health status of the API
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "OK"
+        '500':
+          description: Service is unhealthy
+
+  /games:
+    post:
+      summary: Create New Game
+      description: Creates a new Euchre game and returns the game details with join URL
+      operationId: createGame
+      responses:
+        '201':
+          description: Game created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  game:
+                    $ref: '#/components/schemas/Game'
+                  join_url:
+                    type: string
+                    example: "/games/ABC12345"
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /games/{code}:
+    get:
+      summary: Get Game Details
+      description: Returns complete game state including players, current round, player hand, and scores
+      operationId: getGame
+      parameters:
+        - name: code
+          in: path
+          required: true
+          description: Unique game code
+          schema:
+            type: string
+            example: "ABC12345"
+      responses:
+        '200':
+          description: Game details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  game:
+                    $ref: '#/components/schemas/Game'
+                  current_player:
+                    $ref: '#/components/schemas/Player'
+                    nullable: true
+                  players:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Player'
+                  current_round:
+                    $ref: '#/components/schemas/Round'
+                    nullable: true
+                  player_hand:
+                    type: array
+                    items:
+                      type: string
+                      pattern: '^[9TJQKA][HDCS]$'
+                    example: ["9H", "TC", "JD", "QS", "KH"]
+                  scores:
+                    type: object
+                    properties:
+                      team_0:
+                        type: integer
+                        minimum: 0
+                      team_1:
+                        type: integer
+                        minimum: 0
+                    example:
+                      team_0: 3
+                      team_1: 7
+        '404':
+          description: Game not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /games/{code}/join:
+    post:
+      summary: Join Game
+      description: Joins a player to the game. Creates a new player or returns existing player if already joined
+      operationId: joinGame
+      parameters:
+        - name: code
+          in: path
+          required: true
+          description: Unique game code
+          schema:
+            type: string
+            example: "ABC12345"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Player display name
+                  example: "Alice"
+      responses:
+        '201':
+          description: Successfully joined game
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Joined game successfully"
+                  player:
+                    $ref: '#/components/schemas/Player'
+                  game:
+                    $ref: '#/components/schemas/Game'
+        '200':
+          description: Player already in game
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Already in game"
+                  player:
+                    $ref: '#/components/schemas/Player'
+        '403':
+          description: Cannot join game (full or finished)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Game not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /games/{code}/action:
+    post:
+      summary: Perform Game Action
+      description: Performs a game action such as playing a card, ordering up trump, calling trump, passing, or discarding
+      operationId: performAction
+      parameters:
+        - name: code
+          in: path
+          required: true
+          description: Unique game code
+          schema:
+            type: string
+            example: "ABC12345"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/PlayCardAction'
+                - $ref: '#/components/schemas/OrderUpAction'
+                - $ref: '#/components/schemas/CallTrumpAction'
+                - $ref: '#/components/schemas/PassAction'
+                - $ref: '#/components/schemas/DiscardCardAction'
+              discriminator:
+                propertyName: action_type
+      responses:
+        '200':
+          description: Action performed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Card played successfully"
+                  game:
+                    $ref: '#/components/schemas/Game'
+                  current_round:
+                    $ref: '#/components/schemas/Round'
+                  player_hand:
+                    type: array
+                    items:
+                      type: string
+                      pattern: '^[9TJQKA][HDCS]$'
+                  round:
+                    $ref: '#/components/schemas/Round'
+        '400':
+          description: Invalid action or missing parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Action not allowed (wrong turn, not in game, etc.)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Game not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Game state error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /games/{code}/players:
+    get:
+      summary: Get Game Players
+      description: Returns all players in the game ordered by seat
+      operationId: getPlayers
+      parameters:
+        - name: code
+          in: path
+          required: true
+          description: Unique game code
+          schema:
+            type: string
+            example: "ABC12345"
+      responses:
+        '200':
+          description: Players retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  players:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Player'
+        '404':
+          description: Game not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Game:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+        code:
+          type: string
+          example: "ABC12345"
+        state:
+          type: string
+          enum: [waiting, active, finished]
+          example: "active"
+        created_at:
+          type: string
+          format: date-time
+          example: "2023-10-15T14:30:00Z"
+        player_count:
+          type: integer
+          minimum: 0
+          maximum: 4
+          example: 4
+        winning_team:
+          type: integer
+          enum: [0, 1]
+          nullable: true
+          example: 1
+
+    Player:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 456
+        name:
+          type: string
+          example: "Alice"
+        seat:
+          type: integer
+          enum: [0, 1, 2, 3]
+          nullable: true
+          example: 0
+        team:
+          type: integer
+          enum: [0, 1]
+          nullable: true
+          example: 0
+
+    Session:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 789
+        session_id:
+          type: string
+          example: "uuid-session-id-123"
+        name:
+          type: string
+          example: "Alice"
+
+    Round:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 321
+        number:
+          type: integer
+          minimum: 1
+          example: 1
+        dealer_seat:
+          type: integer
+          enum: [0, 1, 2, 3]
+          example: 2
+        trump_suit:
+          type: string
+          enum: [hearts, diamonds, clubs, spades]
+          nullable: true
+          example: "hearts"
+        trump_selection_phase:
+          type: string
+          enum: [ordering_up, calling_trump, trump_selected]
+          example: "trump_selected"
+        current_bidder_seat:
+          type: integer
+          enum: [0, 1, 2, 3]
+          nullable: true
+          example: null
+        turned_up_card:
+          type: string
+          pattern: '^[9TJQKA][HDCS]$'
+          nullable: true
+          example: "JH"
+        maker_team:
+          type: integer
+          enum: [0, 1]
+          nullable: true
+          example: 0
+        loner:
+          type: boolean
+          nullable: true
+          example: false
+        winning_team:
+          type: integer
+          enum: [0, 1]
+          nullable: true
+          example: 1
+        completed:
+          type: boolean
+          example: false
+        points_scored:
+          type: integer
+          minimum: 0
+          nullable: true
+          example: 2
+        scoring_reason:
+          type: string
+          enum: [made_trump, sweep, euchre, loner_sweep, thrown_in]
+          nullable: true
+          example: "euchre"
+        tricks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trick'
+
+    Trick:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 654
+        number:
+          type: integer
+          enum: [0, 1, 2, 3, 4]
+          example: 0
+        lead_seat:
+          type: integer
+          enum: [0, 1, 2, 3]
+          example: 1
+        winning_seat:
+          type: integer
+          enum: [0, 1, 2, 3]
+          nullable: true
+          example: 3
+        completed:
+          type: boolean
+          example: true
+        cards_played:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardPlay'
+
+    CardPlay:
+      type: object
+      properties:
+        player_seat:
+          type: integer
+          enum: [0, 1, 2, 3]
+          example: 1
+        card:
+          type: string
+          pattern: '^[9TJQKA][HDCS]$'
+          example: "JH"
+        play_order:
+          type: integer
+          enum: [0, 1, 2, 3]
+          example: 0
+
+    PlayCardAction:
+      type: object
+      properties:
+        action_type:
+          type: string
+          enum: [play_card]
+          example: "play_card"
+        card:
+          type: string
+          pattern: '^[9TJQKA][HDCS]$'
+          example: "JH"
+      required: [action_type, card]
+
+    OrderUpAction:
+      type: object
+      properties:
+        action_type:
+          type: string
+          enum: [order_up]
+          example: "order_up"
+      required: [action_type]
+
+    CallTrumpAction:
+      type: object
+      properties:
+        action_type:
+          type: string
+          enum: [call_trump]
+          example: "call_trump"
+        trump_suit:
+          type: string
+          enum: [hearts, diamonds, clubs, spades]
+          example: "hearts"
+      required: [action_type, trump_suit]
+
+    PassAction:
+      type: object
+      properties:
+        action_type:
+          type: string
+          enum: [pass]
+          example: "pass"
+      required: [action_type]
+
+    DiscardCardAction:
+      type: object
+      properties:
+        action_type:
+          type: string
+          enum: [discard_card]
+          example: "discard_card"
+        card:
+          type: string
+          pattern: '^[9TJQKA][HDCS]$'
+          example: "9S"
+      required: [action_type, card]
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Game not found"
+        errors:
+          type: object
+          description: Validation errors (when applicable)
+          additionalProperties: true
+
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: session_id
+      description: Session-based authentication using cookies
+
+security:
+  - sessionCookie: []
+
+tags:
+  - name: games
+    description: Game management operations
+  - name: health
+    description: Health check operations
+
+externalDocs:
+  description: Euchre Rules and Gameplay
+  url: https://en.wikipedia.org/wiki/Euchre 
