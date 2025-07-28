@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 20_250_726_121_517) do
+ActiveRecord::Schema[8.0].define(version: 20_250_728_015_434) do
   create_table 'card_plays', force: :cascade do |t|
     t.integer 'trick_id', null: false
     t.integer 'player_id', null: false
@@ -70,6 +70,8 @@ ActiveRecord::Schema[8.0].define(version: 20_250_726_121_517) do
     t.string 'trump_selection_phase', default: 'ordering_up'
     t.boolean 'ordered_up', default: false
     t.integer 'current_bidder_seat'
+    t.integer 'points_scored'
+    t.string 'scoring_reason'
     t.index ['current_bidder_seat'], name: 'index_rounds_on_current_bidder_seat'
     t.index %w[game_id number], name: 'index_rounds_on_game_id_and_number', unique: true
     t.index ['game_id'], name: 'index_rounds_on_game_id'

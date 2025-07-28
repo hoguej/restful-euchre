@@ -321,6 +321,8 @@ class GamesController < ApplicationController
       loner: round.loner,
       winning_team: round.winning_team,
       completed: round.completed?,
+      points_scored: round.points_scored,
+      scoring_reason: round.scoring_reason,
       tricks: round.tricks.includes(:card_plays).map do |trick|
         {
           id: trick.id,

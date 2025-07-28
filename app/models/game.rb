@@ -38,24 +38,33 @@ class Game < ApplicationRecord
   end
 
   def team_score(team)
-    rounds.completed.sum do |round|
-      # Determine who gets the points based on euchre rules
-      if round.maker_team == team
-        # This team made trump
-        if round.winning_team == team
-          # Made trump and won - get 1 or 2 points
-          round.tricks_won_by_team(team) == 5 ? 2 : 1
+    # Use stored points_scored values, with fallback to old calculation for backward compatibility
+    completed_rounds = rounds.completed.where(winning_team: team)
+
+    # If any rounds have stored points, use those; otherwise use old calculation
+    if completed_rounds.any? { |round| round.points_scored.present? }
+      completed_rounds.sum { |round| round.points_scored || 0 }
+    else
+      # Fallback to old calculation method for backward compatibility
+      rounds.completed.sum do |round|
+        # Determine who gets the points based on euchre rules
+        if round.maker_team == team
+          # This team made trump
+          if round.winning_team == team
+            # Made trump and won - get 1 or 2 points
+            round.tricks_won_by_team(team) == 5 ? 2 : 1
+          else
+            # Made trump but lost - euchred, get 0 points
+            0
+          end
+        elsif round.winning_team == team
+          # Other team made trump
+          # Other team made trump but this team won - euchre, get 2 points
+          2
         else
-          # Made trump but lost - euchred, get 0 points
+          # Other team made trump and won - this team gets 0 points
           0
         end
-      elsif round.winning_team == team
-        # Other team made trump
-        # Other team made trump but this team won - euchre, get 2 points
-        2
-      else
-        # Other team made trump and won - this team gets 0 points
-        0
       end
     end
   end

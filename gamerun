@@ -2,12 +2,12 @@
 ==================================================
 🎮 Starting Full Euchre Game Simulation
 ==================================================
-✅ Game created with code: MXEOJ550
+✅ Game created with code: 86OPVEK5
 ✅ 4 players joined: Player1, Player2, Player3, Player4
 ✅ Game is now ACTIVE!
 📊 Initial Scores - Team 0: 0, Team 1: 0
-👤 Player2 - Seat 0, Team 0
-👤 Player1 - Seat 1, Team 1
+👤 Player1 - Seat 0, Team 0
+👤 Player2 - Seat 1, Team 1
 👤 Player4 - Seat 2, Team 0
 👤 Player3 - Seat 3, Team 1
 📋 Teams: Team 0 (Seats 0,2) vs Team 1 (Seats 1,3)
@@ -15,289 +15,288 @@
 ==============================
 🎯 ROUND 1
 ==============================
-🃏 Dealer: Player2 (Seat 0)
+🃏 Dealer: Player2 (Seat 1)
 
 🎴 Player Hands:
-  Player2 (Seat 0): [30;47mK♣[0m [31;47mJ♦[0m [30;47mT♣[0m [31;47mA♥[0m [30;47mK♠[0m (5 cards)
-  Player1 (Seat 1): [31;47mT♦[0m [30;47m9♠[0m [31;47m9♦[0m [30;47mQ♠[0m [31;47mT♥[0m (5 cards)
-  Player4 (Seat 2): [30;47mT♠[0m [30;47mJ♣[0m [30;47mJ♠[0m [30;47mA♣[0m [30;47mA♠[0m (5 cards)
-  Player3 (Seat 3): [30;47mQ♣[0m [30;47m9♣[0m [31;47mQ♥[0m [31;47mK♦[0m [31;47mK♥[0m (5 cards)
+  Player1 (Seat 0): Q♥ J♥ 9♦ T♣ 9♠ (5 cards)
+  Player2 (Seat 1): K♠ Q♦ K♥ A♥ K♦ (5 cards)
+  Player4 (Seat 2): T♦ 9♣ J♣ A♣ J♠ (5 cards)
+  Player3 (Seat 3): T♠ A♦ T♥ J♦ A♠ (5 cards)
 
 🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mJ♥[0m
+🃏 Turned up card: 9♥
 
 📋 Ordering Up Phase
-🎺 Player1 orders up!
-🃏 Player2 (dealer) discards: [30;47mT♣[0m
-✅ Trump suit selected: [31;47mHEARTS (♥)[0m
+🎺 Player4 orders up!
+🃏 Player2 (dealer) discards: 9♥
+✅ Trump suit selected: HEARTS (♥)
 
 🎴 Playing 5 Tricks
 
   🎯 Trick 1
     💳 Remaining Cards:
-      Player2: [30;47mK♣[0m [31;47mJ♦[0m [31;47mA♥[0m [30;47mK♠[0m [31;47mJ♥[0m
-      Player1: [31;47mT♦[0m [30;47m9♠[0m [31;47m9♦[0m [30;47mQ♠[0m [31;47mT♥[0m
-      Player4: [30;47mT♠[0m [30;47mJ♣[0m [30;47mJ♠[0m [30;47mA♣[0m [30;47mA♠[0m
-      Player3: [30;47mQ♣[0m [30;47m9♣[0m [31;47mQ♥[0m [31;47mK♦[0m [31;47mK♥[0m
-    👤 Lead: Player1 (Seat 1)
-    🎴 Player1: [30;47mQ♠[0m
-    🎴 Player4: [30;47mT♠[0m
-    🎴 Player3: [30;47mQ♣[0m
-    🎴 Player2: [30;47mK♠[0m
-    🏆 Winner: Player2 (Seat 0) - Team 0
-    📊 Tricks: Team 0: 1, Team 1: 0
+      Player1: Q♥ J♥ 9♦ T♣ 9♠
+      Player2: K♠ Q♦ K♥ A♥ K♦
+      Player4: T♦ 9♣ J♣ A♣ J♠
+      Player3: T♠ A♦ T♥ J♦ A♠
+    👤 Lead: Player4 (Seat 2)
+    🎴 Player4: J♠
+    🎴 Player3: T♠
+    🎴 Player1: 9♠
+    🎴 Player2: K♠
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 1
 
   🎯 Trick 2
     💳 Remaining Cards:
-      Player2: [30;47mK♣[0m [31;47mJ♦[0m [31;47mA♥[0m [31;47mJ♥[0m
-      Player1: [31;47mT♦[0m [30;47m9♠[0m [31;47m9♦[0m [31;47mT♥[0m
-      Player4: [30;47mJ♣[0m [30;47mJ♠[0m [30;47mA♣[0m [30;47mA♠[0m
-      Player3: [30;47m9♣[0m [31;47mQ♥[0m [31;47mK♦[0m [31;47mK♥[0m
-    👤 Lead: Player2 (Seat 0)
-    🎴 Player2: [31;47mJ♥[0m
-    🎴 Player1: [31;47mT♥[0m
-    🎴 Player4: [30;47mA♠[0m
-    🎴 Player3: [31;47mQ♥[0m
-    🏆 Winner: Player2 (Seat 0) - Team 0
-    📊 Tricks: Team 0: 2, Team 1: 0
+      Player1: Q♥ J♥ 9♦ T♣
+      Player2: Q♦ K♥ A♥ K♦
+      Player4: T♦ 9♣ J♣ A♣
+      Player3: A♦ T♥ J♦ A♠
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: K♦
+    🎴 Player4: T♦
+    🎴 Player3: A♦
+    🎴 Player1: 9♦
+    🏆 Winner: Player3 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 2
 
   🎯 Trick 3
     💳 Remaining Cards:
-      Player2: [30;47mK♣[0m [31;47mJ♦[0m [31;47mA♥[0m
-      Player1: [31;47mT♦[0m [30;47m9♠[0m [31;47m9♦[0m
-      Player4: [30;47mJ♣[0m [30;47mJ♠[0m [30;47mA♣[0m
-      Player3: [30;47m9♣[0m [31;47mK♦[0m [31;47mK♥[0m
-    👤 Lead: Player2 (Seat 0)
-    🎴 Player2: [31;47mA♥[0m
-    🎴 Player1: [31;47mT♦[0m
-    🎴 Player4: [30;47mJ♠[0m
-    🎴 Player3: [31;47mK♥[0m
-    🏆 Winner: Player2 (Seat 0) - Team 0
-    📊 Tricks: Team 0: 3, Team 1: 0
+      Player1: Q♥ J♥ T♣
+      Player2: Q♦ K♥ A♥
+      Player4: 9♣ J♣ A♣
+      Player3: T♥ J♦ A♠
+    👤 Lead: Player3 (Seat 3)
+    🎴 Player3: A♠
+    🎴 Player1: J♥
+    🎴 Player2: A♥
+    🎴 Player4: 9♣
+    🏆 Winner: Player1 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 2
 
   🎯 Trick 4
     💳 Remaining Cards:
-      Player2: [30;47mK♣[0m [31;47mJ♦[0m
-      Player1: [30;47m9♠[0m [31;47m9♦[0m
-      Player4: [30;47mJ♣[0m [30;47mA♣[0m
-      Player3: [30;47m9♣[0m [31;47mK♦[0m
-    👤 Lead: Player2 (Seat 0)
-    🎴 Player2: [31;47mJ♦[0m
-    🎴 Player1: [31;47m9♦[0m
-    🎴 Player4: [30;47mJ♣[0m
-    🎴 Player3: [31;47mK♦[0m
-    🏆 Winner: Player2 (Seat 0) - Team 0
-    📊 Tricks: Team 0: 4, Team 1: 0
+      Player1: Q♥ T♣
+      Player2: Q♦ K♥
+      Player4: J♣ A♣
+      Player3: T♥ J♦
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: T♣
+    🎴 Player2: K♥
+    🎴 Player4: A♣
+    🎴 Player3: T♥
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 1, Team 1: 3
 
   🎯 Trick 5
     💳 Remaining Cards:
-      Player2: [30;47mK♣[0m
-      Player1: [30;47m9♠[0m
-      Player4: [30;47mA♣[0m
-      Player3: [30;47m9♣[0m
-    👤 Lead: Player2 (Seat 0)
-    🎴 Player2: [30;47mK♣[0m
-    🎴 Player1: [30;47m9♠[0m
-    🎴 Player4: [30;47mA♣[0m
-    🎴 Player3: [30;47m9♣[0m
-    🏆 Winner: Player4 (Seat 2) - Team 0
-    📊 Tricks: Team 0: 5, Team 1: 0
+      Player1: Q♥
+      Player2: Q♦
+      Player4: J♣
+      Player3: J♦
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: Q♦
+    🎴 Player4: J♣
+    🎴 Player3: J♦
+    🎴 Player1: Q♥
+    🏆 Winner: Player3 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 1, Team 1: 4
 
 🎯 Round 1 Summary
-📊 Tricks Won - Team 0 (Seats 0,2): 5, Team 1 (Seats 1,3): 0
-❌ Team 1 got euchred! Only 0 tricks, Team 0 scores 2 points
+📊 Tricks Won - Team 0 (Seats 0,2): 1, Team 1 (Seats 1,3): 4
+❌ Team 0 got euchred! Only 1 tricks, Team 1 scores 2 points
 
 📊 Round 1 Results
-📊 Scores - Team 0 (Seats 0,2): 2, Team 1 (Seats 1,3): 0
+📊 Scores - Team 0 (Seats 0,2): 0, Team 1 (Seats 1,3): 2
 
 ==============================
 🎯 ROUND 2
 ==============================
-🃏 Dealer: Player1 (Seat 1)
+🃏 Dealer: Player4 (Seat 2)
 
 🎴 Player Hands:
-  Player2 (Seat 0): [31;47mT♥[0m [31;47mK♥[0m [30;47mK♠[0m [31;47mQ♥[0m [31;47mA♥[0m (5 cards)
-  Player1 (Seat 1): [30;47mK♣[0m [31;47mK♦[0m [30;47m9♣[0m [30;47mQ♠[0m [30;47mQ♣[0m (5 cards)
-  Player4 (Seat 2): [30;47mT♣[0m [30;47mT♠[0m [31;47m9♦[0m [31;47mT♦[0m [30;47mA♠[0m (5 cards)
-  Player3 (Seat 3): [30;47mA♣[0m [31;47mA♦[0m [30;47mJ♠[0m [31;47m9♥[0m [31;47mJ♦[0m (5 cards)
+  Player1 (Seat 0): 9♥ 9♠ Q♥ K♣ Q♣ (5 cards)
+  Player2 (Seat 1): T♥ Q♦ A♣ J♥ Q♠ (5 cards)
+  Player4 (Seat 2): K♦ 9♣ T♠ 9♦ T♣ (5 cards)
+  Player3 (Seat 3): T♦ K♥ J♦ K♠ A♠ (5 cards)
 
 🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mJ♥[0m
+🃏 Turned up card: A♥
 
 📋 Ordering Up Phase
-🎺 Player4 orders up!
-🃏 Player1 (dealer) discards: [30;47m9♣[0m
-✅ Trump suit selected: [31;47mHEARTS (♥)[0m
+🎺 Player3 orders up!
+🃏 Player4 (dealer) discards: 9♣
+✅ Trump suit selected: HEARTS (♥)
 
 🎴 Playing 5 Tricks
 
   🎯 Trick 1
     💳 Remaining Cards:
-      Player2: [31;47mT♥[0m [31;47mK♥[0m [30;47mK♠[0m [31;47mQ♥[0m [31;47mA♥[0m
-      Player1: [30;47mK♣[0m [31;47mK♦[0m [30;47mQ♠[0m [30;47mQ♣[0m [31;47mJ♥[0m
-      Player4: [30;47mT♣[0m [30;47mT♠[0m [31;47m9♦[0m [31;47mT♦[0m [30;47mA♠[0m
-      Player3: [30;47mA♣[0m [31;47mA♦[0m [30;47mJ♠[0m [31;47m9♥[0m [31;47mJ♦[0m
-    👤 Lead: Player4 (Seat 2)
-    🎴 Player4: [30;47mT♣[0m
-    🎴 Player3: [30;47mA♣[0m
-    🎴 Player2: [31;47mK♥[0m
-    🎴 Player1: [30;47mQ♣[0m
-    🏆 Winner: Player2 (Seat 0) - Team 0
-    📊 Tricks: Team 0: 1, Team 1: 0
+      Player1: 9♥ 9♠ Q♥ K♣ Q♣
+      Player2: T♥ Q♦ A♣ J♥ Q♠
+      Player4: K♦ T♠ 9♦ T♣ A♥
+      Player3: T♦ K♥ J♦ K♠ A♠
+    👤 Lead: Player3 (Seat 3)
+    🎴 Player3: J♦
+    🎴 Player1: Q♥
+    🎴 Player2: Q♦
+    🎴 Player4: 9♦
+    🏆 Winner: Player3 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 1
 
   🎯 Trick 2
     💳 Remaining Cards:
-      Player2: [31;47mT♥[0m [30;47mK♠[0m [31;47mQ♥[0m [31;47mA♥[0m
-      Player1: [30;47mK♣[0m [31;47mK♦[0m [30;47mQ♠[0m [31;47mJ♥[0m
-      Player4: [30;47mT♠[0m [31;47m9♦[0m [31;47mT♦[0m [30;47mA♠[0m
-      Player3: [31;47mA♦[0m [30;47mJ♠[0m [31;47m9♥[0m [31;47mJ♦[0m
-    👤 Lead: Player2 (Seat 0)
-    🎴 Player2: [31;47mT♥[0m
-    🎴 Player1: [31;47mJ♥[0m
-    🎴 Player4: [31;47m9♦[0m
-    🎴 Player3: [31;47m9♥[0m
-    🏆 Winner: Player1 (Seat 1) - Team 1
-    📊 Tricks: Team 0: 1, Team 1: 1
+      Player1: 9♥ 9♠ K♣ Q♣
+      Player2: T♥ A♣ J♥ Q♠
+      Player4: K♦ T♠ T♣ A♥
+      Player3: T♦ K♥ K♠ A♠
+    👤 Lead: Player3 (Seat 3)
+    🎴 Player3: K♥
+    🎴 Player1: 9♥
+    🎴 Player2: J♥
+    🎴 Player4: A♥
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 2
 
   🎯 Trick 3
     💳 Remaining Cards:
-      Player2: [30;47mK♠[0m [31;47mQ♥[0m [31;47mA♥[0m
-      Player1: [30;47mK♣[0m [31;47mK♦[0m [30;47mQ♠[0m
-      Player4: [30;47mT♠[0m [31;47mT♦[0m [30;47mA♠[0m
-      Player3: [31;47mA♦[0m [30;47mJ♠[0m [31;47mJ♦[0m
-    👤 Lead: Player1 (Seat 1)
-    🎴 Player1: [31;47mK♦[0m
-    🎴 Player4: [31;47mT♦[0m
-    🎴 Player3: [31;47mJ♦[0m
-    🎴 Player2: [30;47mK♠[0m
-    🏆 Winner: Player3 (Seat 3) - Team 1
-    📊 Tricks: Team 0: 1, Team 1: 2
+      Player1: 9♠ K♣ Q♣
+      Player2: T♥ A♣ Q♠
+      Player4: K♦ T♠ T♣
+      Player3: T♦ K♠ A♠
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: A♣
+    🎴 Player4: T♣
+    🎴 Player3: K♠
+    🎴 Player1: K♣
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 3
 
   🎯 Trick 4
     💳 Remaining Cards:
-      Player2: [31;47mQ♥[0m [31;47mA♥[0m
-      Player1: [30;47mK♣[0m [30;47mQ♠[0m
-      Player4: [30;47mT♠[0m [30;47mA♠[0m
-      Player3: [31;47mA♦[0m [30;47mJ♠[0m
-    👤 Lead: Player3 (Seat 3)
-    🎴 Player3: [30;47mJ♠[0m
-    🎴 Player2: [31;47mQ♥[0m
-    🎴 Player1: [30;47mQ♠[0m
-    🎴 Player4: [30;47mA♠[0m
-    🏆 Winner: Player2 (Seat 0) - Team 0
-    📊 Tricks: Team 0: 2, Team 1: 2
+      Player1: 9♠ Q♣
+      Player2: T♥ Q♠
+      Player4: K♦ T♠
+      Player3: T♦ A♠
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: Q♠
+    🎴 Player4: T♠
+    🎴 Player3: A♠
+    🎴 Player1: 9♠
+    🏆 Winner: Player3 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 4
 
   🎯 Trick 5
     💳 Remaining Cards:
-      Player2: [31;47mA♥[0m
-      Player1: [30;47mK♣[0m
-      Player4: [30;47mT♠[0m
-      Player3: [31;47mA♦[0m
-    👤 Lead: Player2 (Seat 0)
-    🎴 Player2: [31;47mA♥[0m
-    🎴 Player1: [30;47mK♣[0m
-    🎴 Player4: [30;47mT♠[0m
-    🎴 Player3: [31;47mA♦[0m
-    🏆 Winner: Player2 (Seat 0) - Team 0
-    📊 Tricks: Team 0: 3, Team 1: 2
+      Player1: Q♣
+      Player2: T♥
+      Player4: K♦
+      Player3: T♦
+    👤 Lead: Player3 (Seat 3)
+    🎴 Player3: T♦
+    🎴 Player1: Q♣
+    🎴 Player2: T♥
+    🎴 Player4: K♦
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 5
 
 🎯 Round 2 Summary
-📊 Tricks Won - Team 0 (Seats 0,2): 3, Team 1 (Seats 1,3): 2
-✅ Team 0 made it! Got 3 tricks, scored 1 points
+📊 Tricks Won - Team 0 (Seats 0,2): 0, Team 1 (Seats 1,3): 5
+✅ Team 1 made it! Got 5 tricks, scored 2 points
 
 📊 Round 2 Results
-📊 Scores - Team 0 (Seats 0,2): 3, Team 1 (Seats 1,3): 0
+📊 Scores - Team 0 (Seats 0,2): 0, Team 1 (Seats 1,3): 4
 
 ==============================
 🎯 ROUND 3
 ==============================
-🃏 Dealer: Player4 (Seat 2)
+🃏 Dealer: Player3 (Seat 3)
 
 🎴 Player Hands:
-  Player2 (Seat 0): [30;47mK♠[0m [30;47mJ♠[0m [30;47mA♠[0m [31;47mA♥[0m [30;47mQ♣[0m (5 cards)
-  Player1 (Seat 1): [30;47mT♣[0m [31;47mQ♦[0m [31;47mT♥[0m [30;47m9♠[0m [31;47mT♦[0m (5 cards)
-  Player4 (Seat 2): [31;47mQ♥[0m [31;47mA♦[0m [30;47mQ♠[0m [30;47mJ♣[0m [31;47m9♥[0m (5 cards)
-  Player3 (Seat 3): [30;47mT♠[0m [31;47mK♦[0m [31;47mJ♥[0m [31;47mJ♦[0m [30;47m9♣[0m (5 cards)
+  Player1 (Seat 0): 9♦ A♥ T♥ T♣ 9♣ (5 cards)
+  Player2 (Seat 1): 9♥ J♦ Q♠ A♦ 9♠ (5 cards)
+  Player4 (Seat 2): A♠ Q♦ K♣ J♠ Q♣ (5 cards)
+  Player3 (Seat 3): J♥ K♦ Q♥ K♠ T♦ (5 cards)
 
 🎺 Trump Selection Phase
-🃏 Turned up card: [31;47m9♦[0m
+🃏 Turned up card: A♣
 
 📋 Ordering Up Phase
-🎺 Player3 passes
-🎺 Player2 orders up!
-🃏 Player4 (dealer) discards: [31;47m9♥[0m
-✅ Trump suit selected: [31;47mDIAMONDS (♦)[0m
+🎺 Player1 orders up!
+🃏 Player3 (dealer) discards: T♦
+✅ Trump suit selected: CLUBS (♣)
 
 🎴 Playing 5 Tricks
 
   🎯 Trick 1
     💳 Remaining Cards:
-      Player2: [30;47mK♠[0m [30;47mJ♠[0m [30;47mA♠[0m [31;47mA♥[0m [30;47mQ♣[0m
-      Player1: [30;47mT♣[0m [31;47mQ♦[0m [31;47mT♥[0m [30;47m9♠[0m [31;47mT♦[0m
-      Player4: [31;47mQ♥[0m [31;47mA♦[0m [30;47mQ♠[0m [30;47mJ♣[0m [31;47m9♦[0m
-      Player3: [30;47mT♠[0m [31;47mK♦[0m [31;47mJ♥[0m [31;47mJ♦[0m [30;47m9♣[0m
-    👤 Lead: Player3 (Seat 3)
-    🎴 Player3: [31;47mK♦[0m
-    🎴 Player2: [30;47mJ♠[0m
-    🎴 Player1: [31;47mT♦[0m
-    🎴 Player4: [31;47mA♦[0m
-    🏆 Winner: Player4 (Seat 2) - Team 0
-    📊 Tricks: Team 0: 1, Team 1: 0
+      Player1: 9♦ A♥ T♥ T♣ 9♣
+      Player2: 9♥ J♦ Q♠ A♦ 9♠
+      Player4: A♠ Q♦ K♣ J♠ Q♣
+      Player3: J♥ K♦ Q♥ K♠ A♣
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: 9♣
+    🎴 Player2: A♦
+    🎴 Player4: K♣
+    🎴 Player3: A♣
+    🏆 Winner: Player3 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 1
 
   🎯 Trick 2
     💳 Remaining Cards:
-      Player2: [30;47mK♠[0m [30;47mA♠[0m [31;47mA♥[0m [30;47mQ♣[0m
-      Player1: [30;47mT♣[0m [31;47mQ♦[0m [31;47mT♥[0m [30;47m9♠[0m
-      Player4: [31;47mQ♥[0m [30;47mQ♠[0m [30;47mJ♣[0m [31;47m9♦[0m
-      Player3: [30;47mT♠[0m [31;47mJ♥[0m [31;47mJ♦[0m [30;47m9♣[0m
-    👤 Lead: Player4 (Seat 2)
-    🎴 Player4: [31;47m9♦[0m
-    🎴 Player3: [31;47mJ♦[0m
-    🎴 Player2: [31;47mA♥[0m
-    🎴 Player1: [31;47mQ♦[0m
-    🏆 Winner: Player3 (Seat 3) - Team 1
+      Player1: 9♦ A♥ T♥ T♣
+      Player2: 9♥ J♦ Q♠ 9♠
+      Player4: A♠ Q♦ J♠ Q♣
+      Player3: J♥ K♦ Q♥ K♠
+    👤 Lead: Player3 (Seat 3)
+    🎴 Player3: J♥
+    🎴 Player1: A♥
+    🎴 Player2: 9♥
+    🎴 Player4: J♠
+    🏆 Winner: Player4 (Seat 2) - Team 0
     📊 Tricks: Team 0: 1, Team 1: 1
 
   🎯 Trick 3
     💳 Remaining Cards:
-      Player2: [30;47mK♠[0m [30;47mA♠[0m [30;47mQ♣[0m
-      Player1: [30;47mT♣[0m [31;47mT♥[0m [30;47m9♠[0m
-      Player4: [31;47mQ♥[0m [30;47mQ♠[0m [30;47mJ♣[0m
-      Player3: [30;47mT♠[0m [31;47mJ♥[0m [30;47m9♣[0m
-    👤 Lead: Player3 (Seat 3)
-    🎴 Player3: [31;47mJ♥[0m
-    🎴 Player2: [30;47mQ♣[0m
-    🎴 Player1: [31;47mT♥[0m
-    🎴 Player4: [31;47mQ♥[0m
-    🏆 Winner: Player3 (Seat 3) - Team 1
-    📊 Tricks: Team 0: 1, Team 1: 2
+      Player1: 9♦ T♥ T♣
+      Player2: J♦ Q♠ 9♠
+      Player4: A♠ Q♦ Q♣
+      Player3: K♦ Q♥ K♠
+    👤 Lead: Player4 (Seat 2)
+    🎴 Player4: Q♣
+    🎴 Player3: Q♥
+    🎴 Player1: T♣
+    🎴 Player2: J♦
+    🏆 Winner: Player4 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 1
 
   🎯 Trick 4
     💳 Remaining Cards:
-      Player2: [30;47mK♠[0m [30;47mA♠[0m
-      Player1: [30;47mT♣[0m [30;47m9♠[0m
-      Player4: [30;47mQ♠[0m [30;47mJ♣[0m
-      Player3: [30;47mT♠[0m [30;47m9♣[0m
-    👤 Lead: Player3 (Seat 3)
-    🎴 Player3: [30;47mT♠[0m
-    🎴 Player2: [30;47mA♠[0m
-    🎴 Player1: [30;47m9♠[0m
-    🎴 Player4: [30;47mQ♠[0m
-    🏆 Winner: Player2 (Seat 0) - Team 0
+      Player1: 9♦ T♥
+      Player2: Q♠ 9♠
+      Player4: A♠ Q♦
+      Player3: K♦ K♠
+    👤 Lead: Player4 (Seat 2)
+    🎴 Player4: Q♦
+    🎴 Player3: K♦
+    🎴 Player1: 9♦
+    🎴 Player2: 9♠
+    🏆 Winner: Player3 (Seat 3) - Team 1
     📊 Tricks: Team 0: 2, Team 1: 2
 
   🎯 Trick 5
     💳 Remaining Cards:
-      Player2: [30;47mK♠[0m
-      Player1: [30;47mT♣[0m
-      Player4: [30;47mJ♣[0m
-      Player3: [30;47m9♣[0m
-    👤 Lead: Player2 (Seat 0)
-    🎴 Player2: [30;47mK♠[0m
-    🎴 Player1: [30;47mT♣[0m
-    🎴 Player4: [30;47mJ♣[0m
-    🎴 Player3: [30;47m9♣[0m
-    🏆 Winner: Player2 (Seat 0) - Team 0
+      Player1: T♥
+      Player2: Q♠
+      Player4: A♠
+      Player3: K♠
+    👤 Lead: Player3 (Seat 3)
+    🎴 Player3: K♠
+    🎴 Player1: T♥
+    🎴 Player2: Q♠
+    🎴 Player4: A♠
+    🏆 Winner: Player4 (Seat 2) - Team 0
     📊 Tricks: Team 0: 3, Team 1: 2
 
 🎯 Round 3 Summary
@@ -305,508 +304,698 @@
 ✅ Team 0 made it! Got 3 tricks, scored 1 points
 
 📊 Round 3 Results
-📊 Scores - Team 0 (Seats 0,2): 4, Team 1 (Seats 1,3): 0
+📊 Scores - Team 0 (Seats 0,2): 1, Team 1 (Seats 1,3): 4
 
 ==============================
 🎯 ROUND 4
 ==============================
-🃏 Dealer: Player3 (Seat 3)
+🃏 Dealer: Player1 (Seat 0)
 
 🎴 Player Hands:
-  Player2 (Seat 0): [30;47mK♠[0m [30;47mQ♣[0m [31;47mJ♥[0m [30;47mA♣[0m [30;47mT♣[0m (5 cards)
-  Player1 (Seat 1): [31;47mT♥[0m [30;47mQ♠[0m [31;47mA♥[0m [31;47mJ♦[0m [30;47mA♠[0m (5 cards)
-  Player4 (Seat 2): [30;47mJ♣[0m [31;47mQ♥[0m [30;47mK♣[0m [31;47m9♥[0m [30;47mT♠[0m (5 cards)
-  Player3 (Seat 3): [31;47mK♦[0m [31;47m9♦[0m [30;47m9♣[0m [31;47mQ♦[0m [31;47mT♦[0m (5 cards)
+  Player1 (Seat 0): A♦ K♠ K♥ J♦ K♦ (5 cards)
+  Player2 (Seat 1): Q♠ Q♦ T♦ A♣ Q♥ (5 cards)
+  Player4 (Seat 2): 9♦ K♣ 9♣ T♥ Q♣ (5 cards)
+  Player3 (Seat 3): 9♠ 9♥ J♠ J♥ J♣ (5 cards)
 
 🎺 Trump Selection Phase
-🃏 Turned up card: [30;47mJ♠[0m
+🃏 Turned up card: T♠
 
 📋 Ordering Up Phase
 🎺 Player2 orders up!
-🃏 Player3 (dealer) discards: [31;47m9♦[0m
-✅ Trump suit selected: [30;47mSPADES (♠)[0m
+🃏 Player1 (dealer) discards: T♠
+✅ Trump suit selected: SPADES (♠)
 
 🎴 Playing 5 Tricks
 
   🎯 Trick 1
     💳 Remaining Cards:
-      Player2: [30;47mK♠[0m [30;47mQ♣[0m [31;47mJ♥[0m [30;47mA♣[0m [30;47mT♣[0m
-      Player1: [31;47mT♥[0m [30;47mQ♠[0m [31;47mA♥[0m [31;47mJ♦[0m [30;47mA♠[0m
-      Player4: [30;47mJ♣[0m [31;47mQ♥[0m [30;47mK♣[0m [31;47m9♥[0m [30;47mT♠[0m
-      Player3: [31;47mK♦[0m [30;47m9♣[0m [31;47mQ♦[0m [31;47mT♦[0m [30;47mJ♠[0m
-    👤 Lead: Player2 (Seat 0)
-    🎴 Player2: [30;47mT♣[0m
-    🎴 Player1: [30;47mA♠[0m
-    🎴 Player4: [30;47mK♣[0m
-    🎴 Player3: [30;47m9♣[0m
-    🏆 Winner: Player1 (Seat 1) - Team 1
+      Player1: A♦ K♠ K♥ J♦ K♦
+      Player2: Q♠ Q♦ T♦ A♣ Q♥
+      Player4: 9♦ K♣ 9♣ T♥ Q♣
+      Player3: 9♠ 9♥ J♠ J♥ J♣
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: Q♦
+    🎴 Player4: 9♦
+    🎴 Player3: J♠
+    🎴 Player1: K♦
+    🏆 Winner: Player3 (Seat 3) - Team 1
     📊 Tricks: Team 0: 0, Team 1: 1
 
   🎯 Trick 2
     💳 Remaining Cards:
-      Player2: [30;47mK♠[0m [30;47mQ♣[0m [31;47mJ♥[0m [30;47mA♣[0m
-      Player1: [31;47mT♥[0m [30;47mQ♠[0m [31;47mA♥[0m [31;47mJ♦[0m
-      Player4: [30;47mJ♣[0m [31;47mQ♥[0m [31;47m9♥[0m [30;47mT♠[0m
-      Player3: [31;47mK♦[0m [31;47mQ♦[0m [31;47mT♦[0m [30;47mJ♠[0m
-    👤 Lead: Player1 (Seat 1)
-    🎴 Player1: [31;47mT♥[0m
-    🎴 Player4: [31;47m9♥[0m
-    🎴 Player3: [31;47mQ♦[0m
-    🎴 Player2: [31;47mJ♥[0m
-    🏆 Winner: Player2 (Seat 0) - Team 0
+      Player1: A♦ K♠ K♥ J♦
+      Player2: Q♠ T♦ A♣ Q♥
+      Player4: K♣ 9♣ T♥ Q♣
+      Player3: 9♠ 9♥ J♥ J♣
+    👤 Lead: Player3 (Seat 3)
+    🎴 Player3: 9♠
+    🎴 Player1: K♠
+    🎴 Player2: Q♠
+    🎴 Player4: K♣
+    🏆 Winner: Player1 (Seat 0) - Team 0
     📊 Tricks: Team 0: 1, Team 1: 1
 
   🎯 Trick 3
     💳 Remaining Cards:
-      Player2: [30;47mK♠[0m [30;47mQ♣[0m [30;47mA♣[0m
-      Player1: [30;47mQ♠[0m [31;47mA♥[0m [31;47mJ♦[0m
-      Player4: [30;47mJ♣[0m [31;47mQ♥[0m [30;47mT♠[0m
-      Player3: [31;47mK♦[0m [31;47mT♦[0m [30;47mJ♠[0m
-    👤 Lead: Player2 (Seat 0)
-    🎴 Player2: [30;47mK♠[0m
-    🎴 Player1: [30;47mQ♠[0m
-    🎴 Player4: [30;47mT♠[0m
-    🎴 Player3: [30;47mJ♠[0m
+      Player1: A♦ K♥ J♦
+      Player2: T♦ A♣ Q♥
+      Player4: 9♣ T♥ Q♣
+      Player3: 9♥ J♥ J♣
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: J♦
+    🎴 Player2: T♦
+    🎴 Player4: Q♣
+    🎴 Player3: J♣
     🏆 Winner: Player3 (Seat 3) - Team 1
     📊 Tricks: Team 0: 1, Team 1: 2
 
   🎯 Trick 4
     💳 Remaining Cards:
-      Player2: [30;47mQ♣[0m [30;47mA♣[0m
-      Player1: [31;47mA♥[0m [31;47mJ♦[0m
-      Player4: [30;47mJ♣[0m [31;47mQ♥[0m
-      Player3: [31;47mK♦[0m [31;47mT♦[0m
+      Player1: A♦ K♥
+      Player2: A♣ Q♥
+      Player4: 9♣ T♥
+      Player3: 9♥ J♥
     👤 Lead: Player3 (Seat 3)
-    🎴 Player3: [31;47mK♦[0m
-    🎴 Player2: [30;47mA♣[0m
-    🎴 Player1: [31;47mJ♦[0m
-    🎴 Player4: [30;47mJ♣[0m
-    🏆 Winner: Player4 (Seat 2) - Team 0
+    🎴 Player3: J♥
+    🎴 Player1: K♥
+    🎴 Player2: Q♥
+    🎴 Player4: T♥
+    🏆 Winner: Player1 (Seat 0) - Team 0
     📊 Tricks: Team 0: 2, Team 1: 2
 
   🎯 Trick 5
     💳 Remaining Cards:
-      Player2: [30;47mQ♣[0m
-      Player1: [31;47mA♥[0m
-      Player4: [31;47mQ♥[0m
-      Player3: [31;47mT♦[0m
-    👤 Lead: Player4 (Seat 2)
-    🎴 Player4: [31;47mQ♥[0m
-    🎴 Player3: [31;47mT♦[0m
-    🎴 Player2: [30;47mQ♣[0m
-    🎴 Player1: [31;47mA♥[0m
-    🏆 Winner: Player1 (Seat 1) - Team 1
-    📊 Tricks: Team 0: 2, Team 1: 3
+      Player1: A♦
+      Player2: A♣
+      Player4: 9♣
+      Player3: 9♥
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: A♦
+    🎴 Player2: A♣
+    🎴 Player4: 9♣
+    🎴 Player3: 9♥
+    🏆 Winner: Player1 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 3, Team 1: 2
 
 🎯 Round 4 Summary
-📊 Tricks Won - Team 0 (Seats 0,2): 2, Team 1 (Seats 1,3): 3
-❌ Team 0 got euchred! Only 2 tricks, Team 1 scores 2 points
+📊 Tricks Won - Team 0 (Seats 0,2): 3, Team 1 (Seats 1,3): 2
+❌ Team 1 got euchred! Only 2 tricks, Team 0 scores 2 points
 
 📊 Round 4 Results
-📊 Scores - Team 0 (Seats 0,2): 4, Team 1 (Seats 1,3): 2
+📊 Scores - Team 0 (Seats 0,2): 3, Team 1 (Seats 1,3): 4
 
 ==============================
 🎯 ROUND 5
 ==============================
-🃏 Dealer: Player2 (Seat 0)
+🃏 Dealer: Player2 (Seat 1)
 
 🎴 Player Hands:
-  Player2 (Seat 0): [30;47mJ♣[0m [30;47mQ♠[0m [30;47mQ♣[0m [30;47mT♠[0m [30;47mJ♠[0m (5 cards)
-  Player1 (Seat 1): [30;47m9♣[0m [31;47mJ♦[0m [31;47mK♦[0m [31;47mA♦[0m [31;47mT♥[0m (5 cards)
-  Player4 (Seat 2): [31;47m9♥[0m [31;47mT♦[0m [31;47mA♥[0m [30;47mA♠[0m [30;47mK♠[0m (5 cards)
-  Player3 (Seat 3): [30;47m9♠[0m [31;47mQ♥[0m [30;47mT♣[0m [30;47mK♣[0m [31;47mQ♦[0m (5 cards)
+  Player1 (Seat 0): K♥ J♣ 9♥ Q♥ A♥ (5 cards)
+  Player2 (Seat 1): J♥ A♦ J♠ K♠ Q♦ (5 cards)
+  Player4 (Seat 2): 9♠ A♣ T♥ T♣ Q♠ (5 cards)
+  Player3 (Seat 3): 9♣ J♦ T♦ T♠ A♠ (5 cards)
 
 🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mK♥[0m
-
-📋 Ordering Up Phase
-🎺 Player1 orders up!
-🃏 Player2 (dealer) discards: [30;47mT♠[0m
-✅ Trump suit selected: [31;47mHEARTS (♥)[0m
-
-🎴 Playing 5 Tricks
-
-  🎯 Trick 1
-    💳 Remaining Cards:
-      Player2: [30;47mJ♣[0m [30;47mQ♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [31;47mK♥[0m
-      Player1: [30;47m9♣[0m [31;47mJ♦[0m [31;47mK♦[0m [31;47mA♦[0m [31;47mT♥[0m
-      Player4: [31;47m9♥[0m [31;47mT♦[0m [31;47mA♥[0m [30;47mA♠[0m [30;47mK♠[0m
-      Player3: [30;47m9♠[0m [31;47mQ♥[0m [30;47mT♣[0m [30;47mK♣[0m [31;47mQ♦[0m
-    👤 Lead: Player1 (Seat 1)
-    🎴 Player1: [31;47mA♦[0m
-    🎴 Player4: [31;47mT♦[0m
-    🎴 Player3: [31;47mQ♦[0m
-    🎴 Player2: [30;47mJ♠[0m
-    🏆 Winner: Player1 (Seat 1) - Team 1
-    📊 Tricks: Team 0: 0, Team 1: 1
-
-  🎯 Trick 2
-    💳 Remaining Cards:
-      Player2: [30;47mJ♣[0m [30;47mQ♠[0m [30;47mQ♣[0m [31;47mK♥[0m
-      Player1: [30;47m9♣[0m [31;47mJ♦[0m [31;47mK♦[0m [31;47mT♥[0m
-      Player4: [31;47m9♥[0m [31;47mA♥[0m [30;47mA♠[0m [30;47mK♠[0m
-      Player3: [30;47m9♠[0m [31;47mQ♥[0m [30;47mT♣[0m [30;47mK♣[0m
-    👤 Lead: Player1 (Seat 1)
-    🎴 Player1: [31;47mJ♦[0m
-    🎴 Player4: [31;47mA♥[0m
-    🎴 Player3: [30;47mK♣[0m
-    🎴 Player2: [30;47mQ♣[0m
-    🏆 Winner: Player1 (Seat 1) - Team 1
-    📊 Tricks: Team 0: 0, Team 1: 2
-
-  🎯 Trick 3
-    💳 Remaining Cards:
-      Player2: [30;47mJ♣[0m [30;47mQ♠[0m [31;47mK♥[0m
-      Player1: [30;47m9♣[0m [31;47mK♦[0m [31;47mT♥[0m
-      Player4: [31;47m9♥[0m [30;47mA♠[0m [30;47mK♠[0m
-      Player3: [30;47m9♠[0m [31;47mQ♥[0m [30;47mT♣[0m
-    👤 Lead: Player1 (Seat 1)
-    🎴 Player1: [30;47m9♣[0m
-    🎴 Player4: [31;47m9♥[0m
-    🎴 Player3: [30;47mT♣[0m
-    🎴 Player2: [30;47mJ♣[0m
-    🏆 Winner: Player4 (Seat 2) - Team 0
-    📊 Tricks: Team 0: 1, Team 1: 2
-
-  🎯 Trick 4
-    💳 Remaining Cards:
-      Player2: [30;47mQ♠[0m [31;47mK♥[0m
-      Player1: [31;47mK♦[0m [31;47mT♥[0m
-      Player4: [30;47mA♠[0m [30;47mK♠[0m
-      Player3: [30;47m9♠[0m [31;47mQ♥[0m
-    👤 Lead: Player4 (Seat 2)
-    🎴 Player4: [30;47mA♠[0m
-    🎴 Player3: [30;47m9♠[0m
-    🎴 Player2: [30;47mQ♠[0m
-    🎴 Player1: [31;47mT♥[0m
-    🏆 Winner: Player1 (Seat 1) - Team 1
-    📊 Tricks: Team 0: 1, Team 1: 3
-
-  🎯 Trick 5
-    💳 Remaining Cards:
-      Player2: [31;47mK♥[0m
-      Player1: [31;47mK♦[0m
-      Player4: [30;47mK♠[0m
-      Player3: [31;47mQ♥[0m
-    👤 Lead: Player1 (Seat 1)
-    🎴 Player1: [31;47mK♦[0m
-    🎴 Player4: [30;47mK♠[0m
-    🎴 Player3: [31;47mQ♥[0m
-    🎴 Player2: [31;47mK♥[0m
-    🏆 Winner: Player2 (Seat 0) - Team 0
-    📊 Tricks: Team 0: 2, Team 1: 3
-
-🎯 Round 5 Summary
-📊 Tricks Won - Team 0 (Seats 0,2): 2, Team 1 (Seats 1,3): 3
-✅ Team 1 made it! Got 3 tricks, scored 1 points
-
-📊 Round 5 Results
-📊 Scores - Team 0 (Seats 0,2): 4, Team 1 (Seats 1,3): 3
-
-==============================
-🎯 ROUND 6
-==============================
-🃏 Dealer: Player1 (Seat 1)
-
-🎴 Player Hands:
-  Player2 (Seat 0): [31;47mJ♥[0m [30;47mT♣[0m [31;47mK♦[0m [30;47mJ♠[0m [31;47m9♦[0m (5 cards)
-  Player1 (Seat 1): [31;47m9♥[0m [31;47mT♥[0m [30;47mQ♣[0m [31;47mQ♥[0m [31;47mT♦[0m (5 cards)
-  Player4 (Seat 2): [30;47mQ♠[0m [31;47mJ♦[0m [30;47mK♣[0m [31;47mA♦[0m [30;47mA♠[0m (5 cards)
-  Player3 (Seat 3): [30;47m9♣[0m [31;47mA♥[0m [31;47mQ♦[0m [30;47mT♠[0m [30;47m9♠[0m (5 cards)
-
-🎺 Trump Selection Phase
-🃏 Turned up card: [30;47mK♠[0m
+🃏 Turned up card: K♣
 
 📋 Ordering Up Phase
 🎺 Player4 orders up!
-🃏 Player1 (dealer) discards: [31;47m9♥[0m
-✅ Trump suit selected: [30;47mSPADES (♠)[0m
+🃏 Player2 (dealer) discards: J♥
+✅ Trump suit selected: CLUBS (♣)
 
 🎴 Playing 5 Tricks
 
   🎯 Trick 1
     💳 Remaining Cards:
-      Player2: [31;47mJ♥[0m [30;47mT♣[0m [31;47mK♦[0m [30;47mJ♠[0m [31;47m9♦[0m
-      Player1: [31;47mT♥[0m [30;47mQ♣[0m [31;47mQ♥[0m [31;47mT♦[0m [30;47mK♠[0m
-      Player4: [30;47mQ♠[0m [31;47mJ♦[0m [30;47mK♣[0m [31;47mA♦[0m [30;47mA♠[0m
-      Player3: [30;47m9♣[0m [31;47mA♥[0m [31;47mQ♦[0m [30;47mT♠[0m [30;47m9♠[0m
+      Player1: K♥ J♣ 9♥ Q♥ A♥
+      Player2: A♦ J♠ K♠ Q♦ K♣
+      Player4: 9♠ A♣ T♥ T♣ Q♠
+      Player3: 9♣ J♦ T♦ T♠ A♠
     👤 Lead: Player4 (Seat 2)
-    🎴 Player4: [30;47mK♣[0m
-    🎴 Player3: [30;47m9♣[0m
-    🎴 Player2: [30;47mT♣[0m
-    🎴 Player1: [30;47mQ♣[0m
-    🏆 Winner: Player4 (Seat 2) - Team 0
+    🎴 Player4: T♣
+    🎴 Player3: 9♣
+    🎴 Player1: J♣
+    🎴 Player2: K♣
+    🏆 Winner: Player1 (Seat 0) - Team 0
     📊 Tricks: Team 0: 1, Team 1: 0
 
   🎯 Trick 2
     💳 Remaining Cards:
-      Player2: [31;47mJ♥[0m [31;47mK♦[0m [30;47mJ♠[0m [31;47m9♦[0m
-      Player1: [31;47mT♥[0m [31;47mQ♥[0m [31;47mT♦[0m [30;47mK♠[0m
-      Player4: [30;47mQ♠[0m [31;47mJ♦[0m [31;47mA♦[0m [30;47mA♠[0m
-      Player3: [31;47mA♥[0m [31;47mQ♦[0m [30;47mT♠[0m [30;47m9♠[0m
-    👤 Lead: Player4 (Seat 2)
-    🎴 Player4: [30;47mA♠[0m
-    🎴 Player3: [30;47m9♠[0m
-    🎴 Player2: [30;47mJ♠[0m
-    🎴 Player1: [30;47mK♠[0m
-    🏆 Winner: Player2 (Seat 0) - Team 0
+      Player1: K♥ 9♥ Q♥ A♥
+      Player2: A♦ J♠ K♠ Q♦
+      Player4: 9♠ A♣ T♥ Q♠
+      Player3: J♦ T♦ T♠ A♠
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: Q♥
+    🎴 Player2: Q♦
+    🎴 Player4: T♥
+    🎴 Player3: J♦
+    🏆 Winner: Player1 (Seat 0) - Team 0
     📊 Tricks: Team 0: 2, Team 1: 0
 
   🎯 Trick 3
     💳 Remaining Cards:
-      Player2: [31;47mJ♥[0m [31;47mK♦[0m [31;47m9♦[0m
-      Player1: [31;47mT♥[0m [31;47mQ♥[0m [31;47mT♦[0m
-      Player4: [30;47mQ♠[0m [31;47mJ♦[0m [31;47mA♦[0m
-      Player3: [31;47mA♥[0m [31;47mQ♦[0m [30;47mT♠[0m
-    👤 Lead: Player2 (Seat 0)
-    🎴 Player2: [31;47mK♦[0m
-    🎴 Player1: [31;47mT♦[0m
-    🎴 Player4: [31;47mJ♦[0m
-    🎴 Player3: [31;47mQ♦[0m
-    🏆 Winner: Player2 (Seat 0) - Team 0
+      Player1: K♥ 9♥ A♥
+      Player2: A♦ J♠ K♠
+      Player4: 9♠ A♣ Q♠
+      Player3: T♦ T♠ A♠
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: A♥
+    🎴 Player2: K♠
+    🎴 Player4: Q♠
+    🎴 Player3: A♠
+    🏆 Winner: Player1 (Seat 0) - Team 0
     📊 Tricks: Team 0: 3, Team 1: 0
 
   🎯 Trick 4
     💳 Remaining Cards:
-      Player2: [31;47mJ♥[0m [31;47m9♦[0m
-      Player1: [31;47mT♥[0m [31;47mQ♥[0m
-      Player4: [30;47mQ♠[0m [31;47mA♦[0m
-      Player3: [31;47mA♥[0m [30;47mT♠[0m
-    👤 Lead: Player2 (Seat 0)
-    🎴 Player2: [31;47mJ♥[0m
-    🎴 Player1: [31;47mT♥[0m
-    🎴 Player4: [31;47mA♦[0m
-    🎴 Player3: [31;47mA♥[0m
-    🏆 Winner: Player3 (Seat 3) - Team 1
+      Player1: K♥ 9♥
+      Player2: A♦ J♠
+      Player4: 9♠ A♣
+      Player3: T♦ T♠
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: K♥
+    🎴 Player2: J♠
+    🎴 Player4: A♣
+    🎴 Player3: T♦
+    🏆 Winner: Player2 (Seat 1) - Team 1
     📊 Tricks: Team 0: 3, Team 1: 1
 
   🎯 Trick 5
     💳 Remaining Cards:
-      Player2: [31;47m9♦[0m
-      Player1: [31;47mQ♥[0m
-      Player4: [30;47mQ♠[0m
-      Player3: [30;47mT♠[0m
-    👤 Lead: Player3 (Seat 3)
-    🎴 Player3: [30;47mT♠[0m
-    🎴 Player2: [31;47m9♦[0m
-    🎴 Player1: [31;47mQ♥[0m
-    🎴 Player4: [30;47mQ♠[0m
-    🏆 Winner: Player4 (Seat 2) - Team 0
-    📊 Tricks: Team 0: 4, Team 1: 1
+      Player1: 9♥
+      Player2: A♦
+      Player4: 9♠
+      Player3: T♠
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: A♦
+    🎴 Player4: 9♠
+    🎴 Player3: T♠
+    🎴 Player1: 9♥
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 3, Team 1: 2
 
-🎯 Round 6 Summary
-📊 Tricks Won - Team 0 (Seats 0,2): 4, Team 1 (Seats 1,3): 1
-✅ Team 0 made it! Got 4 tricks, scored 1 points
+🎯 Round 5 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 3, Team 1 (Seats 1,3): 2
+✅ Team 0 made it! Got 3 tricks, scored 1 points
 
-📊 Round 6 Results
-📊 Scores - Team 0 (Seats 0,2): 5, Team 1 (Seats 1,3): 3
+📊 Round 5 Results
+📊 Scores - Team 0 (Seats 0,2): 4, Team 1 (Seats 1,3): 4
 
 ==============================
-🎯 ROUND 7
+🎯 ROUND 6
 ==============================
 🃏 Dealer: Player4 (Seat 2)
 
 🎴 Player Hands:
-  Player2 (Seat 0): [31;47mK♦[0m [30;47m9♣[0m [31;47mA♥[0m [30;47mA♣[0m [31;47m9♦[0m (5 cards)
-  Player1 (Seat 1): [30;47mJ♠[0m [30;47mQ♠[0m [30;47mQ♣[0m [30;47m9♠[0m [31;47mQ♦[0m (5 cards)
-  Player4 (Seat 2): [30;47mJ♣[0m [30;47mK♣[0m [31;47mJ♥[0m [30;47mT♣[0m [30;47mT♠[0m (5 cards)
-  Player3 (Seat 3): [31;47mJ♦[0m [31;47mT♥[0m [31;47mK♥[0m [31;47m9♥[0m [30;47mK♠[0m (5 cards)
+  Player1 (Seat 0): 9♣ Q♣ A♣ J♣ K♣ (5 cards)
+  Player2 (Seat 1): 9♥ K♥ J♠ A♠ Q♥ (5 cards)
+  Player4 (Seat 2): 9♠ A♥ T♠ T♦ Q♠ (5 cards)
+  Player3 (Seat 3): Q♦ K♦ A♦ T♣ 9♦ (5 cards)
 
 🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mT♦[0m
+🃏 Turned up card: K♠
 
 📋 Ordering Up Phase
 🎺 Player3 orders up!
-🃏 Player4 (dealer) discards: [30;47mT♣[0m
-✅ Trump suit selected: [31;47mDIAMONDS (♦)[0m
+🃏 Player4 (dealer) discards: 9♠
+✅ Trump suit selected: SPADES (♠)
 
 🎴 Playing 5 Tricks
 
   🎯 Trick 1
     💳 Remaining Cards:
-      Player2: [31;47mK♦[0m [30;47m9♣[0m [31;47mA♥[0m [30;47mA♣[0m [31;47m9♦[0m
-      Player1: [30;47mJ♠[0m [30;47mQ♠[0m [30;47mQ♣[0m [30;47m9♠[0m [31;47mQ♦[0m
-      Player4: [30;47mJ♣[0m [30;47mK♣[0m [31;47mJ♥[0m [30;47mT♠[0m [31;47mT♦[0m
-      Player3: [31;47mJ♦[0m [31;47mT♥[0m [31;47mK♥[0m [31;47m9♥[0m [30;47mK♠[0m
+      Player1: 9♣ Q♣ A♣ J♣ K♣
+      Player2: 9♥ K♥ J♠ A♠ Q♥
+      Player4: A♥ T♠ T♦ Q♠ K♠
+      Player3: Q♦ K♦ A♦ T♣ 9♦
     👤 Lead: Player3 (Seat 3)
-    🎴 Player3: [31;47m9♥[0m
-    🎴 Player2: [31;47mA♥[0m
-    🎴 Player1: [30;47mQ♠[0m
-    🎴 Player4: [31;47mJ♥[0m
+    🎴 Player3: T♣
+    🎴 Player1: K♣
+    🎴 Player2: K♥
+    🎴 Player4: K♠
     🏆 Winner: Player4 (Seat 2) - Team 0
     📊 Tricks: Team 0: 1, Team 1: 0
 
   🎯 Trick 2
     💳 Remaining Cards:
-      Player2: [31;47mK♦[0m [30;47m9♣[0m [30;47mA♣[0m [31;47m9♦[0m
-      Player1: [30;47mJ♠[0m [30;47mQ♣[0m [30;47m9♠[0m [31;47mQ♦[0m
-      Player4: [30;47mJ♣[0m [30;47mK♣[0m [30;47mT♠[0m [31;47mT♦[0m
-      Player3: [31;47mJ♦[0m [31;47mT♥[0m [31;47mK♥[0m [30;47mK♠[0m
+      Player1: 9♣ Q♣ A♣ J♣
+      Player2: 9♥ J♠ A♠ Q♥
+      Player4: A♥ T♠ T♦ Q♠
+      Player3: Q♦ K♦ A♦ 9♦
     👤 Lead: Player4 (Seat 2)
-    🎴 Player4: [30;47mT♠[0m
-    🎴 Player3: [30;47mK♠[0m
-    🎴 Player2: [31;47m9♦[0m
-    🎴 Player1: [30;47mJ♠[0m
-    🏆 Winner: Player2 (Seat 0) - Team 0
+    🎴 Player4: A♥
+    🎴 Player3: Q♦
+    🎴 Player1: A♣
+    🎴 Player2: 9♥
+    🏆 Winner: Player4 (Seat 2) - Team 0
     📊 Tricks: Team 0: 2, Team 1: 0
 
   🎯 Trick 3
     💳 Remaining Cards:
-      Player2: [31;47mK♦[0m [30;47m9♣[0m [30;47mA♣[0m
-      Player1: [30;47mQ♣[0m [30;47m9♠[0m [31;47mQ♦[0m
-      Player4: [30;47mJ♣[0m [30;47mK♣[0m [31;47mT♦[0m
-      Player3: [31;47mJ♦[0m [31;47mT♥[0m [31;47mK♥[0m
-    👤 Lead: Player2 (Seat 0)
-    🎴 Player2: [30;47m9♣[0m
-    🎴 Player1: [30;47mQ♣[0m
-    🎴 Player4: [30;47mJ♣[0m
-    🎴 Player3: [31;47mT♥[0m
-    🏆 Winner: Player1 (Seat 1) - Team 1
+      Player1: 9♣ Q♣ J♣
+      Player2: J♠ A♠ Q♥
+      Player4: T♠ T♦ Q♠
+      Player3: K♦ A♦ 9♦
+    👤 Lead: Player4 (Seat 2)
+    🎴 Player4: Q♠
+    🎴 Player3: A♦
+    🎴 Player1: J♣
+    🎴 Player2: J♠
+    🏆 Winner: Player2 (Seat 1) - Team 1
     📊 Tricks: Team 0: 2, Team 1: 1
 
   🎯 Trick 4
     💳 Remaining Cards:
-      Player2: [31;47mK♦[0m [30;47mA♣[0m
-      Player1: [30;47m9♠[0m [31;47mQ♦[0m
-      Player4: [30;47mK♣[0m [31;47mT♦[0m
-      Player3: [31;47mJ♦[0m [31;47mK♥[0m
-    👤 Lead: Player1 (Seat 1)
-    🎴 Player1: [31;47mQ♦[0m
-    🎴 Player4: [31;47mT♦[0m
-    🎴 Player3: [31;47mJ♦[0m
-    🎴 Player2: [31;47mK♦[0m
-    🏆 Winner: Player3 (Seat 3) - Team 1
+      Player1: 9♣ Q♣
+      Player2: A♠ Q♥
+      Player4: T♠ T♦
+      Player3: K♦ 9♦
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: A♠
+    🎴 Player4: T♠
+    🎴 Player3: 9♦
+    🎴 Player1: 9♣
+    🏆 Winner: Player2 (Seat 1) - Team 1
     📊 Tricks: Team 0: 2, Team 1: 2
 
   🎯 Trick 5
     💳 Remaining Cards:
-      Player2: [30;47mA♣[0m
-      Player1: [30;47m9♠[0m
-      Player4: [30;47mK♣[0m
-      Player3: [31;47mK♥[0m
-    👤 Lead: Player3 (Seat 3)
-    🎴 Player3: [31;47mK♥[0m
-    🎴 Player2: [30;47mA♣[0m
-    🎴 Player1: [30;47m9♠[0m
-    🎴 Player4: [30;47mK♣[0m
-    🏆 Winner: Player3 (Seat 3) - Team 1
+      Player1: Q♣
+      Player2: Q♥
+      Player4: T♦
+      Player3: K♦
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: Q♥
+    🎴 Player4: T♦
+    🎴 Player3: K♦
+    🎴 Player1: Q♣
+    🏆 Winner: Player2 (Seat 1) - Team 1
     📊 Tricks: Team 0: 2, Team 1: 3
 
-🎯 Round 7 Summary
+🎯 Round 6 Summary
 📊 Tricks Won - Team 0 (Seats 0,2): 2, Team 1 (Seats 1,3): 3
 ✅ Team 1 made it! Got 3 tricks, scored 1 points
 
-📊 Round 7 Results
-📊 Scores - Team 0 (Seats 0,2): 5, Team 1 (Seats 1,3): 4
+📊 Round 6 Results
+📊 Scores - Team 0 (Seats 0,2): 4, Team 1 (Seats 1,3): 5
 
 ==============================
-🎯 ROUND 8
+🎯 ROUND 7
 ==============================
 🃏 Dealer: Player3 (Seat 3)
 
 🎴 Player Hands:
-  Player2 (Seat 0): [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m (5 cards)
-  Player1 (Seat 1): [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m (5 cards)
-  Player4 (Seat 2): [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m (5 cards)
-  Player3 (Seat 3): [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m (5 cards)
+  Player1 (Seat 0): K♥ Q♠ T♥ K♠ 9♣ (5 cards)
+  Player2 (Seat 1): T♣ 9♥ K♦ 9♦ Q♦ (5 cards)
+  Player4 (Seat 2): Q♣ K♣ A♣ A♠ T♦ (5 cards)
+  Player3 (Seat 3): J♣ A♥ T♠ 9♠ J♦ (5 cards)
 
 🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mK♥[0m
+🃏 Turned up card: A♦
 
 📋 Ordering Up Phase
-🎺 Player2 passes
 🎺 Player1 passes
+🎺 Player2 passes
 🎺 Player4 passes
-🎺 Player3 passes
-
-📋 Calling Trump Phase
-🎺 Player2 calls [30;47mSPADES (♠)[0m!
-✅ Trump suit selected: [30;47mSPADES (♠)[0m
+🎺 Player3 orders up!
+🃏 Player3 (dealer) discards: 9♠
+✅ Trump suit selected: DIAMONDS (♦)
 
 🎴 Playing 5 Tricks
 
   🎯 Trick 1
     💳 Remaining Cards:
-      Player2: [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m
-      Player1: [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m
-      Player4: [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m
-      Player3: [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m
-    ❌ No current trick found!
+      Player1: K♥ Q♠ T♥ K♠ 9♣
+      Player2: T♣ 9♥ K♦ 9♦ Q♦
+      Player4: Q♣ K♣ A♣ A♠ T♦
+      Player3: J♣ A♥ T♠ J♦ A♦
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: K♠
+    🎴 Player2: 9♦
+    🎴 Player4: A♠
+    🎴 Player3: T♠
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 1
 
   🎯 Trick 2
     💳 Remaining Cards:
-      Player2: [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m
-      Player1: [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m
-      Player4: [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m
-      Player3: [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m
-    ❌ No current trick found!
+      Player1: K♥ Q♠ T♥ 9♣
+      Player2: T♣ 9♥ K♦ Q♦
+      Player4: Q♣ K♣ A♣ T♦
+      Player3: J♣ A♥ J♦ A♦
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: 9♥
+    🎴 Player4: Q♣
+    🎴 Player3: A♥
+    🎴 Player1: K♥
+    🏆 Winner: Player3 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 2
 
   🎯 Trick 3
     💳 Remaining Cards:
-      Player2: [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m
-      Player1: [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m
-      Player4: [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m
-      Player3: [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m
-    ❌ No current trick found!
+      Player1: Q♠ T♥ 9♣
+      Player2: T♣ K♦ Q♦
+      Player4: K♣ A♣ T♦
+      Player3: J♣ J♦ A♦
+    👤 Lead: Player3 (Seat 3)
+    🎴 Player3: A♦
+    🎴 Player1: T♥
+    🎴 Player2: Q♦
+    🎴 Player4: T♦
+    🏆 Winner: Player3 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 3
 
   🎯 Trick 4
     💳 Remaining Cards:
-      Player2: [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m
-      Player1: [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m
-      Player4: [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m
-      Player3: [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m
-    ❌ No current trick found!
+      Player1: Q♠ 9♣
+      Player2: T♣ K♦
+      Player4: K♣ A♣
+      Player3: J♣ J♦
+    👤 Lead: Player3 (Seat 3)
+    🎴 Player3: J♣
+    🎴 Player1: 9♣
+    🎴 Player2: T♣
+    🎴 Player4: K♣
+    🏆 Winner: Player4 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 3
 
   🎯 Trick 5
     💳 Remaining Cards:
-      Player2: [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m
-      Player1: [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m
-      Player4: [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m
-      Player3: [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m
-    ❌ No current trick found!
+      Player1: Q♠
+      Player2: K♦
+      Player4: A♣
+      Player3: J♦
+    👤 Lead: Player4 (Seat 2)
+    🎴 Player4: A♣
+    🎴 Player3: J♦
+    🎴 Player1: Q♠
+    🎴 Player2: K♦
+    🏆 Winner: Player3 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 1, Team 1: 4
+
+🎯 Round 7 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 1, Team 1 (Seats 1,3): 4
+✅ Team 1 made it! Got 4 tricks, scored 1 points
+
+📊 Round 7 Results
+📊 Scores - Team 0 (Seats 0,2): 4, Team 1 (Seats 1,3): 6
+
+==============================
+🎯 ROUND 8
+==============================
+🃏 Dealer: Player1 (Seat 0)
+
+🎴 Player Hands:
+  Player1 (Seat 0): Q♣ J♠ T♣ Q♦ 9♥ (5 cards)
+  Player2 (Seat 1): K♦ A♥ Q♠ 9♠ T♠ (5 cards)
+  Player4 (Seat 2): J♥ J♦ K♣ K♠ 9♣ (5 cards)
+  Player3 (Seat 3): A♠ K♥ Q♥ 9♦ T♦ (5 cards)
+
+🎺 Trump Selection Phase
+🃏 Turned up card: J♣
+
+📋 Ordering Up Phase
+🎺 Player2 passes
+🎺 Player4 orders up!
+🃏 Player1 (dealer) discards: 9♥
+✅ Trump suit selected: CLUBS (♣)
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player1: Q♣ J♠ T♣ Q♦ J♣
+      Player2: K♦ A♥ Q♠ 9♠ T♠
+      Player4: J♥ J♦ K♣ K♠ 9♣
+      Player3: A♠ K♥ Q♥ 9♦ T♦
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: Q♠
+    🎴 Player4: K♠
+    🎴 Player3: A♠
+    🎴 Player1: J♠
+    🏆 Winner: Player1 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 0
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player1: Q♣ T♣ Q♦ J♣
+      Player2: K♦ A♥ 9♠ T♠
+      Player4: J♥ J♦ K♣ 9♣
+      Player3: K♥ Q♥ 9♦ T♦
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: Q♦
+    🎴 Player2: K♦
+    🎴 Player4: J♦
+    🎴 Player3: T♦
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 1, Team 1: 1
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player1: Q♣ T♣ J♣
+      Player2: A♥ 9♠ T♠
+      Player4: J♥ K♣ 9♣
+      Player3: K♥ Q♥ 9♦
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: T♠
+    🎴 Player4: 9♣
+    🎴 Player3: K♥
+    🎴 Player1: J♣
+    🏆 Winner: Player1 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 1
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player1: Q♣ T♣
+      Player2: A♥ 9♠
+      Player4: J♥ K♣
+      Player3: Q♥ 9♦
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: Q♣
+    🎴 Player2: A♥
+    🎴 Player4: K♣
+    🎴 Player3: Q♥
+    🏆 Winner: Player4 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 3, Team 1: 1
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player1: T♣
+      Player2: 9♠
+      Player4: J♥
+      Player3: 9♦
+    👤 Lead: Player4 (Seat 2)
+    🎴 Player4: J♥
+    🎴 Player3: 9♦
+    🎴 Player1: T♣
+    🎴 Player2: 9♠
+    🏆 Winner: Player1 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 4, Team 1: 1
 
 🎯 Round 8 Summary
-📊 Tricks Won - Team 0 (Seats 0,2): 0, Team 1 (Seats 1,3): 0
-❌ Team 0 got euchred! Only 0 tricks, Team 1 scores 2 points
+📊 Tricks Won - Team 0 (Seats 0,2): 4, Team 1 (Seats 1,3): 1
+✅ Team 0 made it! Got 4 tricks, scored 1 points
 
 📊 Round 8 Results
-📊 Scores - Team 0 (Seats 0,2): 5, Team 1 (Seats 1,3): 4
+📊 Scores - Team 0 (Seats 0,2): 5, Team 1 (Seats 1,3): 6
 
 ==============================
 🎯 ROUND 9
 ==============================
-🃏 Dealer: Player3 (Seat 3)
+🃏 Dealer: Player2 (Seat 1)
 
 🎴 Player Hands:
-  Player2 (Seat 0): [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m (5 cards)
-  Player1 (Seat 1): [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m (5 cards)
-  Player4 (Seat 2): [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m (5 cards)
-  Player3 (Seat 3): [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m (5 cards)
+  Player1 (Seat 0): Q♣ K♦ 9♠ J♣ A♥ (5 cards)
+  Player2 (Seat 1): J♦ A♠ K♣ 9♥ Q♠ (5 cards)
+  Player4 (Seat 2): Q♦ T♠ A♣ J♥ K♠ (5 cards)
+  Player3 (Seat 3): 9♣ K♥ Q♥ T♣ 9♦ (5 cards)
 
 🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mK♥[0m
+🃏 Turned up card: J♠
 
 📋 Ordering Up Phase
-🚫 All players passed - hand thrown in
-🚫 Hand thrown in - no score, moving to next dealer
+🎺 Player4 passes
+🎺 Player3 orders up!
+🃏 Player2 (dealer) discards: 9♥
+✅ Trump suit selected: SPADES (♠)
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player1: Q♣ K♦ 9♠ J♣ A♥
+      Player2: J♦ A♠ K♣ Q♠ J♠
+      Player4: Q♦ T♠ A♣ J♥ K♠
+      Player3: 9♣ K♥ Q♥ T♣ 9♦
+    👤 Lead: Player4 (Seat 2)
+    🎴 Player4: K♠
+    🎴 Player3: 9♣
+    🎴 Player1: 9♠
+    🎴 Player2: A♠
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 1
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player1: Q♣ K♦ J♣ A♥
+      Player2: J♦ K♣ Q♠ J♠
+      Player4: Q♦ T♠ A♣ J♥
+      Player3: K♥ Q♥ T♣ 9♦
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: J♠
+    🎴 Player4: T♠
+    🎴 Player3: K♥
+    🎴 Player1: K♦
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 2
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player1: Q♣ J♣ A♥
+      Player2: J♦ K♣ Q♠
+      Player4: Q♦ A♣ J♥
+      Player3: Q♥ T♣ 9♦
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: Q♠
+    🎴 Player4: Q♦
+    🎴 Player3: 9♦
+    🎴 Player1: A♥
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 3
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player1: Q♣ J♣
+      Player2: J♦ K♣
+      Player4: A♣ J♥
+      Player3: Q♥ T♣
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: J♦
+    🎴 Player4: J♥
+    🎴 Player3: T♣
+    🎴 Player1: J♣
+    🏆 Winner: Player1 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 3
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player1: Q♣
+      Player2: K♣
+      Player4: A♣
+      Player3: Q♥
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: Q♣
+    🎴 Player2: K♣
+    🎴 Player4: A♣
+    🎴 Player3: Q♥
+    🏆 Winner: Player4 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 3
+
+🎯 Round 9 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 2, Team 1 (Seats 1,3): 3
+✅ Team 1 made it! Got 3 tricks, scored 1 points
+
+📊 Round 9 Results
+📊 Scores - Team 0 (Seats 0,2): 5, Team 1 (Seats 1,3): 7
 
 ==============================
 🎯 ROUND 10
 ==============================
-🃏 Dealer: Player3 (Seat 3)
+🃏 Dealer: Player4 (Seat 2)
 
 🎴 Player Hands:
-  Player2 (Seat 0): [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m (5 cards)
-  Player1 (Seat 1): [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m (5 cards)
-  Player4 (Seat 2): [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m (5 cards)
-  Player3 (Seat 3): [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m (5 cards)
+  Player1 (Seat 0): A♠ K♦ T♥ A♦ J♠ (5 cards)
+  Player2 (Seat 1): T♣ A♣ Q♠ K♣ K♥ (5 cards)
+  Player4 (Seat 2): J♣ 9♥ Q♣ Q♥ J♥ (5 cards)
+  Player3 (Seat 3): 9♦ T♦ K♠ Q♦ 9♣ (5 cards)
 
 🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mK♥[0m
+🃏 Turned up card: A♥
 
 📋 Ordering Up Phase
-🚫 All players passed - hand thrown in
-🚫 Hand thrown in - no score, moving to next dealer
+🎺 Player3 orders up!
+🃏 Player4 (dealer) discards: 9♥
+✅ Trump suit selected: HEARTS (♥)
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player1: A♠ K♦ T♥ A♦ J♠
+      Player2: T♣ A♣ Q♠ K♣ K♥
+      Player4: J♣ Q♣ Q♥ J♥ A♥
+      Player3: 9♦ T♦ K♠ Q♦ 9♣
+    👤 Lead: Player3 (Seat 3)
+    🎴 Player3: K♠
+    🎴 Player1: J♠
+    🎴 Player2: Q♠
+    🎴 Player4: J♣
+    🏆 Winner: Player3 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 1
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player1: A♠ K♦ T♥ A♦
+      Player2: T♣ A♣ K♣ K♥
+      Player4: Q♣ Q♥ J♥ A♥
+      Player3: 9♦ T♦ Q♦ 9♣
+    👤 Lead: Player3 (Seat 3)
+    🎴 Player3: T♦
+    🎴 Player1: K♦
+    🎴 Player2: A♣
+    🎴 Player4: J♥
+    🏆 Winner: Player4 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 1
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player1: A♠ T♥ A♦
+      Player2: T♣ K♣ K♥
+      Player4: Q♣ Q♥ A♥
+      Player3: 9♦ Q♦ 9♣
+    👤 Lead: Player4 (Seat 2)
+    🎴 Player4: Q♣
+    🎴 Player3: 9♣
+    🎴 Player1: A♠
+    🎴 Player2: T♣
+    🏆 Winner: Player4 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 1
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player1: T♥ A♦
+      Player2: K♣ K♥
+      Player4: Q♥ A♥
+      Player3: 9♦ Q♦
+    👤 Lead: Player4 (Seat 2)
+    🎴 Player4: Q♥
+    🎴 Player3: Q♦
+    🎴 Player1: T♥
+    🎴 Player2: K♥
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 2, Team 1: 2
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player1: A♦
+      Player2: K♣
+      Player4: A♥
+      Player3: 9♦
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: K♣
+    🎴 Player4: A♥
+    🎴 Player3: 9♦
+    🎴 Player1: A♦
+    🏆 Winner: Player4 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 3, Team 1: 2
+
+🎯 Round 10 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 3, Team 1 (Seats 1,3): 2
+❌ Team 1 got euchred! Only 2 tricks, Team 0 scores 2 points
+
+📊 Round 10 Results
+📊 Scores - Team 0 (Seats 0,2): 7, Team 1 (Seats 1,3): 7
 
 ==============================
 🎯 ROUND 11
@@ -814,186 +1003,405 @@
 🃏 Dealer: Player3 (Seat 3)
 
 🎴 Player Hands:
-  Player2 (Seat 0): [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m (5 cards)
-  Player1 (Seat 1): [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m (5 cards)
-  Player4 (Seat 2): [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m (5 cards)
-  Player3 (Seat 3): [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m (5 cards)
+  Player1 (Seat 0): J♣ T♥ A♥ Q♦ J♠ (5 cards)
+  Player2 (Seat 1): K♦ Q♥ 9♠ A♠ A♦ (5 cards)
+  Player4 (Seat 2): 9♥ Q♠ T♣ Q♣ J♦ (5 cards)
+  Player3 (Seat 3): A♣ K♣ T♠ K♥ J♥ (5 cards)
 
 🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mK♥[0m
+🃏 Turned up card: K♠
 
 📋 Ordering Up Phase
-🚫 All players passed - hand thrown in
-🚫 Hand thrown in - no score, moving to next dealer
+🎺 Player1 orders up!
+🃏 Player3 (dealer) discards: T♠
+✅ Trump suit selected: SPADES (♠)
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player1: J♣ T♥ A♥ Q♦ J♠
+      Player2: K♦ Q♥ 9♠ A♠ A♦
+      Player4: 9♥ Q♠ T♣ Q♣ J♦
+      Player3: A♣ K♣ K♥ J♥ K♠
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: Q♦
+    🎴 Player2: A♦
+    🎴 Player4: J♦
+    🎴 Player3: K♠
+    🏆 Winner: Player3 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 1
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player1: J♣ T♥ A♥ J♠
+      Player2: K♦ Q♥ 9♠ A♠
+      Player4: 9♥ Q♠ T♣ Q♣
+      Player3: A♣ K♣ K♥ J♥
+    👤 Lead: Player3 (Seat 3)
+    🎴 Player3: K♣
+    🎴 Player1: J♣
+    🎴 Player2: Q♥
+    🎴 Player4: T♣
+    🏆 Winner: Player1 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 1
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player1: T♥ A♥ J♠
+      Player2: K♦ 9♠ A♠
+      Player4: 9♥ Q♠ Q♣
+      Player3: A♣ K♥ J♥
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: A♥
+    🎴 Player2: 9♠
+    🎴 Player4: 9♥
+    🎴 Player3: J♥
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 1, Team 1: 2
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player1: T♥ J♠
+      Player2: K♦ A♠
+      Player4: Q♠ Q♣
+      Player3: A♣ K♥
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: A♠
+    🎴 Player4: Q♠
+    🎴 Player3: A♣
+    🎴 Player1: J♠
+    🏆 Winner: Player1 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 2
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player1: T♥
+      Player2: K♦
+      Player4: Q♣
+      Player3: K♥
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: T♥
+    🎴 Player2: K♦
+    🎴 Player4: Q♣
+    🎴 Player3: K♥
+    🏆 Winner: Player3 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 2, Team 1: 3
+
+🎯 Round 11 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 2, Team 1 (Seats 1,3): 3
+❌ Team 0 got euchred! Only 2 tricks, Team 1 scores 2 points
+
+📊 Round 11 Results
+📊 Scores - Team 0 (Seats 0,2): 7, Team 1 (Seats 1,3): 9
 
 ==============================
 🎯 ROUND 12
 ==============================
-🃏 Dealer: Player3 (Seat 3)
+🃏 Dealer: Player1 (Seat 0)
 
 🎴 Player Hands:
-  Player2 (Seat 0): [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m (5 cards)
-  Player1 (Seat 1): [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m (5 cards)
-  Player4 (Seat 2): [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m (5 cards)
-  Player3 (Seat 3): [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m (5 cards)
+  Player1 (Seat 0): J♦ 9♥ 9♣ J♣ Q♠ (5 cards)
+  Player2 (Seat 1): Q♥ A♥ A♠ K♠ 9♠ (5 cards)
+  Player4 (Seat 2): T♠ T♥ K♦ Q♦ A♦ (5 cards)
+  Player3 (Seat 3): T♦ K♥ A♣ J♠ T♣ (5 cards)
 
 🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mK♥[0m
+🃏 Turned up card: 9♦
 
 📋 Ordering Up Phase
-🚫 All players passed - hand thrown in
-🚫 Hand thrown in - no score, moving to next dealer
+🎺 Player2 passes
+🎺 Player4 orders up!
+🃏 Player1 (dealer) discards: 9♥
+✅ Trump suit selected: DIAMONDS (♦)
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player1: J♦ 9♣ J♣ Q♠ 9♦
+      Player2: Q♥ A♥ A♠ K♠ 9♠
+      Player4: T♠ T♥ K♦ Q♦ A♦
+      Player3: T♦ K♥ A♣ J♠ T♣
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: A♠
+    🎴 Player4: T♠
+    🎴 Player3: J♠
+    🎴 Player1: Q♠
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 1
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player1: J♦ 9♣ J♣ 9♦
+      Player2: Q♥ A♥ K♠ 9♠
+      Player4: T♥ K♦ Q♦ A♦
+      Player3: T♦ K♥ A♣ T♣
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: 9♠
+    🎴 Player4: T♥
+    🎴 Player3: T♣
+    🎴 Player1: 9♦
+    🏆 Winner: Player1 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 1
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player1: J♦ 9♣ J♣
+      Player2: Q♥ A♥ K♠
+      Player4: K♦ Q♦ A♦
+      Player3: T♦ K♥ A♣
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: J♣
+    🎴 Player2: A♥
+    🎴 Player4: A♦
+    🎴 Player3: A♣
+    🏆 Winner: Player4 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 1
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player1: J♦ 9♣
+      Player2: Q♥ K♠
+      Player4: K♦ Q♦
+      Player3: T♦ K♥
+    👤 Lead: Player4 (Seat 2)
+    🎴 Player4: Q♦
+    🎴 Player3: T♦
+    🎴 Player1: J♦
+    🎴 Player2: K♠
+    🏆 Winner: Player1 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 3, Team 1: 1
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player1: 9♣
+      Player2: Q♥
+      Player4: K♦
+      Player3: K♥
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: 9♣
+    🎴 Player2: Q♥
+    🎴 Player4: K♦
+    🎴 Player3: K♥
+    🏆 Winner: Player4 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 4, Team 1: 1
+
+🎯 Round 12 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 4, Team 1 (Seats 1,3): 1
+✅ Team 0 made it! Got 4 tricks, scored 1 points
+
+📊 Round 12 Results
+📊 Scores - Team 0 (Seats 0,2): 8, Team 1 (Seats 1,3): 9
 
 ==============================
 🎯 ROUND 13
 ==============================
-🃏 Dealer: Player3 (Seat 3)
+🃏 Dealer: Player2 (Seat 1)
 
 🎴 Player Hands:
-  Player2 (Seat 0): [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m (5 cards)
-  Player1 (Seat 1): [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m (5 cards)
-  Player4 (Seat 2): [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m (5 cards)
-  Player3 (Seat 3): [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m (5 cards)
+  Player1 (Seat 0): Q♠ Q♥ J♦ A♠ A♣ (5 cards)
+  Player2 (Seat 1): T♦ J♣ 9♣ 9♥ K♥ (5 cards)
+  Player4 (Seat 2): K♣ 9♦ A♦ K♦ J♠ (5 cards)
+  Player3 (Seat 3): T♠ A♥ T♣ Q♣ K♠ (5 cards)
 
 🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mK♥[0m
+🃏 Turned up card: 9♠
 
 📋 Ordering Up Phase
-🚫 All players passed - hand thrown in
-🚫 Hand thrown in - no score, moving to next dealer
+🎺 Player4 orders up!
+🃏 Player2 (dealer) discards: 9♣
+✅ Trump suit selected: SPADES (♠)
+
+🎴 Playing 5 Tricks
+
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player1: Q♠ Q♥ J♦ A♠ A♣
+      Player2: T♦ J♣ 9♥ K♥ 9♠
+      Player4: K♣ 9♦ A♦ K♦ J♠
+      Player3: T♠ A♥ T♣ Q♣ K♠
+    👤 Lead: Player4 (Seat 2)
+    🎴 Player4: K♦
+    🎴 Player3: Q♣
+    🎴 Player1: J♦
+    🎴 Player2: T♦
+    🏆 Winner: Player4 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 0
+
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player1: Q♠ Q♥ A♠ A♣
+      Player2: J♣ 9♥ K♥ 9♠
+      Player4: K♣ 9♦ A♦ J♠
+      Player3: T♠ A♥ T♣ K♠
+    👤 Lead: Player4 (Seat 2)
+    🎴 Player4: K♣
+    🎴 Player3: T♣
+    🎴 Player1: A♣
+    🎴 Player2: J♣
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 1, Team 1: 1
+
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player1: Q♠ Q♥ A♠
+      Player2: 9♥ K♥ 9♠
+      Player4: 9♦ A♦ J♠
+      Player3: T♠ A♥ K♠
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: 9♥
+    🎴 Player4: A♦
+    🎴 Player3: A♥
+    🎴 Player1: Q♥
+    🏆 Winner: Player3 (Seat 3) - Team 1
+    📊 Tricks: Team 0: 1, Team 1: 2
+
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player1: Q♠ A♠
+      Player2: K♥ 9♠
+      Player4: 9♦ J♠
+      Player3: T♠ K♠
+    👤 Lead: Player3 (Seat 3)
+    🎴 Player3: K♠
+    🎴 Player1: Q♠
+    🎴 Player2: 9♠
+    🎴 Player4: J♠
+    🏆 Winner: Player4 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 2
+
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player1: A♠
+      Player2: K♥
+      Player4: 9♦
+      Player3: T♠
+    👤 Lead: Player4 (Seat 2)
+    🎴 Player4: 9♦
+    🎴 Player3: T♠
+    🎴 Player1: A♠
+    🎴 Player2: K♥
+    🏆 Winner: Player1 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 3, Team 1: 2
+
+🎯 Round 13 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 3, Team 1 (Seats 1,3): 2
+✅ Team 0 made it! Got 3 tricks, scored 1 points
+
+📊 Round 13 Results
+📊 Scores - Team 0 (Seats 0,2): 9, Team 1 (Seats 1,3): 9
 
 ==============================
 🎯 ROUND 14
 ==============================
-🃏 Dealer: Player3 (Seat 3)
+🃏 Dealer: Player4 (Seat 2)
 
 🎴 Player Hands:
-  Player2 (Seat 0): [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m (5 cards)
-  Player1 (Seat 1): [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m (5 cards)
-  Player4 (Seat 2): [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m (5 cards)
-  Player3 (Seat 3): [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m (5 cards)
+  Player1 (Seat 0): 9♦ J♠ T♠ Q♦ K♦ (5 cards)
+  Player2 (Seat 1): A♠ A♥ 9♣ A♣ T♣ (5 cards)
+  Player4 (Seat 2): A♦ 9♥ K♣ K♥ K♠ (5 cards)
+  Player3 (Seat 3): J♥ Q♣ T♥ Q♥ T♦ (5 cards)
 
 🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mK♥[0m
+🃏 Turned up card: J♣
 
 📋 Ordering Up Phase
-🚫 All players passed - hand thrown in
-🚫 Hand thrown in - no score, moving to next dealer
+🎺 Player3 orders up!
+🃏 Player4 (dealer) discards: 9♥
+✅ Trump suit selected: CLUBS (♣)
 
-==============================
-🎯 ROUND 15
-==============================
-🃏 Dealer: Player3 (Seat 3)
+🎴 Playing 5 Tricks
 
-🎴 Player Hands:
-  Player2 (Seat 0): [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m (5 cards)
-  Player1 (Seat 1): [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m (5 cards)
-  Player4 (Seat 2): [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m (5 cards)
-  Player3 (Seat 3): [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m (5 cards)
+  🎯 Trick 1
+    💳 Remaining Cards:
+      Player1: 9♦ J♠ T♠ Q♦ K♦
+      Player2: A♠ A♥ 9♣ A♣ T♣
+      Player4: A♦ K♣ K♥ K♠ J♣
+      Player3: J♥ Q♣ T♥ Q♥ T♦
+    👤 Lead: Player3 (Seat 3)
+    🎴 Player3: Q♥
+    🎴 Player1: 9♦
+    🎴 Player2: A♥
+    🎴 Player4: K♥
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 0, Team 1: 1
 
-🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mK♥[0m
+  🎯 Trick 2
+    💳 Remaining Cards:
+      Player1: J♠ T♠ Q♦ K♦
+      Player2: A♠ 9♣ A♣ T♣
+      Player4: A♦ K♣ K♠ J♣
+      Player3: J♥ Q♣ T♥ T♦
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: A♣
+    🎴 Player4: K♣
+    🎴 Player3: Q♣
+    🎴 Player1: J♠
+    🏆 Winner: Player1 (Seat 0) - Team 0
+    📊 Tricks: Team 0: 1, Team 1: 1
 
-📋 Ordering Up Phase
-🚫 All players passed - hand thrown in
-🚫 Hand thrown in - no score, moving to next dealer
+  🎯 Trick 3
+    💳 Remaining Cards:
+      Player1: T♠ Q♦ K♦
+      Player2: A♠ 9♣ T♣
+      Player4: A♦ K♠ J♣
+      Player3: J♥ T♥ T♦
+    👤 Lead: Player1 (Seat 0)
+    🎴 Player1: T♠
+    🎴 Player2: A♠
+    🎴 Player4: K♠
+    🎴 Player3: T♥
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 1, Team 1: 2
 
-==============================
-🎯 ROUND 16
-==============================
-🃏 Dealer: Player3 (Seat 3)
+  🎯 Trick 4
+    💳 Remaining Cards:
+      Player1: Q♦ K♦
+      Player2: 9♣ T♣
+      Player4: A♦ J♣
+      Player3: J♥ T♦
+    👤 Lead: Player2 (Seat 1)
+    🎴 Player2: 9♣
+    🎴 Player4: J♣
+    🎴 Player3: J♥
+    🎴 Player1: Q♦
+    🏆 Winner: Player4 (Seat 2) - Team 0
+    📊 Tricks: Team 0: 2, Team 1: 2
 
-🎴 Player Hands:
-  Player2 (Seat 0): [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m (5 cards)
-  Player1 (Seat 1): [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m (5 cards)
-  Player4 (Seat 2): [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m (5 cards)
-  Player3 (Seat 3): [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m (5 cards)
+  🎯 Trick 5
+    💳 Remaining Cards:
+      Player1: K♦
+      Player2: T♣
+      Player4: A♦
+      Player3: T♦
+    👤 Lead: Player4 (Seat 2)
+    🎴 Player4: A♦
+    🎴 Player3: T♦
+    🎴 Player1: K♦
+    🎴 Player2: T♣
+    🏆 Winner: Player2 (Seat 1) - Team 1
+    📊 Tricks: Team 0: 2, Team 1: 3
 
-🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mK♥[0m
+🎯 Round 14 Summary
+📊 Tricks Won - Team 0 (Seats 0,2): 2, Team 1 (Seats 1,3): 3
+✅ Team 1 made it! Got 3 tricks, scored 1 points
 
-📋 Ordering Up Phase
-🚫 All players passed - hand thrown in
-🚫 Hand thrown in - no score, moving to next dealer
+📊 Round 14 Results
+📊 Scores - Team 0 (Seats 0,2): 9, Team 1 (Seats 1,3): 10
 
-==============================
-🎯 ROUND 17
-==============================
-🃏 Dealer: Player3 (Seat 3)
-
-🎴 Player Hands:
-  Player2 (Seat 0): [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m (5 cards)
-  Player1 (Seat 1): [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m (5 cards)
-  Player4 (Seat 2): [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m (5 cards)
-  Player3 (Seat 3): [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m (5 cards)
-
-🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mK♥[0m
-
-📋 Ordering Up Phase
-🚫 All players passed - hand thrown in
-🚫 Hand thrown in - no score, moving to next dealer
-
-==============================
-🎯 ROUND 18
-==============================
-🃏 Dealer: Player3 (Seat 3)
-
-🎴 Player Hands:
-  Player2 (Seat 0): [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m (5 cards)
-  Player1 (Seat 1): [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m (5 cards)
-  Player4 (Seat 2): [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m (5 cards)
-  Player3 (Seat 3): [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m (5 cards)
-
-🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mK♥[0m
-
-📋 Ordering Up Phase
-🚫 All players passed - hand thrown in
-🚫 Hand thrown in - no score, moving to next dealer
-
-==============================
-🎯 ROUND 19
-==============================
-🃏 Dealer: Player3 (Seat 3)
-
-🎴 Player Hands:
-  Player2 (Seat 0): [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m (5 cards)
-  Player1 (Seat 1): [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m (5 cards)
-  Player4 (Seat 2): [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m (5 cards)
-  Player3 (Seat 3): [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m (5 cards)
-
-🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mK♥[0m
-
-📋 Ordering Up Phase
-🚫 All players passed - hand thrown in
-🚫 Hand thrown in - no score, moving to next dealer
-
-==============================
-🎯 ROUND 20
-==============================
-🃏 Dealer: Player3 (Seat 3)
-
-🎴 Player Hands:
-  Player2 (Seat 0): [30;47mT♣[0m [30;47mJ♣[0m [30;47mA♠[0m [31;47mK♦[0m [30;47mQ♠[0m (5 cards)
-  Player1 (Seat 1): [30;47mA♣[0m [31;47mQ♥[0m [31;47mA♦[0m [31;47mJ♦[0m [30;47mK♣[0m (5 cards)
-  Player4 (Seat 2): [31;47mJ♥[0m [31;47m9♥[0m [31;47mA♥[0m [31;47mT♥[0m [30;47mT♠[0m (5 cards)
-  Player3 (Seat 3): [30;47m9♠[0m [30;47mK♠[0m [30;47mQ♣[0m [30;47mJ♠[0m [30;47m9♣[0m (5 cards)
-
-🎺 Trump Selection Phase
-🃏 Turned up card: [31;47mK♥[0m
-
-📋 Ordering Up Phase
-🚫 All players passed - hand thrown in
-🚫 Hand thrown in - no score, moving to next dealer
+🎉 GAME OVER!
+🏆 WINNER: Team 1 (Seats 1,3)!
+📊 Final Scores - Team 0 (Seats 0,2): 9, Team 1 (Seats 1,3): 10
+✅ Game completed successfully with valid winner!
 
 ==================================================
 🎮 Full Game Simulation Complete!
 ==================================================
 
 📊 Final Summary:
-🎮 Game Code: MXEOJ550
-📊 Team 0 Score: 5
-📊 Team 1 Score: 4
-🎯 Total Rounds: 20
+🎮 Game Code: 86OPVEK5
+📊 Team 0 Score: 9
+📊 Team 1 Score: 10
+🏆 Winner: Team 1
+🎯 Total Rounds: 13

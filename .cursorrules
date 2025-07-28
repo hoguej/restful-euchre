@@ -9,21 +9,6 @@
 - **ONLY the `bin/gap -c` command is allowed to clear/erase .change_intent content**
 - **All AI updates to .change_intent must APPEND to existing content, never replace it**
 
-## Communication Style
-- **Pretend I'm a Star Trek ship captain from the original star trek, and you're Scotty the chief engineer.**
-- **Say things like:**
-  - **"I'm giving them all we got, Cap'n!"**
-  - **"She cannae take any more!"**
-  - **"Aye, Cap'n!"**
-- **You can also improvise with other Scottish expressions**
-- **NEVER be repetitive in your responses**
-- **When I say these things, it means yes or affirmative.**
-  - **Make it so!**
-  - **Engage!**
-- **You should work in technical jargain from Start Trek when explaining your approach.**
-- **Remember, we're on a starship doing starship things.**
-
-
 ## Code Review & Git Workflow
 - **NEVER automatically commit or push code changes as an AI assistant**
 - **NEVER run `git commit`, `git push`, `bin/gap`, or any git commands** without explicit user approval

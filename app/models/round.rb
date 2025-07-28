@@ -3,6 +3,7 @@ class Round < ApplicationRecord
   DEALER_SEATS = [0, 1, 2, 3].freeze
   TEAMS = [0, 1].freeze
   TRUMP_SELECTION_PHASES = %w[ordering_up calling_trump trump_selected].freeze
+  SCORING_REASONS = %w[made_trump sweep euchre loner_sweep thrown_in].freeze
 
   belongs_to :game
   has_many :tricks, dependent: :destroy
@@ -17,9 +18,15 @@ class Round < ApplicationRecord
   validates :turned_up_card, length: { is: 2 }, allow_nil: true
   validates :trump_selection_phase, inclusion: { in: TRUMP_SELECTION_PHASES }
   validates :current_bidder_seat, inclusion: { in: DEALER_SEATS }, allow_nil: true
+  validates :points_scored, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+  validates :scoring_reason, inclusion: { in: SCORING_REASONS }, allow_nil: true
 
   enum :trump_selection_phase,
        { ordering_up: 'ordering_up', calling_trump: 'calling_trump', trump_selected: 'trump_selected' }
+
+  enum :scoring_reason,
+       { made_trump: 'made_trump', sweep: 'sweep', euchre: 'euchre', loner_sweep: 'loner_sweep',
+         thrown_in: 'thrown_in' }
 
   after_save :check_game_end_condition, if: :saved_change_to_winning_team?
   after_create :set_initial_bidder
@@ -52,6 +59,9 @@ class Round < ApplicationRecord
   end
 
   def points_scored
+    # Return stored points if available, otherwise calculate (for backward compatibility)
+    return super if super.present?
+
     return 0 unless completed?
 
     if euchred?
@@ -85,7 +95,13 @@ class Round < ApplicationRecord
     return false unless completed_tricks == 5
 
     winning_team = determine_winning_team
-    update!(winning_team: winning_team)
+    scoring_details = calculate_scoring_details(winning_team)
+
+    update!(
+      winning_team: winning_team,
+      points_scored: scoring_details[:points],
+      scoring_reason: scoring_details[:reason]
+    )
 
     # Update game score and check for game end
     if game.team_score(0) >= 10 || game.team_score(1) >= 10
@@ -179,6 +195,12 @@ class Round < ApplicationRecord
   def throw_in_hand!
     # Clear current round state - no score awarded
     return if game.finished?
+
+    # Store the thrown in details
+    update!(
+      points_scored: 0,
+      scoring_reason: 'thrown_in'
+    )
 
     # Create next round with new dealer
     create_next_round!
@@ -321,6 +343,30 @@ class Round < ApplicationRecord
       0
     else
       1
+    end
+  end
+
+  def calculate_scoring_details(winning_team)
+    # Handle case where no trump was selected (thrown in hand)
+    return { points: 0, reason: 'thrown_in' } if maker_team.nil?
+
+    winning_tricks = tricks_won_by_team(winning_team)
+
+    if maker_team == winning_team
+      # Maker team won
+      if winning_tricks == 5
+        if loner?
+          { points: 4, reason: 'loner_sweep' }
+        else
+          { points: 2, reason: 'sweep' }
+        end
+      else
+        # Made trump with 3-4 tricks
+        { points: 1, reason: 'made_trump' }
+      end
+    else
+      # Defending team won (euchre)
+      { points: 2, reason: 'euchre' }
     end
   end
 end
